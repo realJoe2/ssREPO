@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxf3c57wplsf6"]
+
+[ext_resource type="Script" uid="uid://bismbrf1oeuyn" path="res://Scripts/OnScreenMessage.cs" id="1_6fs40"]
+[ext_resource type="FontFile" uid="uid://bkpuvl81gwuq4" path="res://Fonts/5Computers-In-Love.ttf" id="2_pj4w7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uchyk"]
+font = ExtResource("2_pj4w7")
+font_size = 30
+
+[node name="OnScreenMessage" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6fs40")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(24.99, 2.625)
+pivot_offset = Vector2(20, 20)
+color = Color(0, 0, 0, 0.345098)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -722.0
+offset_top = -31.0
+offset_right = 722.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.675, 0.675)
+pivot_offset = Vector2(720, 0)
+text = "edit me"
+label_settings = SubResource("LabelSettings_uchyk")
+horizontal_alignment = 1
+autowrap_mode = 2

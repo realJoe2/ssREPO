@@ -1,0 +1,17 @@
+// Game: shotgun_shinobu
+// Format: Standard
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+"_tb_mod" "Assets"
+// brush 0
+{
+( -144 -160 64 ) ( -144 -159 64 ) ( -144 -160 65 ) ninjaAlbedo 0 0 0 1 1
+( -144 -160 64 ) ( -144 -160 65 ) ( -143 -160 64 ) ninjaAlbedo 0 0 0 1 1
+( -144 -160 64 ) ( -143 -160 64 ) ( -144 -159 64 ) ninjaAlbedo 0 0 0 1 1
+( 144 48 80 ) ( 144 49 80 ) ( 145 48 80 ) ninjaAlbedo 0 0 0 1 1
+( 144 48 80 ) ( 145 48 80 ) ( 144 48 81 ) ninjaAlbedo 0 0 0 1 1
+( 144 48 80 ) ( 144 48 81 ) ( 144 49 80 ) ninjaAlbedo 0 0 0 1 1
+}
+}

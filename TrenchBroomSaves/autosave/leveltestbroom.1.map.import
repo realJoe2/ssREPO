@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://r7ba2aya0kdy"
+path="res://.godot/imported/leveltestbroom.1.map-355e0162864b9867e0872b2adc8bbe1a.tres"
+
+[deps]
+
+source_file="res://TrenchBroomSaves/autosave/leveltestbroom.1.map"
+dest_files=["res://.godot/imported/leveltestbroom.1.map-355e0162864b9867e0872b2adc8bbe1a.tres"]
+
+[params]
+

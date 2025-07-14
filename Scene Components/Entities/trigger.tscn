@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://capoc3d5hricf"]
+
+[ext_resource type="Script" uid="uid://pig2nlkjyx16" path="res://Scripts/Trigger.cs" id="1_ao7f1"]
+
+[node name="Trigger" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+input_ray_pickable = false
+monitorable = false
+script = ExtResource("1_ao7f1")
+oneShot = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]

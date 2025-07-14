@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dicxugyway1f0"
+path="res://.godot/imported/sandbox.4.map-4f73cfb8de5d7c98bd5d9bf1f2b2a469.tres"
+
+[deps]
+
+source_file="res://TrenchBroomSaves/autosave/sandbox.4.map"
+dest_files=["res://.godot/imported/sandbox.4.map-4f73cfb8de5d7c98bd5d9bf1f2b2a469.tres"]
+
+[params]
+
