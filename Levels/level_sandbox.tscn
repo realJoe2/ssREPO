@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://capoc3d5hricf" path="res://Scene Components/Entities/trigger.tscn" id="9_sl45b"]
 [ext_resource type="PackedScene" uid="uid://dsr82h2g7wsg3" path="res://Scene Components/Entities/wave.tscn" id="10_sg4at"]
 [ext_resource type="PackedScene" uid="uid://ds4kbuf88om55" path="res://Scene Components/Entities/enemy_spawner.tscn" id="11_0d72h"]
-[ext_resource type="PackedScene" uid="uid://dk8cy7y05mwlo" path="res://Scene Components/Entities/Enemies/enemy_footninja.tscn" id="12_0d72h"]
+[ext_resource type="PackedScene" uid="uid://b8y5d54kdw3w1" path="res://Scene Components/Entities/Enemies/footninja.tscn" id="11_sg4at"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0d72h"]
 vertices = PackedVector3Array(-13.5, 0.25, -21.25, -13, 0.25, -21.5, -13, 0.25, -46.5, -40, 0.25, -19.25, -13.5, 0.25, -19.25, -40, 0.25, -46.5, -10.75, 1.25, -19, -0.75, 1.25, -19, -0.75, 0.25, -21, -10.75, 0.25, -21.25, 1.5, 0.25, -21.25, 1.5, 0.25, -46.5, 0.75, 5.5, -20.25, 0.25, 5.5, -20.25, 0.25, 5.5, -11.5, -11.75, 5.5, -11.25, -12, 5.5, -20.5, -12.5, 5.5, -20.5, -0.75, 4.25, -13.5, -10.75, 4.25, -13.5, -10.75, 5.25, -11.5, -0.75, 5.25, -11.5, -12.5, 5.5, 0.5, 0.75, 5.5, 0.75, -40, 0.25, 1, -13.5, 0.25, 1, -10.75, 0.25, -16, -10.75, 0.25, -11.25, -0.75, 0.25, -11.25, -0.75, 0.25, -16, -10.75, 0.25, -10, -10.75, 0.25, 0.5, -0.75, 0.25, 0.5, -0.75, 0.25, -10)
@@ -220,7 +220,7 @@ shape = SubResource("SphereShape3D_vmhxe")
 [node name="Wave_basic" parent="." instance=ExtResource("10_sg4at")]
 
 [node name="enemy_spawner" parent="Wave_basic" instance=ExtResource("11_0d72h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, -33)
-enemyResource = ExtResource("12_0d72h")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 19, -33)
+enemyResource = ExtResource("11_sg4at")
 
 [editable path="editme"]

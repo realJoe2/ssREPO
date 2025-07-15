@@ -9,7 +9,7 @@ public partial class Shotgun : Weapon
         damage = 1;
         state = WeaponState.SwitchTo;
         DefineTimers();
-        
+        SwitchTo();
     }
 
     public override void SwitchTo()
@@ -29,27 +29,5 @@ public partial class Shotgun : Weapon
     public override void _Process(double delta)
     {
         //check for state conditions with another switch case
-    }
-    public override void ChangeState(WeaponState s)
-    {
-        if(state == s)
-            return;
-        state = s;
-
-        switch (state)
-        {
-            case WeaponState.SwitchTo:
-                SwitchTo();
-                break;
-            case WeaponState.Idle:
-                Idle();
-                break;
-            case WeaponState.Fire:
-                Fire();
-                break;
-            default:
-                GD.PushWarning("Tried to switch to a non-existent state.");
-                break;
-        }
     }
 }

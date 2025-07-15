@@ -26,7 +26,29 @@ public abstract partial class Weapon : Node
 	public abstract void SwitchTo();
 	public abstract void Idle();
 	public abstract void Fire();
-	public abstract void ChangeState(WeaponState s);
+	
+	public void ChangeState(WeaponState s)
+    {
+        if(state == s)
+            return;
+        state = s;
+
+        switch (state)
+        {
+            case WeaponState.SwitchTo:
+                SwitchTo();
+                break;
+            case WeaponState.Idle:
+                Idle();
+                break;
+            case WeaponState.Fire:
+                Fire();
+                break;
+            default:
+                GD.PushWarning("Tried to switch to a non-existent state.");
+                break;
+        }
+    }
 
 	public void DefineTimers()
 	{

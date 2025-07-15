@@ -15,7 +15,7 @@ public partial class EnemySpawner : Node3D
 		float delay = GetIndex() * .1F;
 		if(delay > 0)
 			await ToSignal(GetTree().CreateTimer(delay), SceneTreeTimer.SignalName.Timeout);
-		CharacterBody3D enemyInstance = (CharacterBody3D) enemyScene.Instantiate();
+		Node3D enemyInstance = (Node3D) enemyScene.Instantiate();
 		AddChild(enemyInstance);
 	}
 	public void Defeated()

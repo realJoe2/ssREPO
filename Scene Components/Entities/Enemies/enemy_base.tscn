@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://o0rpxgj33cua"]
+
+[ext_resource type="Script" uid="uid://3onsfxq7us0o" path="res://Scripts/CharacterPhysics.cs" id="1_52a1x"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_52a1x")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="EyeSight" type="RayCast3D" parent="."]
+collision_mask = 3
