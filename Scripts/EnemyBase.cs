@@ -47,7 +47,7 @@ public abstract partial class EnemyBase : Node
         lookDirection = target;
         lookDirection.Y = model.GlobalPosition.Y;
         model.LookAt(lookDirection);
-        model.RotateY(Mathf.DegToRad(180F)); //flip around, otherwise the model points in the opposite direction
+        model.RotateY(Mathf.DegToRad(180F));
     }
     public void ChangeState(EnemyState s)
     {

@@ -39,7 +39,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57782, 0)
 collision_mask = 3
 
 [node name="ninja_model" parent="." instance=ExtResource("3_6w7ie")]
-transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 0, 0)
+transform = Transform3D(-0.84, 0, -7.34351e-08, 0, 0.84, 0, 7.34351e-08, 0, -0.84, 0, 0, 0)
 
 [node name="Skeleton3D" parent="ninja_model/rig" index="0"]
 bones/1/rotation = Quaternion(-0.0725517, 2.39299e-15, -1.72977e-08, 0.997365)

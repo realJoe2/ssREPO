@@ -33,8 +33,10 @@ public partial class Footninja : EnemyBase
 
     Vector3 nextPath;
     Vector3 movementVector;
+    float distanceToPlayer;
     public override void _PhysicsProcess(double delta)
     {
+        distanceToPlayer = GetDistanceToPlayer();
         //check for conditions that change the state
         switch(state)
         {
@@ -48,8 +50,11 @@ public partial class Footninja : EnemyBase
                 
                 movementVector = (nextPath - characterBody.GlobalPosition).Normalized();
                 movementVector.Y = 0;
-
-                FaceTarget(model, nextPath);
+                
+                if(distanceToPlayer > 4F)
+                    FaceTarget(model, nextPath);
+                else
+                    FaceTarget(model, playerNode.GlobalPosition);
 
                 if (characterBody.IsOnFloor())
                             GetParent().Call("AddForce", movementVector * moveSpeed * .4F);
