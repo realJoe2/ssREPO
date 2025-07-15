@@ -14,7 +14,8 @@ public partial class Shotgun : Weapon
 
     public override void SwitchTo()
     {
-
+        //play animations
+        //switch to Idle state on animation finish. either do this via a signal or some other way.
     }
     public override void Fire()
     {
@@ -35,7 +36,7 @@ public partial class Shotgun : Weapon
             return;
         state = s;
 
-        switch(state)
+        switch (state)
         {
             case WeaponState.SwitchTo:
                 SwitchTo();
@@ -45,6 +46,9 @@ public partial class Shotgun : Weapon
                 break;
             case WeaponState.Fire:
                 Fire();
+                break;
+            default:
+                GD.PushWarning("Tried to switch to a non-existent state.");
                 break;
         }
     }
