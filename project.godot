@@ -32,7 +32,6 @@ enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
 [global_group]
 
 Player="This group contains only the player."
-EnemyLogicNodes="This group comprises of the nodes that control enemy logic. Each enemy has one core logic node."
 
 [input]
 

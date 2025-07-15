@@ -38,7 +38,15 @@ public abstract partial class EnemyBase : Node
         if(navAgent == null)
             GD.PushError("'NavigationAgent3D' node not found. Ensure spelling.");
     }
-    
+
+    Vector3 lookDirection;
+    public void FacePlayer(Node3D model)
+    {
+        lookDirection = playerNode.GlobalPosition;
+        lookDirection.Y = model.GlobalPosition.Y;
+        model.LookAt(lookDirection);
+        model.RotateY(Mathf.DegToRad(180F)); //flip around, otherwise the model points in the opposite direction
+    }
     public void ChangeState(EnemyState s)
     {
         if(state == s)
@@ -61,11 +69,14 @@ public abstract partial class EnemyBase : Node
                 break;
         }
     }
+    public float GetDistanceToPlayer()
+    {
+        return characterBody.GlobalPosition.DistanceTo(playerNode.GlobalPosition);
+    }
     public bool CanSeePlayer()
     {
         eyeSight.TargetPosition = playerNode.GlobalPosition;
         eyeSight.ForceRaycastUpdate();
-        
         if(eyeSight.IsColliding())
             return eyeSight.GetCollider() == playerNode;
         return false;

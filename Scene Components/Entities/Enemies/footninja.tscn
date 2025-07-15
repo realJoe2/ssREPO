@@ -22,6 +22,9 @@ texture_filter = 0
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_25lyq")]
 
+[node name="EyeSight" parent="CharacterBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.859, 0)
 shape = SubResource("CapsuleShape3D_6w7ie")
@@ -31,17 +34,17 @@ transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 0.000767317, 0)
 
 [node name="Skeleton3D" parent="CharacterBody3D/ninja_model/rig" index="0"]
 bones/1/rotation = Quaternion(-0.0725517, 2.39299e-15, -1.72977e-08, 0.997365)
-bones/3/rotation = Quaternion(-0.0634634, -1.18969e-07, -7.56542e-09, 0.997984)
-bones/6/rotation = Quaternion(0.0107053, -1.19202e-07, 1.27618e-09, 0.999943)
+bones/3/rotation = Quaternion(-0.0455671, -1.19086e-07, -5.43202e-09, 0.998961)
+bones/6/rotation = Quaternion(-0.00991452, -1.19203e-07, -1.1819e-09, 0.999951)
 bones/7/position = Vector3(0.003824, 0.0952053, -0.112356)
-bones/7/rotation = Quaternion(-0.776467, -0.0845469, 0.158294, 0.604065)
-bones/8/rotation = Quaternion(-0.0263799, -0.0241593, 0.00697878, 0.999336)
-bones/10/rotation = Quaternion(-0.245024, 0.709608, -0.574154, 0.326753)
-bones/11/rotation = Quaternion(0.0525335, -0.0142748, -0.0896812, 0.994482)
-bones/12/rotation = Quaternion(0.00171391, 0.0149051, -0.0422637, 0.998994)
-bones/15/rotation = Quaternion(-0.245024, -0.709608, 0.574154, 0.326753)
-bones/16/rotation = Quaternion(0.0525335, 0.0142748, 0.0896812, 0.994482)
-bones/17/rotation = Quaternion(0.00171493, -0.0149048, 0.0422756, 0.998993)
+bones/7/rotation = Quaternion(-0.818671, 0.170698, 0.13508, 0.531407)
+bones/8/rotation = Quaternion(-0.0617253, -0.0623948, 0.197317, 0.976403)
+bones/10/rotation = Quaternion(-0.230296, 0.70633, -0.577182, 0.339002)
+bones/11/rotation = Quaternion(0.0651299, -0.0154818, -0.110701, 0.991597)
+bones/12/rotation = Quaternion(0.00268661, 0.014664, -0.0535871, 0.998452)
+bones/15/rotation = Quaternion(-0.230296, -0.70633, 0.577182, 0.339002)
+bones/16/rotation = Quaternion(0.0651299, 0.0154818, 0.110701, 0.991597)
+bones/17/rotation = Quaternion(0.00268661, -0.014664, 0.0535871, 0.998452)
 bones/29/rotation = Quaternion(-8.99553e-08, 0.974557, -0.224138, -3.0593e-07)
 
 [node name="body" parent="CharacterBody3D/ninja_model/rig/Skeleton3D" index="0"]
@@ -50,4 +53,5 @@ material_override = SubResource("StandardMaterial3D_v2lgx")
 [node name="logic" type="Node" parent="."]
 script = ExtResource("2_u6n5f")
 
+[editable path="CharacterBody3D"]
 [editable path="CharacterBody3D/ninja_model"]

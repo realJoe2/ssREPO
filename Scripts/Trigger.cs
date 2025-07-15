@@ -24,7 +24,7 @@ public partial class Trigger : Area3D
 	{
 		th.Run(exited);
 		if(oneShot)
-			SetDeferred("monitoring", false);
+			QueueFree();
 	}
 	
 }
