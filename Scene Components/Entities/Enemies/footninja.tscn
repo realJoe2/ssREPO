@@ -18,6 +18,8 @@ albedo_texture = ExtResource("4_yujil")
 texture_filter = 0
 
 [node name="footninja" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_hfwpp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -26,11 +28,9 @@ shape = SubResource("CapsuleShape3D_withj")
 
 [node name="logic" type="Node" parent="."]
 script = ExtResource("2_u6n5f")
-moveSpeed = 10
+moveSpeed = 16
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 2.0
-target_desired_distance = 2.0
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 

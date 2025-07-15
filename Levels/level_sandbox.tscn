@@ -144,47 +144,6 @@ shape = SubResource("ConvexPolygonShape3D_r0h1x")
 [node name="entity_0_brush_7_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_io1pr")
 
-[node name="NavigationLink3D" type="NavigationLink3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -3)
-bidirectional = false
-start_position = Vector3(-0.2, 0, 0)
-end_position = Vector3(-4, -6, 0)
-enter_cost = 1.0
-
-[node name="NavigationLink3D2" type="NavigationLink3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -10)
-bidirectional = false
-start_position = Vector3(-0.2, 0, 0)
-end_position = Vector3(-4, -6, 0)
-enter_cost = 1.0
-
-[node name="NavigationLink3D5" type="NavigationLink3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -10)
-bidirectional = false
-start_position = Vector3(-0.2, 0, 0)
-end_position = Vector3(-4, -6, 0)
-enter_cost = 1.0
-
-[node name="NavigationLink3D3" type="NavigationLink3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -18)
-bidirectional = false
-start_position = Vector3(-0.2, 0, 0)
-end_position = Vector3(-4, -6, 0)
-enter_cost = 1.0
-
-[node name="NavigationLink3D4" type="NavigationLink3D" parent="NavigationRegion3D"]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -17, 1, -20)
-end_position = Vector3(1.6, 0, -2.4)
-enter_cost = 1.0
-travel_cost = 0.8
-
-[node name="NavigationLink3D7" type="NavigationLink3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 6, -10)
-start_position = Vector3(0, -0.95, -3)
-end_position = Vector3(0, 0, 2)
-enter_cost = 0.5
-travel_cost = 0.1
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_78xd7")
 

@@ -42,9 +42,9 @@ public abstract partial class EnemyBase : Node
     }
 
     Vector3 lookDirection;
-    public void FacePlayer(Node3D model)
+    public void FaceTarget(Node3D model, Vector3 target)
     {
-        lookDirection = playerNode.GlobalPosition;
+        lookDirection = target;
         lookDirection.Y = model.GlobalPosition.Y;
         model.LookAt(lookDirection);
         model.RotateY(Mathf.DegToRad(180F)); //flip around, otherwise the model points in the opposite direction

@@ -46,13 +46,15 @@ public partial class Footninja : EnemyBase
                 if(Engine.GetPhysicsFrames() % randomOffset == 0)
                     nextPath = GetNextPathPoint();
                 
-                movementVector = (playerNode.Position - nextPath).Normalized();
+                movementVector = (nextPath - characterBody.GlobalPosition).Normalized();
                 movementVector.Y = 0;
-                
-                if(characterBody.IsOnFloor())
-                    GetParent().Call("AddForce", movementVector * moveSpeed * .4F);
-                else
-                    GetParent().Call("AddForce", movementVector * moveSpeed * .1F);
+
+                FaceTarget(model, nextPath);
+
+                if (characterBody.IsOnFloor())
+                            GetParent().Call("AddForce", movementVector * moveSpeed * .4F);
+                        else
+                            GetParent().Call("AddForce", movementVector * moveSpeed * .1F);
                 break;
         }
     }
