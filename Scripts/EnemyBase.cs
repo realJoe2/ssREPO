@@ -21,18 +21,20 @@ public abstract partial class EnemyBase : Node
     RayCast3D eyeSight;
     public CharacterBody3D characterBody;
     NavigationAgent3D navAgent;
+    public uint randomOffset;
 
     public void Define()
     {
+        randomOffset = (GD.Randi() % 6) + 10;
         var pl = GetTree().GetNodesInGroup("Player");
 		playerNode = (CharacterBody3D) pl[0];
-        characterBody = (CharacterBody3D) GetNode("../CharacterBody3D");
-        eyeSight = (RayCast3D) GetNode("../CharacterBody3D/EyeSight");
-        navAgent = (NavigationAgent3D) GetNode("../CharacterBody3D/NavigationAgent3D");
+        characterBody = (CharacterBody3D) GetParent();
+        eyeSight = (RayCast3D) GetNode("../EyeSight");
+        navAgent = (NavigationAgent3D) GetNode("../NavigationAgent3D");
         if(playerNode == null)
             GD.PushError("Player node not found.");
         if(characterBody == null)
-            GD.PushError("'CharacterBody3D' node not found. Ensure spelling.");
+            GD.PushError("'CharacterBody3D' node not found. Ensure spelling..");
         if(eyeSight == null)
             GD.PushError("'EyeSight' (RayCast3D) node not found. Ensure spelling.");
         if(navAgent == null)
@@ -51,7 +53,7 @@ public abstract partial class EnemyBase : Node
     {
         if(state == s)
             return;
-        
+        GD.Print(s);
         state = s;
         switch(state)
         {
@@ -75,7 +77,7 @@ public abstract partial class EnemyBase : Node
     }
     public bool CanSeePlayer()
     {
-        eyeSight.TargetPosition = playerNode.GlobalPosition;
+        eyeSight.TargetPosition = eyeSight.ToLocal(playerNode.GlobalPosition);
         eyeSight.ForceRaycastUpdate();
         if(eyeSight.IsColliding())
             return eyeSight.GetCollider() == playerNode;

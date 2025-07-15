@@ -1,12 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8y5d54kdw3w1"]
 
-[ext_resource type="PackedScene" uid="uid://o0rpxgj33cua" path="res://Scene Components/Entities/Enemies/enemy_base.tscn" id="1_25lyq"]
+[ext_resource type="Script" uid="uid://3onsfxq7us0o" path="res://Scripts/CharacterPhysics.cs" id="1_hfwpp"]
 [ext_resource type="Script" uid="uid://du0kbaub7b11p" path="res://Scripts/Footninja.cs" id="2_u6n5f"]
 [ext_resource type="PackedScene" uid="uid://tb8oq57m57c4" path="res://Assets/footninja/ninja.gltf" id="3_6w7ie"]
 [ext_resource type="Texture2D" uid="uid://csmdbf04edswk" path="res://Assets/footninja/ninjaAlbedo.png" id="4_yujil"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6w7ie"]
-radius = 0.357758
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_withj"]
 height = 1.72
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2lgx"]
@@ -18,21 +17,31 @@ specular_mode = 2
 albedo_texture = ExtResource("4_yujil")
 texture_filter = 0
 
-[node name="footninja" type="Node3D"]
+[node name="footninja" type="CharacterBody3D"]
+script = ExtResource("1_hfwpp")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_25lyq")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85704, 0)
+shape = SubResource("CapsuleShape3D_withj")
 
-[node name="EyeSight" parent="CharacterBody3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="logic" type="Node" parent="."]
+script = ExtResource("2_u6n5f")
+moveSpeed = 10
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.859, 0)
-shape = SubResource("CapsuleShape3D_6w7ie")
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 2.0
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
 
-[node name="ninja_model" parent="CharacterBody3D" instance=ExtResource("3_6w7ie")]
-transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 0.000767317, 0)
+[node name="EyeSight" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57782, 0)
+collision_mask = 3
 
-[node name="Skeleton3D" parent="CharacterBody3D/ninja_model/rig" index="0"]
+[node name="ninja_model" parent="." instance=ExtResource("3_6w7ie")]
+transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 0, 0)
+
+[node name="Skeleton3D" parent="ninja_model/rig" index="0"]
 bones/1/rotation = Quaternion(-0.0725517, 2.39299e-15, -1.72977e-08, 0.997365)
 bones/3/rotation = Quaternion(-0.0455671, -1.19086e-07, -5.43202e-09, 0.998961)
 bones/6/rotation = Quaternion(-0.00991452, -1.19203e-07, -1.1819e-09, 0.999951)
@@ -47,11 +56,7 @@ bones/16/rotation = Quaternion(0.0651299, 0.0154818, 0.110701, 0.991597)
 bones/17/rotation = Quaternion(0.00268661, -0.014664, 0.0535871, 0.998452)
 bones/29/rotation = Quaternion(-8.99553e-08, 0.974557, -0.224138, -3.0593e-07)
 
-[node name="body" parent="CharacterBody3D/ninja_model/rig/Skeleton3D" index="0"]
+[node name="body" parent="ninja_model/rig/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_v2lgx")
 
-[node name="logic" type="Node" parent="."]
-script = ExtResource("2_u6n5f")
-
-[editable path="CharacterBody3D"]
-[editable path="CharacterBody3D/ninja_model"]
+[editable path="ninja_model"]
