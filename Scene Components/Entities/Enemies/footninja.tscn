@@ -1,12 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8y5d54kdw3w1"]
+[gd_scene load_steps=12 format=3 uid="uid://b8y5d54kdw3w1"]
 
 [ext_resource type="Script" uid="uid://3onsfxq7us0o" path="res://Scripts/CharacterPhysics.cs" id="1_hfwpp"]
 [ext_resource type="Script" uid="uid://du0kbaub7b11p" path="res://Scripts/Footninja.cs" id="2_u6n5f"]
 [ext_resource type="PackedScene" uid="uid://tb8oq57m57c4" path="res://Assets/footninja/ninja.gltf" id="3_6w7ie"]
+[ext_resource type="PackedScene" uid="uid://nfhomlvbwjhe" path="res://Scene Components/health_component.tscn" id="3_sy5vw"]
 [ext_resource type="Texture2D" uid="uid://csmdbf04edswk" path="res://Assets/footninja/ninjaAlbedo.png" id="4_yujil"]
+[ext_resource type="PackedScene" uid="uid://dys3wnxkrlfb0" path="res://Scene Components/hitbox.tscn" id="5_2lmfh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_withj"]
-height = 1.72
+radius = 0.409
+height = 1.62934
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2lgx"]
 transparency = 2
@@ -17,13 +20,27 @@ specular_mode = 2
 albedo_texture = ExtResource("4_yujil")
 texture_filter = 0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_sy5vw"]
+radius = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lmfh"]
+size = Vector3(0.559647, 0.861328, 0.387695)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sy5vw"]
+size = Vector3(0.3, 0.5, 0.3)
+
 [node name="footninja" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 7
+floor_snap_length = 0.2
 script = ExtResource("1_hfwpp")
 
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("logicScript") instance=ExtResource("3_sy5vw")]
+maxHealth = 2
+logicScript = NodePath("../logic")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85704, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807837, 0)
 shape = SubResource("CapsuleShape3D_withj")
 
 [node name="logic" type="Node" parent="."]
@@ -31,32 +48,131 @@ script = ExtResource("2_u6n5f")
 moveSpeed = 16
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 1.5
 debug_enabled = true
-debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="EyeSight" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57782, 0)
 collision_mask = 3
 
 [node name="ninja_model" parent="." instance=ExtResource("3_6w7ie")]
-transform = Transform3D(-0.84, 0, -7.34351e-08, 0, 0.84, 0, 7.34351e-08, 0, -0.84, 0, 0, 0)
+transform = Transform3D(-0.84, 0, -7.34351e-08, 0, 0.84, 0, 7.34351e-08, 0, -0.84, -0.0656047, 0, 0)
 
 [node name="Skeleton3D" parent="ninja_model/rig" index="0"]
-bones/1/rotation = Quaternion(-0.0725517, 2.39299e-15, -1.72977e-08, 0.997365)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+bones/0/position = Vector3(-2.52721e-10, 0.82626, -0.00637904)
+bones/0/rotation = Quaternion(0.0877493, 1.18749e-07, 1.04605e-08, 0.996143)
+bones/2/rotation = Quaternion(0.0061048, -2.84281e-09, -1.64651e-08, 0.999981)
 bones/3/rotation = Quaternion(-0.0455671, -1.19086e-07, -5.43202e-09, 0.998961)
+bones/4/rotation = Quaternion(0.403799, 1.1415e-07, 4.63435e-08, 0.914848)
+bones/5/rotation = Quaternion(-0.370604, 6.24172e-09, -5.30132e-08, 0.928791)
 bones/6/rotation = Quaternion(-0.00991452, -1.19203e-07, -1.1819e-09, 0.999951)
-bones/7/position = Vector3(0.003824, 0.0952053, -0.112356)
-bones/7/rotation = Quaternion(-0.818671, 0.170698, 0.13508, 0.531407)
-bones/8/rotation = Quaternion(-0.0617253, -0.0623948, 0.197317, 0.976403)
-bones/10/rotation = Quaternion(-0.230296, 0.70633, -0.577182, 0.339002)
-bones/11/rotation = Quaternion(0.0651299, -0.0154818, -0.110701, 0.991597)
-bones/12/rotation = Quaternion(0.00268661, 0.014664, -0.0535871, 0.998452)
-bones/15/rotation = Quaternion(-0.230296, -0.70633, 0.577182, 0.339002)
-bones/16/rotation = Quaternion(0.0651299, 0.0154818, 0.110701, 0.991597)
-bones/17/rotation = Quaternion(0.00268661, -0.014664, 0.0535871, 0.998452)
-bones/29/rotation = Quaternion(-8.99553e-08, 0.974557, -0.224138, -3.0593e-07)
+bones/7/position = Vector3(-0.0137307, 0.0893729, -0.140182)
+bones/7/rotation = Quaternion(-0.555581, -0.318572, -0.301157, 0.706503)
+bones/8/rotation = Quaternion(0.00281161, 2.01003e-07, -0.00942691, 0.999952)
+bones/10/rotation = Quaternion(-0.231767, 0.643197, -0.633227, 0.362775)
+bones/11/rotation = Quaternion(0.14105, -0.0282537, 0.0145134, 0.989493)
+bones/12/rotation = Quaternion(0.0481891, -0.000567178, -0.0851314, 0.995204)
+bones/15/rotation = Quaternion(-0.408546, -0.394513, 0.510778, 0.645411)
+bones/16/rotation = Quaternion(0.330306, 0.196635, 0.739937, 0.55202)
+bones/17/rotation = Quaternion(0.0481891, 0.000567178, 0.0851315, 0.995204)
+bones/21/rotation = Quaternion(0.993665, 0.109723, 0.0113994, 0.0214876)
+bones/22/rotation = Quaternion(0.182978, 0.0220106, 0.0009724, 0.98287)
+bones/23/rotation = Quaternion(-0.725822, -0.0746543, 0.0823783, 0.67884)
+bones/26/rotation = Quaternion(0.932936, -0.107485, 0.0248176, 0.342725)
+bones/27/rotation = Quaternion(0.210577, -0.0282924, -0.00121928, 0.977167)
+bones/28/rotation = Quaternion(-0.489402, 0.0486449, -0.102258, 0.864675)
+bones/29/rotation = Quaternion(-9.02776e-08, 0.974557, -0.224138, -3.0581e-07)
 
 [node name="body" parent="ninja_model/rig/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_v2lgx")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="1"]
+transform = Transform3D(1, -3.424e-08, -9.70702e-09, 3.42036e-08, 0.999993, -0.00372192, 9.8343e-09, 0.00372186, 0.999993, 1.19386e-08, 1.70562, 0.0765442)
+bone_name = "spine.006"
+bone_idx = 6
+
+[node name="hitbox" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D" node_paths=PackedStringArray("healthComponent") instance=ExtResource("5_2lmfh")]
+collision_layer = 16
+collision_mask = 0
+healthComponent = NodePath("../../../../../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D/hitbox"]
+shape = SubResource("SphereShape3D_sy5vw")
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="2"]
+transform = Transform3D(1, 3.58059e-08, 2.32514e-07, -2.58471e-08, 0.999088, -0.0426903, -2.33831e-07, 0.0426903, 0.999088, -2.52711e-10, 1.16176, 0.0261112)
+bone_name = "spine.002"
+bone_idx = 2
+
+[node name="hitbox" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D2" node_paths=PackedStringArray("healthComponent") instance=ExtResource("5_2lmfh")]
+collision_layer = 16
+collision_mask = 0
+healthComponent = NodePath("../../../../../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D2/hitbox"]
+transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.68434e-14, -1.57772e-28, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_2lmfh")
+
+[node name="BoneAttachment3D3" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="3"]
+transform = Transform3D(-0.837363, -0.277479, -0.470986, 0.147253, -0.94424, 0.294494, -0.52644, 0.177245, 0.831532, -0.254025, 1.46162, 0.0277536)
+bone_name = "upper_arm.R"
+bone_idx = 15
+
+[node name="hitbox" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D3" node_paths=PackedStringArray("healthComponent") instance=ExtResource("5_2lmfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86265e-09, 0.131335, -9.31323e-10)
+collision_layer = 16
+collision_mask = 0
+healthComponent = NodePath("../../../../../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D3/hitbox"]
+transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.68434e-14, -1.57772e-28, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_sy5vw")
+
+[node name="BoneAttachment3D5" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="4"]
+transform = Transform3D(-0.940567, 0.160169, -0.299465, -0.162535, -0.986553, -0.017165, -0.298187, 0.0325287, 0.953953, 0.254025, 1.46162, 0.0277537)
+bone_name = "upper_arm.L"
+bone_idx = 10
+
+[node name="hitbox" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D5" node_paths=PackedStringArray("healthComponent") instance=ExtResource("5_2lmfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86265e-09, 0.131335, -9.31323e-10)
+collision_layer = 16
+collision_mask = 0
+healthComponent = NodePath("../../../../../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D5/hitbox"]
+transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.68434e-14, -1.57772e-28, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_sy5vw")
+
+[node name="BoneAttachment3D4" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="5"]
+transform = Transform3D(-0.246382, 0.353388, -0.902448, -0.839383, 0.387677, 0.380975, 0.484491, 0.851365, 0.201111, -0.32736, 1.21207, 0.0745982)
+bone_name = "forearm.R"
+bone_idx = 16
+
+[node name="hitbox" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D4" node_paths=PackedStringArray("healthComponent") instance=ExtResource("5_2lmfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86265e-09, 0.131335, -9.31323e-10)
+collision_layer = 16
+collision_mask = 0
+healthComponent = NodePath("../../../../../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D4/hitbox"]
+transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.68434e-14, -1.57772e-28, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_sy5vw")
+
+[node name="BoneAttachment3D6" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="6"]
+transform = Transform3D(-0.953316, 0.104895, -0.283171, -0.18371, -0.945696, 0.268158, -0.239666, 0.307661, 0.920818, 0.296356, 1.20088, 0.0363507)
+bone_name = "forearm.L"
+bone_idx = 11
+
+[node name="hitbox" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D6" node_paths=PackedStringArray("healthComponent") instance=ExtResource("5_2lmfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86265e-09, 0.131335, -9.31323e-10)
+collision_layer = 16
+collision_mask = 0
+healthComponent = NodePath("../../../../../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ninja_model/rig/Skeleton3D/BoneAttachment3D6/hitbox"]
+transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.68434e-14, -1.57772e-28, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_sy5vw")
 
 [editable path="ninja_model"]

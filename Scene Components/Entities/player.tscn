@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://e5jxjngxealc"]
+[gd_scene load_steps=9 format=3 uid="uid://e5jxjngxealc"]
 
 [ext_resource type="Script" uid="uid://3onsfxq7us0o" path="res://Scripts/CharacterPhysics.cs" id="1_tcnsb"]
 [ext_resource type="Script" uid="uid://y12fyxbisek2" path="res://Scripts/PlayerMovementLogic.cs" id="2_gb1tc"]
 [ext_resource type="Script" uid="uid://cs78vs8igk7fn" path="res://Scripts/PlayerWeapons.cs" id="3_bf140"]
 [ext_resource type="PackedScene" uid="uid://x7rbbt2guqwb" path="res://Scene Components/Entities/shotgun.tscn" id="4_isa0i"]
+[ext_resource type="Script" uid="uid://dscu235172sk2" path="res://Scripts/GoombaStomper.cs" id="5_xw65w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gb1tc"]
 height = 1.72
 
 [sub_resource type="BoxMesh" id="BoxMesh_gb1tc"]
 size = Vector3(1, 0.84, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_isa0i"]
+radius = 0.45
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 physics_interpolation_mode = 2
@@ -21,7 +25,7 @@ script = ExtResource("1_tcnsb")
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("2_gb1tc")
 moveSpeed = 17
-jumpHeight = 30
+jumpHeight = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gb1tc")
@@ -36,7 +40,6 @@ fov = 90.0
 script = ExtResource("3_bf140")
 
 [node name="Shotgun" parent="CameraPivot/FirstPersonCamera" instance=ExtResource("4_isa0i")]
-visible = false
 
 [node name="model" parent="CameraPivot/FirstPersonCamera/Shotgun" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.725, -0.617, -0.962)
@@ -57,5 +60,19 @@ spot_angle = 15.0
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_gb1tc")
+
+[node name="Goomba Stomper" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("5_xw65w")
+stompDamage = 2
+stompBounce = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goomba Stomper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("SphereShape3D_isa0i")
+
+[connection signal="area_entered" from="Goomba Stomper" to="Goomba Stomper" method="OnAreaEntered"]
 
 [editable path="CameraPivot/FirstPersonCamera/Shotgun"]

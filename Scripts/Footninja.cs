@@ -6,6 +6,7 @@ public partial class Footninja : EnemyBase
     [Export] int moveSpeed = 0;
     Node3D model;
     AnimationPlayer modelAnimator;
+
     public override void _Ready()
     {
         Define();
@@ -15,20 +16,22 @@ public partial class Footninja : EnemyBase
     }
     public override void Idle()
     {
+        characterBody.Call("AddForce", Vector3.Zero);
         modelAnimator.Play("Idle");
-        ChangeState(EnemyState.PursuePlayer);
     }
     public override void PursuePlayer()
     {
         //play run animation
+        modelAnimator.Play("Run");
     }
     public override void Attack()
     {
-        
+        characterBody.Call("AddForce", Vector3.Zero);
+        modelAnimator.Play("Attack");
     }
     public override void Dead()
     {
-
+        GetParent().GetParent().Call("Defeated");
     }
 
     Vector3 nextPath;
@@ -41,7 +44,8 @@ public partial class Footninja : EnemyBase
         switch(state)
         {
             case EnemyState.Idle:
-                characterBody.Call("AddForce", Vector3.Zero);
+                if(distanceToPlayer < 200F)
+                    ChangeState(EnemyState.PursuePlayer);
                 break;
             
             case EnemyState.PursuePlayer:
@@ -51,16 +55,41 @@ public partial class Footninja : EnemyBase
                 movementVector = (nextPath - characterBody.GlobalPosition).Normalized();
                 movementVector.Y = 0;
                 
-                if(distanceToPlayer > 4F)
-                    FaceTarget(model, nextPath);
+                if(distanceToPlayer > 5F)
+                    LookAtSmooth(nextPath, model, .5F);
                 else
-                    FaceTarget(model, playerNode.GlobalPosition);
-
+                    LookAtSmooth(playerNode.GlobalPosition, model, .5F);
+                
                 if (characterBody.IsOnFloor())
-                            GetParent().Call("AddForce", movementVector * moveSpeed * .4F);
-                        else
-                            GetParent().Call("AddForce", movementVector * moveSpeed * .1F);
+                    GetParent().Call("AddForce", movementVector * moveSpeed * .4F);
+                else
+                    GetParent().Call("AddForce", movementVector * moveSpeed * .1F);
+                
+                if(distanceToPlayer < 1.5F && characterBody.IsOnFloor())
+                    ChangeState(EnemyState.Attack);
+                if(distanceToPlayer >= 200F)
+                    ChangeState(EnemyState.Idle);
                 break;
+
+            case EnemyState.Attack:
+                if(distanceToPlayer <= 1.5F && characterBody.IsOnFloor())
+                    Attack();
+                else if(modelAnimator.CurrentAnimationPosition > .83F)
+                    ChangeState(EnemyState.PursuePlayer);
+                LookAtSmooth(playerNode.GlobalPosition, model, .1F);
+                break;
+        }
+    }
+
+    public void HitPlayer()
+    {
+        if(distanceToPlayer <= 1.5F && state == EnemyState.Attack)
+        {
+            GD.Print("Hit!");
+            Vector3 hitForce = characterBody.GlobalPosition.DirectionTo(playerNode.GlobalPosition) * 20;
+            hitForce.Y = 1;
+            playerNode.Call("AddForce", hitForce);
+            characterBody.Call("AddForce", -hitForce);
         }
     }
 }

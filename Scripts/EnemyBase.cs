@@ -17,15 +17,15 @@ public abstract partial class EnemyBase : Node
     public abstract void Attack();
     public abstract void Dead();
 
-    public Node3D playerNode;
+    public CharacterBody3D playerNode;
     RayCast3D eyeSight;
     public CharacterBody3D characterBody;
-    NavigationAgent3D navAgent;
+    public NavigationAgent3D navAgent;
     public uint randomOffset;
 
     public void Define()
     {
-        randomOffset = (GD.Randi() % 6) + 10;
+        randomOffset = (GD.Randi() % 3) + 10;
         var pl = GetTree().GetNodesInGroup("Player");
 		playerNode = (CharacterBody3D) pl[0];
         characterBody = (CharacterBody3D) GetParent();
@@ -41,20 +41,22 @@ public abstract partial class EnemyBase : Node
             GD.PushError("'NavigationAgent3D' node not found. Ensure spelling.");
     }
 
-    Vector3 lookDirection;
-    public void FaceTarget(Node3D model, Vector3 target)
-    {
-        lookDirection = target;
-        lookDirection.Y = model.GlobalPosition.Y;
-        model.LookAt(lookDirection);
-        model.RotateY(Mathf.DegToRad(180F));
-    }
+    public void LookAtSmooth(Vector3 n, Node3D obj, float easing)
+	{
+		n.Y = obj.GlobalPosition.Y;
+		Vector2 xyPosition = new Vector2(obj.GlobalPosition.X, obj.GlobalPosition.Z);
+		Vector2 playerXY = new Vector2(n.X, n.Z);
+		Vector2 direction = -(xyPosition - playerXY);
+		Vector3 newRotation = obj.Rotation;
+		newRotation.Y = Mathf.LerpAngle(obj.Rotation.Y, Mathf.Atan2(direction.X, direction.Y), easing);
+		obj.Rotation = newRotation;
+	}
     public void ChangeState(EnemyState s)
     {
         if(state == s)
             return;
-        GD.Print(s);
         state = s;
+        //GD.Print(state);
         switch(state)
         {
             case EnemyState.Idle:
@@ -74,6 +76,17 @@ public abstract partial class EnemyBase : Node
     public float GetDistanceToPlayer()
     {
         return characterBody.GlobalPosition.DistanceTo(playerNode.GlobalPosition);
+    }
+    public float GetHorizontalDistanceToPlayer()
+    {
+        Vector2 horizontal;
+        horizontal.X = playerNode.GlobalPosition.X - characterBody.GlobalPosition.X;
+        horizontal.Y = playerNode.GlobalPosition.Z - characterBody.GlobalPosition.Z;
+        return horizontal.Length();
+    }
+    public float GetVerticalDistanceToPlayer()
+    {
+        return playerNode.GlobalPosition.Y - characterBody.GlobalPosition.Y;
     }
     public bool CanSeePlayer()
     {

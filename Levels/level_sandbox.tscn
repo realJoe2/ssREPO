@@ -182,4 +182,24 @@ shape = SubResource("SphereShape3D_vmhxe")
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -28)
 enemyResource = ExtResource("11_sg4at")
 
+[node name="enemy_spawner2" parent="Wave_basic" instance=ExtResource("11_0d72h")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -29)
+enemyResource = ExtResource("11_sg4at")
+
+[node name="enemy_spawner3" parent="Wave_basic" instance=ExtResource("11_0d72h")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -31)
+enemyResource = ExtResource("11_sg4at")
+
+[node name="enemy_spawner4" parent="Wave_basic" instance=ExtResource("11_0d72h")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -33)
+enemyResource = ExtResource("11_sg4at")
+
+[node name="enemy_spawner5" parent="Wave_basic" instance=ExtResource("11_0d72h")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -35)
+enemyResource = ExtResource("11_sg4at")
+
+[node name="enemy_spawner6" parent="Wave_basic" instance=ExtResource("11_0d72h")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -37)
+enemyResource = ExtResource("11_sg4at")
+
 [editable path="editme"]
