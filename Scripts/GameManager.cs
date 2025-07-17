@@ -3,10 +3,12 @@ using System;
 
 public partial class GameManager : Node
 {
-	byte gameState = 0;
-	const byte START_MENU = 0;
-	const byte PAUSE_MENU = 1;
-	const byte IN_GAME = 2;
+	public enum GameState
+	{
+		StartMenu,
+		InGame
+	}
+	public GameState state;
 	public override void _Ready()
 	{
 		//start by putting up a black loading screen
@@ -16,20 +18,21 @@ public partial class GameManager : Node
 		//remove loading screen after finished
 		
 	}
-	
-	void ChangeState(byte s)
+	public void SetMaxFPS(int fps)
 	{
-		if(s == gameState)
+		Engine.MaxFps = fps;
+	}
+	public void ChangeState(GameState s)
+	{
+		if(s == state)
 			return;
-		gameState = s;
+		state = s;
 		
-		switch(gameState)
+		switch(state)
 		{
-			case START_MENU:
+			case GameState.StartMenu:
 				break;
-			case PAUSE_MENU:
-				break;
-			case IN_GAME:
+			case GameState.InGame:
 				break;
 		}
 	}

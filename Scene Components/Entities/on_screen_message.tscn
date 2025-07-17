@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxf3c57wplsf6"]
 
 [ext_resource type="Script" uid="uid://bismbrf1oeuyn" path="res://Scripts/OnScreenMessage.cs" id="1_6fs40"]
-[ext_resource type="FontFile" uid="uid://bkpuvl81gwuq4" path="res://Fonts/5Computers-In-Love.ttf" id="2_pj4w7"]
+[ext_resource type="FontFile" uid="uid://bkpuvl81gwuq4" path="res://Assets/Fonts/5Computers-In-Love.ttf" id="2_pj4w7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uchyk"]
 font = ExtResource("2_pj4w7")

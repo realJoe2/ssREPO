@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csmdbf04edswk"
-path.s3tc="res://.godot/imported/ninjaAlbedo.png-bd8fec1e1d7b6d1711b591e4c5001cc5.s3tc.ctex"
+path.s3tc="res://.godot/imported/ninjaAlbedo.png-c256866434fe4af3bfeddc6d9905857b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/footninja/ninjaAlbedo.png"
-dest_files=["res://.godot/imported/ninjaAlbedo.png-bd8fec1e1d7b6d1711b591e4c5001cc5.s3tc.ctex"]
+source_file="res://Assets/Footninja/ninjaAlbedo.png"
+dest_files=["res://.godot/imported/ninjaAlbedo.png-c256866434fe4af3bfeddc6d9905857b.s3tc.ctex"]
 
 [params]
 
