@@ -3,21 +3,25 @@ using System;
 
 public partial class Footninja : EnemyBase
 {
-    [Export] int moveSpeed = 0;
+    [Export] int moveSpeed = 1;
     Node3D model;
     AnimationPlayer modelAnimator;
+    Timer idleTimer;
 
     public override void _Ready()
     {
         Define();
         model = (Node3D) GetNode("../ninja_model");
         modelAnimator = (AnimationPlayer) GetNode("../ninja_model/AnimationPlayer");
+        idleTimer = (Timer) GetNode("../IdleBreak");
         Idle();
     }
     public override void Idle()
     {
         characterBody.Call("AddForce", Vector3.Zero);
         modelAnimator.Play("Idle");
+        idleTimer.Start();
+
     }
     public override void PursuePlayer()
     {
@@ -26,8 +30,10 @@ public partial class Footninja : EnemyBase
     }
     public override void Attack()
     {
-        characterBody.Call("AddForce", Vector3.Zero);
-        modelAnimator.Play("Attack");
+        if((GD.Randi() % 5) + 1 > 3)
+            modelAnimator.Play("AttackSide");
+        else
+            modelAnimator.Play("Attack");
     }
     public override void Dead()
     {
@@ -42,16 +48,16 @@ public partial class Footninja : EnemyBase
         distanceToPlayer = GetDistanceToPlayer();
         //check for conditions that change the state
         switch(state)
-        {
-            case EnemyState.Idle:
-                if(distanceToPlayer < 200F)
-                    ChangeState(EnemyState.PursuePlayer);
-                break;
-            
+        {   
             case EnemyState.PursuePlayer:
                 if(Engine.GetPhysicsFrames() % randomOffset == 0)
                     nextPath = GetNextPathPoint();
                 
+                if(characterBody.Velocity == Vector3.Zero)
+                    modelAnimator.Pause();
+                else
+                    modelAnimator.Play("Run");
+
                 movementVector = (nextPath - characterBody.GlobalPosition).Normalized();
                 movementVector.Y = 0;
                 
@@ -72,11 +78,13 @@ public partial class Footninja : EnemyBase
                 break;
 
             case EnemyState.Attack:
-                if(distanceToPlayer <= 1.5F && characterBody.IsOnFloor())
-                    Attack();
-                else if(modelAnimator.CurrentAnimationPosition > .83F)
-                    ChangeState(EnemyState.PursuePlayer);
+                characterBody.Call("AddForce", Vector3.Zero);
+                if(modelAnimator.CurrentAnimationPosition > .74F)
+                    ChangeState(EnemyState.Idle);
                 LookAtSmooth(playerNode.GlobalPosition, model, .1F);
+                break;
+
+            default:
                 break;
         }
     }
@@ -86,10 +94,13 @@ public partial class Footninja : EnemyBase
         if(distanceToPlayer <= 1.5F && state == EnemyState.Attack)
         {
             GD.Print("Hit!");
-            Vector3 hitForce = characterBody.GlobalPosition.DirectionTo(playerNode.GlobalPosition) * 20;
-            hitForce.Y = 1;
-            playerNode.Call("AddForce", hitForce);
-            characterBody.Call("AddForce", -hitForce);
         }
+    }
+    void IdleTimeout()
+    {
+        if(distanceToPlayer < 1.5F && characterBody.IsOnFloor())
+            ChangeState(EnemyState.Attack);
+        else
+            ChangeState(EnemyState.PursuePlayer);
     }
 }

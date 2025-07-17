@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://b1axl7gmtitjb"]
+[gd_scene load_steps=26 format=4 uid="uid://b1axl7gmtitjb"]
 
 [ext_resource type="Script" uid="uid://cditfotidgmhj" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_nuku4"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_78xd7"]
@@ -6,15 +6,14 @@
 [ext_resource type="Material" uid="uid://llo5ee1y5xor" path="res://Assets/Textures/gray_brick.tres" id="5_2jsdp"]
 [ext_resource type="Material" uid="uid://cnei4keisvd5c" path="res://Assets/Textures/brick.tres" id="6_7uexe"]
 [ext_resource type="LightmapGIData" uid="uid://mnxf7jlvego5" path="res://Levels/level_sandbox.lmbake" id="7_2jsdp"]
-[ext_resource type="PackedScene" uid="uid://bxf3c57wplsf6" path="res://Scene Components/Entities/on_screen_message.tscn" id="8_7uexe"]
 [ext_resource type="PackedScene" uid="uid://capoc3d5hricf" path="res://Scene Components/Entities/trigger.tscn" id="9_sl45b"]
 [ext_resource type="PackedScene" uid="uid://dsr82h2g7wsg3" path="res://Scene Components/Entities/wave.tscn" id="10_sg4at"]
 [ext_resource type="PackedScene" uid="uid://ds4kbuf88om55" path="res://Scene Components/Entities/enemy_spawner.tscn" id="11_0d72h"]
 [ext_resource type="PackedScene" uid="uid://b8y5d54kdw3w1" path="res://Scene Components/Entities/Enemies/footninja.tscn" id="11_sg4at"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0d72h"]
-vertices = PackedVector3Array(-14, 0.25, -21.25, -13, 0.25, -22, -13, 0.25, -46, -39.5, 0.25, -19.25, -14, 0.25, -19.25, -39.5, 0.25, -46, -10.25, 1.25, -19, -1.25, 1.25, -19, -1.25, 0.25, -21, -10.25, 0.25, -21.25, -0.5, 0.25, -21.75, -11, 0.25, -22, 1, 0.25, -21.75, 1, 0.25, -46, -39.5, 0.25, 0.5, -14, 0.25, 0.5, -10.25, 4.25, -13.5, -1.25, 4.25, -13.5, -10.25, 0.25, -15.5, -10.25, 0.25, -11.75, -1.25, 0.25, -11.75, -1.25, 0.25, -15.5, -1.25, 5.25, -11.5, -10.25, 5.25, -11.5, -11, 5.5, -10.75, -12, 5.5, -11, -12, 5.5, 0, 0.25, 5.5, -11, 0.25, 5.5, 0.25, -10.25, 0.25, -9.5, -10.25, 0.25, 0, -1.25, 0.25, 0, -1.25, 0.25, -9.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(5, 2, 0), PackedInt32Array(5, 0, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(8, 6, 9), PackedInt32Array(10, 8, 9), PackedInt32Array(10, 9, 11), PackedInt32Array(12, 10, 11), PackedInt32Array(11, 1, 2), PackedInt32Array(13, 12, 11), PackedInt32Array(11, 2, 13), PackedInt32Array(14, 3, 4), PackedInt32Array(15, 14, 4), PackedInt32Array(7, 17, 16), PackedInt32Array(6, 7, 16), PackedInt32Array(20, 19, 18), PackedInt32Array(21, 20, 18), PackedInt32Array(16, 17, 22), PackedInt32Array(23, 16, 22), PackedInt32Array(24, 23, 22), PackedInt32Array(24, 26, 25), PackedInt32Array(24, 22, 27), PackedInt32Array(28, 26, 24), PackedInt32Array(27, 28, 24), PackedInt32Array(31, 30, 29), PackedInt32Array(32, 31, 29)]
+vertices = PackedVector3Array(-13.5, 0.25, -21.25, -13, 0.25, -21.5, -13, 0.25, -46.5, -40, 0.25, -19.25, -13.5, 0.25, -19.25, -40, 0.25, -46.5, -10.75, 1.25, -19, -0.75, 1.25, -19, -0.75, 0.25, -21, -10.75, 0.25, -21.25, 1.5, 0.25, -21.25, 1.5, 0.25, -46.5, 0.75, 5.5, -20.25, 0.25, 5.5, -20.25, 0.25, 5.5, -11.5, -11.75, 5.5, -11.25, -12, 5.5, -20.5, -12.5, 5.5, -20.5, -0.75, 4.25, -13.5, -10.75, 4.25, -13.5, -10.75, 5.25, -11.5, -0.75, 5.25, -11.5, -12.5, 5.5, 0.5, 0.75, 5.5, 0.75, -40, 0.25, 1, -13.5, 0.25, 1, -10.75, 0.25, -16, -10.75, 0.25, -11.25, -0.75, 0.25, -11.25, -0.75, 0.25, -16, -10.75, 0.25, -10, -10.75, 0.25, 0.5, -0.75, 0.25, 0.5, -0.75, 0.25, -10)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(0, 4, 3), PackedInt32Array(5, 2, 0), PackedInt32Array(5, 0, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(8, 6, 9), PackedInt32Array(10, 8, 9), PackedInt32Array(10, 9, 1), PackedInt32Array(11, 10, 1), PackedInt32Array(2, 11, 1), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(20, 18, 21), PackedInt32Array(15, 20, 21), PackedInt32Array(22, 17, 15), PackedInt32Array(15, 21, 14), PackedInt32Array(14, 12, 23), PackedInt32Array(23, 22, 15), PackedInt32Array(14, 23, 15), PackedInt32Array(24, 3, 4), PackedInt32Array(25, 24, 4), PackedInt32Array(7, 18, 19), PackedInt32Array(6, 7, 19), PackedInt32Array(28, 27, 26), PackedInt32Array(29, 28, 26), PackedInt32Array(32, 31, 30), PackedInt32Array(33, 32, 30)]
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 4294901761
 agent_height = 2.0
@@ -144,6 +143,13 @@ shape = SubResource("ConvexPolygonShape3D_r0h1x")
 [node name="entity_0_brush_7_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_io1pr")
 
+[node name="NavigationLink3D" type="NavigationLink3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 6, -6)
+bidirectional = false
+start_position = Vector3(0, 0, -1)
+end_position = Vector3(-4, -6, 0)
+travel_cost = 0.7
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_78xd7")
 
@@ -152,26 +158,9 @@ interior = true
 max_texture_size = 4096
 light_data = ExtResource("7_2jsdp")
 
-[node name="editme" parent="." instance=ExtResource("8_7uexe")]
-visible = true
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -118.0
-offset_right = 20.0
-offset_bottom = -78.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Label" parent="editme" index="1"]
-text = "Use WASD to move."
-
 [node name="Trigger_wavestart" parent="." instance=ExtResource("9_sl45b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 6, -5)
-entered = PackedStringArray("editme,ShowMessage,0", "editme,HideMessage,20", "Wave_basic,Start,0")
+entered = PackedStringArray("Wave_basic,Start,0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger_wavestart"]
 shape = SubResource("SphereShape3D_vmhxe")
@@ -179,27 +168,5 @@ shape = SubResource("SphereShape3D_vmhxe")
 [node name="Wave_basic" parent="." instance=ExtResource("10_sg4at")]
 
 [node name="enemy_spawner" parent="Wave_basic" instance=ExtResource("11_0d72h")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 9, -15)
 enemyResource = ExtResource("11_sg4at")
-
-[node name="enemy_spawner2" parent="Wave_basic" instance=ExtResource("11_0d72h")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -29)
-enemyResource = ExtResource("11_sg4at")
-
-[node name="enemy_spawner3" parent="Wave_basic" instance=ExtResource("11_0d72h")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -31)
-enemyResource = ExtResource("11_sg4at")
-
-[node name="enemy_spawner4" parent="Wave_basic" instance=ExtResource("11_0d72h")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -33)
-enemyResource = ExtResource("11_sg4at")
-
-[node name="enemy_spawner5" parent="Wave_basic" instance=ExtResource("11_0d72h")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -35)
-enemyResource = ExtResource("11_sg4at")
-
-[node name="enemy_spawner6" parent="Wave_basic" instance=ExtResource("11_0d72h")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6, 1, -37)
-enemyResource = ExtResource("11_sg4at")
-
-[editable path="editme"]
