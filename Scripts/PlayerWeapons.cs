@@ -3,13 +3,81 @@ using System;
 
 public partial class PlayerWeapons : Node
 {
-	public override void _Ready()
-	{
+    Weapon currentWeapon;
+    Weapon previousWeapon;
+    public override void _Ready()
+    {
+        currentWeapon = null;
+        previousWeapon = null;
+        Equip("Shotgun");
+    }
 
-	}
+    public void EquipPrevious()
+    {
+        //GD.Print(previousWeapon);
+        //GD.Print(currentWeapon);
+        if (previousWeapon == null)
+            return;
+        if (currentWeapon != null)
+            currentWeapon.Visible = false;
+
+        Weapon temp = previousWeapon;
+        previousWeapon = currentWeapon;
+        currentWeapon = temp;
+
+        currentWeapon.Visible = true;
+        currentWeapon.state = Weapon.WeaponState.SwitchTo;
+        currentWeapon.SwitchTo();
+    }
+    public void Equip(string weaponName)
+    {
+        Weapon nextWeapon = (Weapon)GetNodeOrNull(weaponName);
+        if (nextWeapon == null && weaponName != "nil")
+        {
+            GD.Print("Couldn't find '" + weaponName + "'.");
+            return;
+        }
+        if (currentWeapon == nextWeapon)
+            return;
+
+        //GD.Print("Equipped " + weaponName + ".");
+
+        if (currentWeapon != null)
+        {
+            currentWeapon.Visible = false;
+            previousWeapon = currentWeapon;
+        }
+        currentWeapon = nextWeapon;
+
+        if (nextWeapon == null)
+            return;
+        currentWeapon.Visible = true;
+        currentWeapon.state = Weapon.WeaponState.SwitchTo;
+        currentWeapon.SwitchTo();
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("EquipNothing"))
+            Equip("nil");
+
+        if (Input.IsActionJustPressed("EquipShotgun"))
+            Equip("Shotgun");
+
+        if (Input.IsActionJustPressed("EquipKatana"))
+            Equip("Katana");
+        
+        if (Input.IsActionJustPressed("EquipPrevious"))
+            EquipPrevious();
+    }
+
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
+    }
 }
 
-public abstract partial class Weapon : Node
+public abstract partial class Weapon : Node3D
 {
 	public enum WeaponState
 	{
@@ -17,19 +85,25 @@ public abstract partial class Weapon : Node
 		Idle,
 		Fire
 	}
-	public Timer switchTimer;
 	public Timer attackTimer;
-	public float secondsPerShot;
-	public int damage;
+	[Export] public float secondsPerShot;
+	[Export] public int damage;
 	public WeaponState state;
 	
 	public abstract void SwitchTo();
 	public abstract void Idle();
 	public abstract void Fire();
-	
+
+    public bool IsEquipped()
+    {
+        return (Weapon)GetParent().Call("GetCurrentWeapon") == this;
+    }
+
 	public void ChangeState(WeaponState s)
     {
-        if(state == s)
+        if (!IsEquipped())
+            return;
+        if (state == s)
             return;
         state = s;
 
@@ -52,15 +126,10 @@ public abstract partial class Weapon : Node
 
 	public void DefineTimers()
 	{
-		switchTimer = (Timer) GetNode("switchTimer");
-        if(switchTimer == null)
-            GD.PushError("Switch timer not defined.");
-        switchTimer.WaitTime = .33F;
         attackTimer = (Timer) GetNode("attackTimer");
         if(attackTimer == null)
             GD.PushError("Attack timer not defined.");
         attackTimer.WaitTime = secondsPerShot;
-        switchTimer.OneShot = true;
         attackTimer.OneShot = true;
 	}
 }

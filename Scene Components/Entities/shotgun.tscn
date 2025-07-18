@@ -7,6 +7,8 @@ size = Vector3(0.4, 0.1, 0.1)
 
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_le4fu")
+secondsPerShot = 0.6
+damage = 1
 
 [node name="model" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_7pfy2")
@@ -16,11 +18,8 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.1, 
 mesh = SubResource("BoxMesh_7pfy2")
 skeleton = NodePath("../..")
 
-[node name="switchTimer" type="Timer" parent="."]
-one_shot = true
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)
 
 [node name="attackTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -100)

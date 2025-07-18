@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://e5jxjngxealc"]
+[gd_scene load_steps=9 format=3 uid="uid://e5jxjngxealc"]
 
 [ext_resource type="Script" uid="uid://3onsfxq7us0o" path="res://Scripts/CharacterPhysics.cs" id="1_tcnsb"]
 [ext_resource type="Script" uid="uid://y12fyxbisek2" path="res://Scripts/PlayerMovementLogic.cs" id="2_gb1tc"]
 [ext_resource type="Script" uid="uid://cs78vs8igk7fn" path="res://Scripts/PlayerWeapons.cs" id="3_bf140"]
 [ext_resource type="PackedScene" uid="uid://x7rbbt2guqwb" path="res://Scene Components/Entities/shotgun.tscn" id="4_isa0i"]
+[ext_resource type="PackedScene" uid="uid://2v7wesrn1bdw" path="res://Scene Components/Entities/katana.tscn" id="5_gqvlv"]
 [ext_resource type="Script" uid="uid://dscu235172sk2" path="res://Scripts/GoombaStomper.cs" id="5_xw65w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gb1tc"]
@@ -35,14 +36,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 [node name="FirstPersonCamera" type="Camera3D" parent="CameraPivot"]
 fov = 90.0
 
-[node name="Player Weapons" type="Node" parent="CameraPivot/FirstPersonCamera"]
+[node name="Player Weapons" type="Node3D" parent="CameraPivot/FirstPersonCamera"]
 script = ExtResource("3_bf140")
 
-[node name="Shotgun" parent="CameraPivot/FirstPersonCamera" instance=ExtResource("4_isa0i")]
+[node name="Shotgun" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("4_isa0i")]
 physics_interpolation_mode = 2
+visible = false
 
-[node name="model" parent="CameraPivot/FirstPersonCamera/Shotgun" index="0"]
+[node name="model" parent="CameraPivot/FirstPersonCamera/Player Weapons/Shotgun" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.725, -0.617, -0.962)
+
+[node name="Katana" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("5_gqvlv")]
+visible = false
+
+[node name="switchTimer" type="Timer" parent="CameraPivot/FirstPersonCamera/Player Weapons"]
+wait_time = 0.33
+one_shot = true
 
 [node name="Goomba Stomper" type="Area3D" parent="."]
 collision_layer = 0
@@ -58,4 +67,4 @@ shape = SubResource("CylinderShape3D_xw65w")
 
 [connection signal="area_entered" from="Goomba Stomper" to="Goomba Stomper" method="OnAreaEntered"]
 
-[editable path="CameraPivot/FirstPersonCamera/Shotgun"]
+[editable path="CameraPivot/FirstPersonCamera/Player Weapons/Shotgun"]
