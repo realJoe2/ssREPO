@@ -8,6 +8,7 @@ public partial class Door : Node3D
     [Export] float lip;
     [Export(PropertyHint.Range, "0.0001,100,")] float moveSpeed;
     [Export] bool startLocked;
+    [Export] bool startOpen;
     bool locked;
 
     State state;
@@ -37,7 +38,6 @@ public partial class Door : Node3D
             QueueFree();
         }
         moveSpeed = moveSpeed / 100;
-        state = State.Closed;
         locked = startLocked;
         meshSize = mesh.GetAabb().Size;
         startPosition = GlobalPosition;
@@ -64,6 +64,14 @@ public partial class Door : Node3D
                 endPosition.Z = startPosition.Z - meshSize.X + lip;
                 break;
         }
+        
+        if (!startOpen)
+        {
+            state = State.Closed;
+            return;
+        }
+        state = State.Open;
+        GlobalPosition = endPosition;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -101,6 +109,8 @@ public partial class Door : Node3D
     public void Close()
     {
         if (state == State.Closing || state == State.Closed)
+            return;
+        if (locked)
             return;
         state = State.Closing;
     }

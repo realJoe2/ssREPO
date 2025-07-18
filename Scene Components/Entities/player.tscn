@@ -14,9 +14,10 @@ height = 0.15
 radius = 0.2
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
-physics_interpolation_mode = 2
+physics_interpolation_mode = 1
 collision_layer = 2
 collision_mask = 7
+floor_constant_speed = true
 floor_snap_length = 0.3
 script = ExtResource("1_tcnsb")
 
@@ -38,6 +39,7 @@ fov = 90.0
 script = ExtResource("3_bf140")
 
 [node name="Shotgun" parent="CameraPivot/FirstPersonCamera" instance=ExtResource("4_isa0i")]
+physics_interpolation_mode = 2
 
 [node name="model" parent="CameraPivot/FirstPersonCamera/Shotgun" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.725, -0.617, -0.962)

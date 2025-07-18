@@ -33,7 +33,7 @@ public partial class TriggerHandler : Node
 		}
 		String functionToCall = s[1];
 		float delay = Int32.Parse(s[2])/10;
-		if(delay > 0)
+		if(delay > 0F)
 			await ToSignal(GetTree().CreateTimer(delay), SceneTreeTimer.SignalName.Timeout);
 		GD.Print("Ran command '" + functionToCall + "' in " + s[0]+ " after activating trigger from " + GetParent() + " with a delay of " + delay + " second(s).");
 		node.Call(functionToCall);
