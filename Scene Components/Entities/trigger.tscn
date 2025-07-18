@@ -8,7 +8,6 @@ collision_mask = 2
 input_ray_pickable = false
 monitorable = false
 script = ExtResource("1_ao7f1")
-oneShot = true
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="." to="." method="OnBodyExited"]

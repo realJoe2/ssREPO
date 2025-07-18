@@ -25,10 +25,10 @@ public partial class TriggerHandler : Node
 			GD.PushError("Faulty arguments for trigger.");
 			return;
 		}
-		Node node = GetNode("../../" + s[0]);
+		Node node = GetNodeOrNull("../../" + s[0]);
 		if(node == null)
 		{
-			GD.PushError(s[0] + " not found. Correct spelling or ensure that the input and output nodes have the same parent.");
+			GD.PushError("Input node named '"+ s[0] + "'" + " not found. Correct spelling or ensure that the input and output nodes have the same parent.");
 			return;
 		}
 		String functionToCall = s[1];

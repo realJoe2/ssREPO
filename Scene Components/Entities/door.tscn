@@ -5,8 +5,12 @@
 [sub_resource type="BoxMesh" id="BoxMesh_l505k"]
 size = Vector3(2, 2, 0.1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l505k"]
-points = PackedVector3Array(1, 1, 0.05, 1, 1, -0.05, -1, 1, 0.05, 1, -1, 0.05, 1, -1, -0.05, -1, 1, -0.05, -1, -1, 0.05, -1, -1, -0.05)
+[sub_resource type="SphereMesh" id="SphereMesh_l505k"]
+lightmap_size_hint = Vector2i(8, 5)
+radius = 0.2
+height = 0.4
+radial_segments = 4
+rings = 1
 
 [node name="Door" type="AnimatableBody3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_l505k")
@@ -15,5 +19,5 @@ mesh = NodePath("MeshInstance3D")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_l505k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_l505k")
+[node name="pivot" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l505k")

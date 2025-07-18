@@ -6,9 +6,10 @@ public partial class Door : Node3D
     [Export] MeshInstance3D mesh;
     [Export] Direction direction;
     [Export] float lip;
-    [Export(PropertyHint.Range, "0.0001,100,")] float moveSpeed;
+    [Export(PropertyHint.Range, "0.0001,100,")] float moveSpeed = 10F;
     [Export] bool startLocked;
     [Export] bool startOpen;
+    [Export] Vector3 turnAngles;
     bool locked;
 
     State state;
@@ -19,7 +20,8 @@ public partial class Door : Node3D
         Left,
         Right,
         Forward,
-        Back
+        Back,
+        Turn
     }
     enum State
     {
@@ -40,7 +42,11 @@ public partial class Door : Node3D
         moveSpeed = moveSpeed / 100;
         locked = startLocked;
         meshSize = mesh.GetAabb().Size;
-        startPosition = GlobalPosition;
+
+        if (direction == Direction.Turn)
+            startPosition = GlobalRotation * 180/Mathf.Pi;
+        else
+            startPosition = GlobalPosition;
         endPosition = startPosition;
 
         switch (direction)
@@ -63,6 +69,11 @@ public partial class Door : Node3D
             case Direction.Back:
                 endPosition.Z = startPosition.Z - meshSize.X + lip;
                 break;
+            case Direction.Turn:
+                endPosition = startPosition + turnAngles;
+                endPosition *= Mathf.Pi / 180F;
+                startPosition *= Mathf.Pi / 180F;
+                break;
         }
         
         if (!startOpen)
@@ -71,7 +82,8 @@ public partial class Door : Node3D
             return;
         }
         state = State.Open;
-        GlobalPosition = endPosition;
+
+        endPosition = startPosition;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -79,6 +91,17 @@ public partial class Door : Node3D
         switch (state)
         {
             case State.Opening:
+                if (direction == Direction.Turn) //dirty implementation of turning doors
+                {
+                    if (GlobalRotation == endPosition)
+                    {
+                        state = State.Open;
+                        break;
+                    }
+                    GlobalRotation = GlobalRotation.MoveToward(endPosition, moveSpeed);
+                    break;
+                }
+                
                 if (GlobalPosition == endPosition)
                 {
                     state = State.Open;
@@ -87,6 +110,17 @@ public partial class Door : Node3D
                 GlobalPosition = GlobalPosition.MoveToward(endPosition, moveSpeed);
                 break;
             case State.Closing:
+                if (direction == Direction.Turn)
+                {
+                    if (GlobalRotation == startPosition)
+                    {
+                        state = State.Closed;
+                        break;
+                    }
+                    GlobalRotation = GlobalRotation.MoveToward(startPosition, moveSpeed);
+                    break;
+                }
+
                 if (GlobalPosition == startPosition)
                 {
                     state = State.Closed;
