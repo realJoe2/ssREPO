@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://3onsfxq7us0o" path="res://Scripts/CharacterPhysics.cs" id="1_tcnsb"]
 [ext_resource type="Script" uid="uid://y12fyxbisek2" path="res://Scripts/PlayerMovementLogic.cs" id="2_gb1tc"]
 [ext_resource type="Script" uid="uid://cs78vs8igk7fn" path="res://Scripts/PlayerWeapons.cs" id="3_bf140"]
-[ext_resource type="PackedScene" uid="uid://x7rbbt2guqwb" path="res://Scene Components/Entities/shotgun.tscn" id="4_isa0i"]
-[ext_resource type="PackedScene" uid="uid://2v7wesrn1bdw" path="res://Scene Components/Entities/katana.tscn" id="5_gqvlv"]
+[ext_resource type="PackedScene" uid="uid://x7rbbt2guqwb" path="res://Scene Components/Entities/Weaponry/shotgun.tscn" id="4_isa0i"]
+[ext_resource type="PackedScene" uid="uid://2v7wesrn1bdw" path="res://Scene Components/Entities/Weaponry/katana.tscn" id="5_gqvlv"]
 [ext_resource type="Script" uid="uid://dscu235172sk2" path="res://Scripts/GoombaStomper.cs" id="5_xw65w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gb1tc"]

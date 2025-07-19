@@ -10,6 +10,10 @@ public partial class Door : Node3D
     [Export] bool startLocked;
     [Export] bool startOpen;
     [Export] Vector3 turnAngles;
+
+    [Signal] public delegate void DoorOpenedEventHandler();
+    [Signal] public delegate void DoorClosedEventHandler();
+    //[Signal] public delegate void DoorUnlockedEventHandler();
     bool locked;
 
     State state;
@@ -96,6 +100,7 @@ public partial class Door : Node3D
                     if (GlobalRotation == endPosition)
                     {
                         state = State.Open;
+                        EmitSignal(SignalName.DoorOpened);
                         break;
                     }
                     GlobalRotation = GlobalRotation.MoveToward(endPosition, moveSpeed);
@@ -115,6 +120,7 @@ public partial class Door : Node3D
                     if (GlobalRotation == startPosition)
                     {
                         state = State.Closed;
+                         EmitSignal(SignalName.DoorClosed);
                         break;
                     }
                     GlobalRotation = GlobalRotation.MoveToward(startPosition, moveSpeed);

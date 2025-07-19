@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://capoc3d5hricf"]
+[gd_scene load_steps=3 format=3 uid="uid://capoc3d5hricf"]
 
 [ext_resource type="Script" uid="uid://pig2nlkjyx16" path="res://Scripts/Trigger.cs" id="1_ao7f1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cfhv2"]
+size = Vector3(3, 2.5, 3)
 
 [node name="Trigger" type="Area3D"]
 collision_layer = 0
@@ -9,5 +12,8 @@ input_ray_pickable = false
 monitorable = false
 script = ExtResource("1_ao7f1")
 
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("BoxShape3D_cfhv2")
+
 [connection signal="body_exited" from="." to="." method="OnBodyExited"]

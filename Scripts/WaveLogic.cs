@@ -7,11 +7,8 @@ public partial class WaveLogic : Node
 	const byte INACTIVE = 0;
 	const byte ACTIVE = 1;
 	const byte COMPLETE = 2;
-	
-	TriggerHandler th = new TriggerHandler();
-	[ExportGroup("Triggers")]
-	[Export] String[] onStarted = new String[0];
-	[Export] String[] onCompleted = new String[0];
+	[Signal] public delegate void WaveStartedEventHandler();
+	[Signal] public delegate void WaveCompletedEventHandler();
 	
 	Node3D[] children;
 	public override void _Ready()
@@ -49,12 +46,13 @@ public partial class WaveLogic : Node
 		switch(state)
 		{
 			case ACTIVE:
-				th.Run(onStarted);
+				//th.Run(onStarted);
+				EmitSignal(SignalName.WaveStarted);
 				GD.Print("Wave started.");
 				break;
 			case COMPLETE:
 				GD.Print("Wave completed.");
-				th.Run(onCompleted);
+				EmitSignal(SignalName.WaveCompleted);
 				QueueFree();
 				break;
 			default:

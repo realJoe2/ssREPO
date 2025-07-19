@@ -20,4 +20,5 @@ mesh = NodePath("MeshInstance3D")
 mesh = SubResource("BoxMesh_l505k")
 
 [node name="pivot" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_l505k")
