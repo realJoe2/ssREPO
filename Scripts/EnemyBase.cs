@@ -26,8 +26,7 @@ public abstract partial class EnemyBase : Node
     public void Define()
     {
         randomOffset = (GD.Randi() % 3) + 10;
-        var pl = GetTree().GetNodesInGroup("Player");
-		playerNode = (CharacterBody3D) pl[0];
+        playerNode = (CharacterBody3D) GetTree().GetNodesInGroup("Player")[0];
         characterBody = (CharacterBody3D) GetParent();
         eyeSight = (RayCast3D) GetNode("../EyeSight");
         navAgent = (NavigationAgent3D) GetNode("../NavigationAgent3D");

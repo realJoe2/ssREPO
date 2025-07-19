@@ -25,7 +25,7 @@ script = ExtResource("1_tcnsb")
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("2_gb1tc")
 moveSpeed = 15
-jumpHeight = 8
+jumpHeight = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gb1tc")

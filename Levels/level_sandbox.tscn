@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b1axl7gmtitjb"]
+[gd_scene load_steps=33 format=4 uid="uid://b1axl7gmtitjb"]
 
 [ext_resource type="Script" uid="uid://cditfotidgmhj" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_nuku4"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_78xd7"]
@@ -8,6 +8,10 @@
 [ext_resource type="Material" uid="uid://tl1nrs1kbfre" path="res://Assets/Textures/light_concrete.tres" id="6_sl45b"]
 [ext_resource type="LightmapGIData" uid="uid://mnxf7jlvego5" path="res://Levels/level_sandbox.lmbake" id="7_2jsdp"]
 [ext_resource type="PackedScene" uid="uid://capoc3d5hricf" path="res://Scene Components/Entities/trigger.tscn" id="9_sl45b"]
+[ext_resource type="PackedScene" uid="uid://bw63p801fmfv5" path="res://Scene Components/Entities/door.tscn" id="9_vmhxe"]
+[ext_resource type="PackedScene" uid="uid://dsr82h2g7wsg3" path="res://Scene Components/Entities/wave.tscn" id="10_0d72h"]
+[ext_resource type="PackedScene" uid="uid://ds4kbuf88om55" path="res://Scene Components/Entities/enemy_spawner.tscn" id="11_w7wet"]
+[ext_resource type="PackedScene" uid="uid://b8y5d54kdw3w1" path="res://Scene Components/Entities/Enemies/footninja.tscn" id="12_rdmh2"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0d72h"]
 vertices = PackedVector3Array(-40.75, 14.75, 1, -40.25, 14.75, 1.5, 1.5, 14.75, 1.5, 1.5, 14.75, -47.25, -40.75, 14.75, -47, -10.75, 1.25, -19, -0.75, 1.25, -19, -0.75, 0.25, -21, -11, 0.25, -21.5, 1, 0.25, -21.25, -40, 0.25, -19.25, -13.5, 0.25, -19.25, -13.25, 0.25, -21.5, 1, 0.25, -46.5, -40, 0.25, -46.5, 0.75, 5.5, -20.25, 0.25, 5.5, -20.25, 0.25, 5.5, -11.5, -11.75, 5.5, -11.5, -11.75, 5.5, -20.5, -12.5, 5.5, -20.5, -0.75, 4.25, -13.5, -10.75, 4.25, -13.5, -10.75, 5.25, -11.5, -0.75, 5.25, -11.5, -12.5, 5.5, 0.5, 0.75, 5.5, 0.75, -40, 0.25, 1, -13.5, 0.25, 1, -10.75, 0.25, -16, -10.75, 0.25, -11.25, -0.75, 0.25, -11.25, -0.75, 0.25, -16, -10.75, 0.25, -10, -10.75, 0.25, 0.5, -0.75, 0.25, 0.5, -0.75, 0.25, -10)
@@ -112,8 +116,17 @@ ambient_light_source = 2
 ambient_light_color = Color(0.158472, 0.158472, 0.158472, 1)
 ambient_light_energy = 0.4
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vmhxe"]
-size = Vector3(5, 1, 5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_7uexe"]
+size = Vector3(2.5, 3, 6)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sl45b"]
+points = PackedVector3Array(1, 1, 0.05, 1, 1, -0.05, -1, 1, 0.05, 1, -1, 0.05, 1, -1, -0.05, -1, 1, -0.05, -1, -1, 0.05, -1, -1, -0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sl45b"]
+size = Vector3(1, 2, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vmhxe"]
+points = PackedVector3Array(-0.5, -1, -0.05, -0.5, -1, 0.05, -0.5, 1, -0.05, 0.5, -1, -0.05, 0.5, -1, 0.05, -0.5, 1, 0.05, 0.5, 1, -0.05, 0.5, 1, 0.05)
 
 [node name="level_sandbox" type="Node3D"]
 
@@ -164,6 +177,11 @@ shape = SubResource("ConvexPolygonShape3D_io1pr")
 
 [node name="entity_0_brush_9_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_4abfq")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 6.5, -7.6)
+start_position = Vector3(0, -0.845, 0.6)
+end_position = Vector3(-5, -6.5, -0.4)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_78xd7")
@@ -269,8 +287,108 @@ interior = true
 max_texture_size = 4096
 light_data = ExtResource("7_2jsdp")
 
-[node name="Trigger" parent="." instance=ExtResource("9_sl45b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4134, -0.25, -19.5056)
+[node name="Trigger UpDoor" parent="." instance=ExtResource("9_sl45b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9917, -0.25, -21.9453)
+entered = PackedStringArray("UpDoor,Open,0")
+exited = PackedStringArray("UpDoor,Close,0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
-shape = SubResource("BoxShape3D_vmhxe")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger UpDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_7uexe")
+
+[node name="UpDoor" parent="." instance=ExtResource("9_vmhxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0.7, -22)
+
+[node name="pivot" parent="UpDoor" index="1"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpDoor"]
+shape = SubResource("ConvexPolygonShape3D_sl45b")
+
+[node name="Trigger SideDoors" parent="." instance=ExtResource("9_sl45b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8917, -0.25, -28.9453)
+entered = PackedStringArray("SideDoorRight,Open,0", "SideDoorLeft,Open,0")
+exited = PackedStringArray("SideDoorRight,Close,0", "SideDoorLeft,Close,0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger SideDoors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_7uexe")
+
+[node name="SideDoorRight" parent="." instance=ExtResource("9_vmhxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4, 0.7, -29)
+direction = 3
+
+[node name="MeshInstance3D" parent="SideDoorRight" index="0"]
+mesh = SubResource("BoxMesh_sl45b")
+
+[node name="pivot" parent="SideDoorRight" index="1"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SideDoorRight"]
+shape = SubResource("ConvexPolygonShape3D_vmhxe")
+
+[node name="SideDoorLeft" parent="." instance=ExtResource("9_vmhxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0.7, -29)
+direction = 2
+
+[node name="MeshInstance3D" parent="SideDoorLeft" index="0"]
+mesh = SubResource("BoxMesh_sl45b")
+
+[node name="pivot" parent="SideDoorLeft" index="1"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SideDoorLeft"]
+shape = SubResource("ConvexPolygonShape3D_vmhxe")
+
+[node name="Trigger TurnDoors" parent="." instance=ExtResource("9_sl45b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8917, -0.25, -35.9453)
+entered = PackedStringArray("TurnDoorLeft,Open,0", "TurnDoorRight,Open,0", "Wave_b,Start,0")
+exited = PackedStringArray("TurnDoorLeft,Close,0", "TurnDoorRight,Close,0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger TurnDoors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_7uexe")
+
+[node name="TurnDoorLeft" parent="." instance=ExtResource("9_vmhxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8, 0.7, -36)
+direction = 6
+turnAngles = Vector3(0, 100, 0)
+
+[node name="MeshInstance3D" parent="TurnDoorLeft" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("BoxMesh_sl45b")
+
+[node name="pivot" parent="TurnDoorLeft" index="1"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurnDoorLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_vmhxe")
+
+[node name="TurnDoorRight" parent="." instance=ExtResource("9_vmhxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8, 0.7, -36)
+direction = 6
+turnAngles = Vector3(0, -100, 0)
+
+[node name="MeshInstance3D" parent="TurnDoorRight" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("BoxMesh_sl45b")
+
+[node name="pivot" parent="TurnDoorRight" index="1"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurnDoorRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_vmhxe")
+
+[node name="Wave_b" parent="." instance=ExtResource("10_0d72h")]
+
+[node name="enemy_spawner" parent="Wave_b" instance=ExtResource("11_w7wet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1.7, -41.8)
+enemyResource = ExtResource("12_rdmh2")
+
+[editable path="UpDoor"]
+[editable path="SideDoorRight"]
+[editable path="SideDoorLeft"]
+[editable path="TurnDoorLeft"]
+[editable path="TurnDoorRight"]

@@ -9,7 +9,7 @@ public partial class PlayerWeapons : Node
     {
         currentWeapon = null;
         previousWeapon = null;
-        Equip("Shotgun");
+        //Equip("Shotgun");
     }
 
     public void EquipPrevious()

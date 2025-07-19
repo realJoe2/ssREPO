@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Shotgun Shinobu"
+config/name="Shotgun Shinobi"
 config/version="prealpha"
 run/main_scene="uid://d15o1dp31hxia"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
@@ -20,8 +20,8 @@ config/icon="uid://ctrubc0akuntc"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/stretch/mode="canvas_items"
-window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -106,7 +106,6 @@ EquipPrevious={
 
 [physics]
 
-common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 
 [rendering]

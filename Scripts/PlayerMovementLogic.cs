@@ -88,29 +88,28 @@ public partial class PlayerMovementLogic : Node
 				break;
 		}
 	}
-	
 	public void ChangeState(byte b)
 	{
-		if(b == state)
+		if (b == state)
 			return;
 		state = b;
-		
-		switch(state)
+
+		switch (state)
 		{
 			case GROUNDED:
 				//play a jump sound maybe?
 				break;
-				
+
 			case AIRBORNE:
 				Vector3 pMomentum = (Vector3)parent.Call("GetMomentum");
-				if(pMomentum.Y < 0)
+				if (pMomentum.Y < 0)
 					coyoteFrames = 8;
 				//play a land sound maybe?
 				break;
-				
+
 			case DEAD:
 				break;
-				
+
 			default:
 				break;
 		}
