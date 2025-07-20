@@ -280,12 +280,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -11)
 
 [node name="Door" parent="." instance=ExtResource("8_7uexe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1, -11)
-moveSpeed = 20.0001
+moveSpeed = 30.0001
+turnAngles = Vector3(0, 90, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
 shape = SubResource("ConvexPolygonShape3D_7uexe")
 
-[connection signal="body_entered" from="Trigger" to="Door" method="Open" unbinds=1]
-[connection signal="body_exited" from="Trigger" to="Door" method="Close" unbinds=1]
+[connection signal="body_entered" from="Trigger" to="Door" method="Toggle" unbinds=1]
+[connection signal="body_exited" from="Trigger" to="Door" method="Toggle" unbinds=1]
 
+[editable path="Trigger"]
 [editable path="Door"]
