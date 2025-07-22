@@ -10,17 +10,19 @@ public partial class EnemySpawner : Node3D
 	{
 		enemyScene = QuickFetch.Fetch(enemyResource);
 	}
+
+	Node3D enemyInstance;
 	public async void Spawn()
 	{
-		float delay = GetIndex() * .1F;
+		float delay = GetIndex() * .067F;
 		if(delay > 0)
 			await ToSignal(GetTree().CreateTimer(delay), SceneTreeTimer.SignalName.Timeout);
-		Node3D enemyInstance = (Node3D) enemyScene.Instantiate();
+		enemyInstance = (Node3D) enemyScene.Instantiate();
 		AddChild(enemyInstance);
 	}
 	public void Defeated()
 	{
-		//free the spawner and do other stuff idk
-		QueueFree();
+		enemyInstance.QueueFree();
+		GetParent().Call("Decrement");
 	}
 }

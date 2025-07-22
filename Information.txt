@@ -1,0 +1,10 @@
+All scenes are children of the scene "Game Scene".
+
+Collision layers:
+	1: Environment
+	2: Player Collision
+	3: Enemy Collision
+	4: Player hitboxes (a hitbox receieves damage, whereas a hurtbox deals damage)
+	5: Enemy hitboxes
+
+Ctrl + E = "Toggle Editable Children".
