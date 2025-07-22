@@ -4,31 +4,12 @@ using System;
 public partial class GameManager : Node
 {
 	[Export] Resource defaultLevel;
-
-	static GameManager instance = null; //implement GameManager as Singleton
-	private GameManager()
-	{
-	}
-	public static GameManager Get()
-	{
-		if(instance == null)
-		{
-			instance = new GameManager();
-			GD.Print("instanced");
-		}
-		return instance;
-	}
 	
 	public override void _Ready()
 	{
 		GD.Randomize();
 		Engine.MaxFps = 180;
 		ChangeLevel(defaultLevel);
-		
-	}
-	public void SetMaxFPS(int fps)
-	{
-		Engine.MaxFps = fps;
 	}
 
 	Node currentLevel;
@@ -39,6 +20,11 @@ public partial class GameManager : Node
 	}
 	public void ResetLevelFull()
 	{
+		if(next == null)
+		{
+			GD.Print("No level to reset to.");
+			return;
+		}
 		currentLevel.QueueFree();
 		Node nextLevel = next.Instantiate();
 		AddChild(nextLevel);
@@ -51,10 +37,13 @@ public partial class GameManager : Node
 			GD.PushError("Level field is null.");
 			return;
 		}
-		
+
 		next = QuickFetch.Fetch(level);
 		if(next == null)
+		{
+			GD.PushWarning("Level " + level + " not found.");
 			return;
+		}
 		
 		if(currentLevel != null)
 			currentLevel.QueueFree();
@@ -70,5 +59,16 @@ public partial class GameManager : Node
 		if(Input.IsActionJustPressed("Interact"))
 			ResetLevel();
 	}
-	
+
+	public void PlayerDeath()
+	{
+		ResetLevel();
+		//pause and put up death screen
+		//unpause and remove death screen after player presses "Interact"
+	}
+
+	public void SetMaxFPS(int fps)
+	{
+		Engine.MaxFps = fps;
+	}
 }

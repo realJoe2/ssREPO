@@ -45,6 +45,7 @@ folder_colors={
 
 Player="This group contains only the player."
 Resets="These nodes get reset when \"ResetLevel\" is called on the GameManager singleton."
+"Game Manager"=""
 
 [input]
 

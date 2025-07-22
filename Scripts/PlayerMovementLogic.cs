@@ -108,6 +108,9 @@ public partial class PlayerMovementLogic : Node
 				break;
 
 			case DEAD:
+				GD.Print("Died!");
+				var gameManager = GetTree().GetNodesInGroup("Game Manager")[0];
+				gameManager.Call("PlayerDeath");
 				break;
 
 			default:

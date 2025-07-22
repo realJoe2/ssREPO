@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bnf1n8s4wgxff" path="res://Scripts/TimedFree.cs" id="1_4p0iw"]
 
 [node name="TemporaryDecal" type="Decal" groups=["Resets"]]
+physics_interpolation_mode = 2
 script = ExtResource("1_4p0iw")
 
 [node name="Timer" type="Timer" parent="."]

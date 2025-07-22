@@ -3,6 +3,6 @@
 [ext_resource type="Script" uid="uid://e1p7eq84tc2l" path="res://Scripts/GameManager.cs" id="1_bxsma"]
 [ext_resource type="PackedScene" uid="uid://b1axl7gmtitjb" path="res://Levels/level_sandbox.tscn" id="3_bxsma"]
 
-[node name="Game Root" type="Node"]
+[node name="Game Root" type="Node" groups=["Game Manager"]]
 script = ExtResource("1_bxsma")
 defaultLevel = ExtResource("3_bxsma")

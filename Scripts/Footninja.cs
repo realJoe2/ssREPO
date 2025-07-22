@@ -93,9 +93,17 @@ public partial class Footninja : EnemyBase
 
     public void HitPlayer()
     {
+        var playerGroup = GetTree().GetNodesInGroup("Player");
         if(distanceToPlayer <= 1.5F && state == EnemyState.Attack)
         {
-            GD.Print("Hit!");
+            for(int i = 0; i < (int) playerGroup.Count; i++)
+            {
+                if(playerGroup[i] is Hitbox)
+                {
+                    playerGroup[i].Call("Hit", (byte) 2);
+                    return;
+                }
+            }
         }
     }
     void IdleTimeout()
