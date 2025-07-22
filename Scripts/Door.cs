@@ -10,11 +10,11 @@ public partial class Door : Node3D
     [Export] bool startLocked;
     [Export] bool startOpen;
     [Export] Vector3 turnAngles;
+    bool locked;
 
     [Signal] public delegate void DoorOpenedEventHandler();
     [Signal] public delegate void DoorClosedEventHandler();
     //[Signal] public delegate void DoorUnlockedEventHandler();
-    bool locked;
 
     State state;
     enum Direction

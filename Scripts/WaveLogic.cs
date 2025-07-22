@@ -4,6 +4,8 @@ using System;
 public partial class WaveLogic : Node
 {	
 	byte state = 0;
+
+	byte enemiesLeft;
 	const byte INACTIVE = 0;
 	const byte ACTIVE = 1;
 	const byte COMPLETE = 2;
@@ -18,7 +20,13 @@ public partial class WaveLogic : Node
 		var b = GetChildren();
 		for(int i = 0; i < children.Length; i++)
 			children[i] = (Node3D)b[i];
-		
+			
+		enemiesLeft = (byte) children.Length;
+	}
+	public void Decrement()
+	{
+		if(enemiesLeft > 0)
+			enemiesLeft--;
 	}
 	public void Start()
 	{
@@ -31,7 +39,7 @@ public partial class WaveLogic : Node
 	
 	public override void _Process(double delta)
 	{
-		if(state == ACTIVE && GetChildCount() < 1)
+		if(state == ACTIVE && enemiesLeft < 1)
 			ChangeState(COMPLETE);
 		//GD.Print(state);
 	}
