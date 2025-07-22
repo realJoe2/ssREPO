@@ -15,4 +15,8 @@ public partial class OnScreenMessage : Control
 	{
 		Hide();
 	}
+	public void Reset()
+	{
+		Hide();
+	}
 }

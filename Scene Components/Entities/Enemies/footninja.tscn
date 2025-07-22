@@ -31,6 +31,7 @@ size = Vector3(0.3, 0.5, 0.3)
 
 [node name="footninja" type="CharacterBody3D"]
 physics_interpolation_mode = 1
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
 collision_layer = 4
 collision_mask = 7
 floor_snap_length = 0.2
@@ -62,12 +63,36 @@ transform = Transform3D(-0.84, 0, -7.34351e-08, 0, 0.84, 0, 7.34351e-08, 0, -0.8
 
 [node name="Skeleton3D" parent="ninja_model/rig" index="0"]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
+bones/0/position = Vector3(-2.52721e-10, 0.82626, -0.00637904)
+bones/0/rotation = Quaternion(0.0877493, 1.18749e-07, 1.04605e-08, 0.996143)
+bones/2/rotation = Quaternion(0.0061048, -2.84281e-09, -1.64651e-08, 0.999981)
+bones/4/rotation = Quaternion(0.403799, 1.1415e-07, 4.63435e-08, 0.914848)
+bones/5/rotation = Quaternion(-0.370604, 6.24172e-09, -5.30132e-08, 0.928791)
+bones/6/rotation = Quaternion(-0.00991452, -1.19203e-07, -1.1819e-09, 0.999951)
+bones/7/position = Vector3(0.00382405, 0.0952052, -0.112356)
+bones/7/rotation = Quaternion(-0.818671, 0.170698, 0.13508, 0.531407)
+bones/8/rotation = Quaternion(-0.0617253, -0.0623948, 0.197317, 0.976403)
+bones/10/rotation = Quaternion(-0.266367, 0.688844, -0.593534, 0.319781)
+bones/11/rotation = Quaternion(0.0960352, -0.0220021, 0.000500412, 0.995135)
+bones/12/rotation = Quaternion(0.0481891, -0.000567178, -0.0851314, 0.995204)
+bones/15/rotation = Quaternion(-0.408546, -0.394513, 0.510778, 0.645411)
+bones/16/rotation = Quaternion(0.330306, 0.196635, 0.739937, 0.55202)
+bones/17/rotation = Quaternion(0.0481891, 0.000567178, 0.0851315, 0.995204)
+bones/21/position = Vector3(0.11515, 0.0716914, 0.0234221)
+bones/21/rotation = Quaternion(0.993665, 0.109723, 0.0113994, 0.0214876)
+bones/22/rotation = Quaternion(0.182978, 0.0220106, 0.0009724, 0.98287)
+bones/23/rotation = Quaternion(-0.725822, -0.0746543, 0.0823783, 0.67884)
+bones/26/position = Vector3(-0.11515, 0.0716914, 0.0234221)
+bones/26/rotation = Quaternion(0.932936, -0.107485, 0.0248176, 0.342725)
+bones/27/rotation = Quaternion(0.210577, -0.0282924, -0.00121928, 0.977167)
+bones/28/rotation = Quaternion(-0.489402, 0.0486449, -0.102258, 0.864675)
+bones/29/rotation = Quaternion(-9.02776e-08, 0.974557, -0.224138, -3.0581e-07)
 
 [node name="body" parent="ninja_model/rig/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_v2lgx")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="1"]
-transform = Transform3D(1, -1.68754e-14, 1.13687e-13, 3.55271e-15, 0.999174, -0.0406244, -1.42109e-13, 0.0406244, 0.999174, -3.14598e-15, 1.79042, -0.00212169)
+transform = Transform3D(1, -3.424e-08, -9.70699e-09, 3.42036e-08, 0.999993, -0.00372198, 9.83422e-09, 0.00372189, 0.999993, 1.19385e-08, 1.70562, 0.0765442)
 bone_name = "spine.006"
 bone_idx = 6
 
@@ -80,7 +105,7 @@ healthComponent = NodePath("../../../../../HealthComponent")
 shape = SubResource("SphereShape3D_sy5vw")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="2"]
-transform = Transform3D(1, -1.06581e-14, 2.38419e-07, -7.58467e-09, 0.999494, 0.0318124, -2.38298e-07, -0.0318124, 0.999494, 1.63211e-15, 1.23303, -0.00601256)
+transform = Transform3D(1, 3.58059e-08, 2.32514e-07, -2.58471e-08, 0.999088, -0.0426903, -2.33831e-07, 0.0426903, 0.999088, -2.52711e-10, 1.16176, 0.0261112)
 bone_name = "spine.002"
 bone_idx = 2
 
@@ -94,7 +119,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_2lmfh")
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="3"]
-transform = Transform3D(-0.0565926, -0.998015, 0.027627, 0.994741, -0.0587298, -0.0839119, 0.085368, 0.022733, 0.99609, -0.254025, 1.53218, -0.0266999)
+transform = Transform3D(-0.837363, -0.277479, -0.470986, 0.147253, -0.94424, 0.294494, -0.52644, 0.177245, 0.831532, -0.254025, 1.46162, 0.0277536)
 bone_name = "upper_arm.R"
 bone_idx = 15
 
@@ -109,7 +134,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_sy5vw")
 
 [node name="BoneAttachment3D5" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="4"]
-transform = Transform3D(-0.0565926, 0.998015, -0.027627, -0.994741, -0.0587298, -0.0839119, -0.085368, 0.022733, 0.99609, 0.254025, 1.53218, -0.0266999)
+transform = Transform3D(-0.940567, 0.160169, -0.299465, -0.111731, -0.978651, -0.172506, -0.320702, -0.128794, 0.938383, 0.254025, 1.46162, 0.0277537)
 bone_name = "upper_arm.L"
 bone_idx = 10
 
@@ -124,7 +149,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_sy5vw")
 
 [node name="BoneAttachment3D4" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="5"]
-transform = Transform3D(-0.0970488, -0.967025, 0.235467, 0.984044, -0.0577816, 0.16828, -0.149125, 0.248041, 0.957203, -0.517792, 1.51666, -0.0206918)
+transform = Transform3D(-0.246382, 0.353388, -0.902448, -0.839383, 0.387677, 0.380975, 0.484491, 0.851365, 0.201111, -0.32736, 1.21207, 0.0745982)
 bone_name = "forearm.R"
 bone_idx = 16
 
@@ -139,7 +164,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_sy5vw")
 
 [node name="BoneAttachment3D6" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="6"]
-transform = Transform3D(-0.0970488, 0.967025, -0.235467, -0.984044, -0.0577816, 0.16828, 0.149125, 0.248041, 0.957203, 0.517792, 1.51666, -0.0206918)
+transform = Transform3D(-0.953316, 0.104895, -0.283171, -0.116032, -0.992984, 0.0228022, -0.278793, 0.0545949, 0.958798, 0.296356, 1.20297, -0.0062855)
 bone_name = "forearm.L"
 bone_idx = 11
 
@@ -154,7 +179,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_sy5vw")
 
 [node name="BoneAttachment3D7" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="7"]
-transform = Transform3D(0.999999, 1.32086e-05, 0.00173975, 0.000264073, -0.989538, -0.144274, 0.00171965, 0.144275, -0.989536, 0.11515, 0.96536, -0.0329796)
+transform = Transform3D(0.975662, 0.217565, 0.0273696, 0.212043, -0.967886, 0.135032, 0.055869, -0.125942, -0.990463, 0.11515, 0.892753, 0.0292156)
 bone_name = "thigh.L"
 bone_idx = 21
 
@@ -169,7 +194,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_sy5vw")
 
 [node name="BoneAttachment3D8" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="8"]
-transform = Transform3D(0.999999, -1.32082e-05, -0.00173975, -0.000264072, -0.989538, -0.144274, -0.00171965, 0.144275, -0.989536, -0.11515, 0.96536, -0.0329796)
+transform = Transform3D(0.975662, -0.217565, -0.0273696, -0.201692, -0.841409, -0.50135, 0.0860473, 0.494668, -0.864811, -0.11515, 0.892753, 0.0292156)
 bone_name = "thigh.R"
 bone_idx = 26
 
@@ -184,7 +209,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_sy5vw")
 
 [node name="BoneAttachment3D9" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="9"]
-transform = Transform3D(1, -4.9884e-06, 0.00016287, -3.03605e-05, -0.987732, 0.156156, 0.000160092, -0.156156, -0.987732, -0.115156, 0.521617, 0.0317182)
+transform = Transform3D(0.975709, -0.218836, 0.0101746, -0.216801, -0.971222, -0.0986167, 0.0314626, 0.0940152, -0.995073, -0.212714, 0.515436, 0.251042)
 bone_name = "shin.R"
 bone_idx = 27
 
@@ -199,7 +224,7 @@ transform = Transform3D(1, 2.77556e-15, 5.68434e-14, -2.77556e-15, 1, 0, -5.6843
 shape = SubResource("BoxShape3D_sy5vw")
 
 [node name="BoneAttachment3D10" type="BoneAttachment3D" parent="ninja_model/rig/Skeleton3D" index="10"]
-transform = Transform3D(1, 4.9884e-06, -0.00016287, 3.03606e-05, -0.987732, 0.156156, -0.000160092, -0.156156, -0.987732, 0.115156, 0.521617, 0.0317182)
+transform = Transform3D(0.975709, 0.218836, -0.0101746, 0.196397, -0.853195, 0.483205, 0.0970616, -0.473466, -0.875448, 0.212714, 0.458718, -0.0272614)
 bone_name = "shin.L"
 bone_idx = 22
 

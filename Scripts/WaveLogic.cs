@@ -43,7 +43,13 @@ public partial class WaveLogic : Node
 			ChangeState(COMPLETE);
 		//GD.Print(state);
 	}
-	
+	public void Reset()
+	{
+		state = INACTIVE;
+		for(int i = 0; i < children.Length; i++)
+			children[i].Call("Defeated");
+		enemiesLeft = (byte) children.Length;
+	}
 	private void ChangeState(byte b)
 	{
 		if(b == state)
@@ -61,7 +67,6 @@ public partial class WaveLogic : Node
 			case COMPLETE:
 				GD.Print("Wave completed.");
 				EmitSignal(SignalName.WaveCompleted);
-				QueueFree();
 				break;
 			default:
 				break;

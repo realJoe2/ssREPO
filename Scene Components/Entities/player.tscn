@@ -32,6 +32,7 @@ jumpHeight = 12
 shape = SubResource("CapsuleShape3D_gb1tc")
 
 [node name="CameraPivot" type="Node3D" parent="."]
+physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="FirstPersonCamera" type="Camera3D" parent="CameraPivot" node_paths=PackedStringArray("playerNode")]
@@ -42,6 +43,7 @@ bobAmplitude = 0.01
 bobFrequency = 0.1
 
 [node name="Player Weapons" type="Node3D" parent="CameraPivot/FirstPersonCamera"]
+physics_interpolation_mode = 2
 script = ExtResource("3_bf140")
 
 [node name="Shotgun" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("4_isa0i")]
@@ -52,6 +54,7 @@ visible = false
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.725, -0.617, -0.962)
 
 [node name="Katana" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("5_gqvlv")]
+physics_interpolation_mode = 2
 visible = false
 
 [node name="switchTimer" type="Timer" parent="CameraPivot/FirstPersonCamera/Player Weapons"]

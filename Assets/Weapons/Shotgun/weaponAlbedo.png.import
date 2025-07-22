@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbmqlichkix7o"
-path.s3tc="res://.godot/imported/grayskin.png-4b36f6d904f7f020ba7ab2cdc33a3d22.s3tc.ctex"
+uid="uid://b0y7tvjip5q08"
+path.s3tc="res://.godot/imported/weaponAlbedo.png-a4af52a7d1db5df8c287d214c42394ab.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Viewmodel Arms/grayskin.png"
-dest_files=["res://.godot/imported/grayskin.png-4b36f6d904f7f020ba7ab2cdc33a3d22.s3tc.ctex"]
+source_file="res://Assets/Weapons/Shotgun/weaponAlbedo.png"
+dest_files=["res://.godot/imported/weaponAlbedo.png-a4af52a7d1db5df8c287d214c42394ab.s3tc.ctex"]
 
 [params]
 

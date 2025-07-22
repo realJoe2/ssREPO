@@ -12,9 +12,12 @@ height = 0.4
 radial_segments = 4
 rings = 1
 
-[node name="Door" type="AnimatableBody3D" node_paths=PackedStringArray("mesh")]
+[node name="Door" type="AnimatableBody3D" node_paths=PackedStringArray("mesh") groups=["Resets"]]
 script = ExtResource("1_l505k")
 mesh = NodePath("MeshInstance3D")
+direction = 1
+lip = -0.1
+startOpen = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_l505k")

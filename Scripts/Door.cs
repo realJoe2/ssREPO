@@ -12,6 +12,27 @@ public partial class Door : Node3D
     [Export] Vector3 turnAngles;
     bool locked;
 
+    public void Reset()
+    {
+        if(startLocked)
+            locked = true;
+        if(startOpen)
+        {
+            if(direction == Direction.Turn)
+                Rotation = endPosition;
+            else
+                Position = endPosition;
+            state = State.Open;
+            return;
+        }
+
+        if(direction == Direction.Turn)
+            Rotation = startPosition;
+        else
+            Position = startPosition;
+        state = State.Closed;
+    }
+
     [Signal] public delegate void DoorOpenedEventHandler();
     [Signal] public delegate void DoorClosedEventHandler();
     //[Signal] public delegate void DoorUnlockedEventHandler();

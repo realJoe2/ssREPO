@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://x7rbbt2guqwb"]
+[gd_scene load_steps=4 format=3 uid="uid://x7rbbt2guqwb"]
 
 [ext_resource type="Script" uid="uid://d1qbqldgo5lg5" path="res://Scripts/Shotgun.cs" id="1_le4fu"]
+[ext_resource type="PackedScene" uid="uid://be458v08p2xhs" path="res://Assets/Decals/bulletHole/bullet_hole.tscn" id="2_qftx8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7pfy2"]
 size = Vector3(0.4, 0.1, 0.1)
 
 [node name="Shotgun" type="Node3D"]
+physics_interpolation_mode = 2
 script = ExtResource("1_le4fu")
+bulletHoleResource = ExtResource("2_qftx8")
 secondsPerShot = 0.6
 damage = 1
 
@@ -20,6 +23,5 @@ skeleton = NodePath("../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -100)
-
-[node name="attackTimer" type="Timer" parent="."]
-one_shot = true
+collision_mask = 17
+collide_with_areas = true

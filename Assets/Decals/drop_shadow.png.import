@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cexv8c1xkxnwh"
-path="res://.godot/imported/bullet_hole_decal.png-d6e4c9f3a14e865093d5929b4522e3b7.ctex"
+uid="uid://cqub7r3c137xb"
+path="res://.godot/imported/drop_shadow.png-0d5e1720d34b13a469ab2175ba0a5ddc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Other Textures/bullet_hole_decal.png"
-dest_files=["res://.godot/imported/bullet_hole_decal.png-d6e4c9f3a14e865093d5929b4522e3b7.ctex"]
+source_file="res://Assets/Decals/drop_shadow.png"
+dest_files=["res://.godot/imported/drop_shadow.png-0d5e1720d34b13a469ab2175ba0a5ddc.ctex"]
 
 [params]
 

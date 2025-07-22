@@ -30,9 +30,21 @@ project/assembly_name="The Shinobu-s Shotgun"
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Levels/": "green",
+"res://Scene Components/": "orange",
+"res://Scripts/": "yellow",
+"res://TrenchBroomSaves/": "gray",
+"res://addons/": "gray"
+}
+
 [global_group]
 
 Player="This group contains only the player."
+Resets="These nodes get reset when \"ResetLevel\" is called on the GameManager singleton."
 
 [input]
 
@@ -105,7 +117,9 @@ EquipPrevious={
 
 [physics]
 
+common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 

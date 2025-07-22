@@ -13,5 +13,10 @@ public partial class Trigger : Area3D
 		if(oneShot)
 			SetDeferred("monitoring", false); //SetDeferred needs "snake_case".
 	}
+
+	public void Reset()
+	{
+		SetDeferred("monitoring", true);
+	}
 	
 }

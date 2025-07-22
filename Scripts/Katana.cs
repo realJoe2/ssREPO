@@ -6,7 +6,6 @@ public partial class Katana : Weapon
     public override void _Ready()
     {
         state = WeaponState.SwitchTo;
-        DefineTimers();
     }
     public override void SwitchTo()
     {

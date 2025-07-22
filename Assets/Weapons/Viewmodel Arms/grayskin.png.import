@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcvch8n5sg1no"
-path.s3tc="res://.godot/imported/weaponEmission.png-539cd502971ffbcf0c9eff522f804e33.s3tc.ctex"
+uid="uid://cbmqlichkix7o"
+path.s3tc="res://.godot/imported/grayskin.png-b15b76c4364e020e98bc43933095a089.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Shotgun/weaponEmission.png"
-dest_files=["res://.godot/imported/weaponEmission.png-539cd502971ffbcf0c9eff522f804e33.s3tc.ctex"]
+source_file="res://Assets/Weapons/Viewmodel Arms/grayskin.png"
+dest_files=["res://.godot/imported/grayskin.png-b15b76c4364e020e98bc43933095a089.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://be458v08p2xhs"]
+
+[ext_resource type="PackedScene" uid="uid://cfbbi0rhvfm2r" path="res://Scene Components/temporary_decal.tscn" id="1_g66tt"]
+[ext_resource type="Texture2D" uid="uid://cexv8c1xkxnwh" path="res://Assets/Decals/bulletHole/bullet_hole_decal.png" id="2_osn1s"]
+
+[node name="Bullet Hole" type="Node3D"]
+
+[node name="TemporaryDecal" parent="." instance=ExtResource("1_g66tt")]
+size = Vector3(0.4, 0.4, 0.4)
+texture_albedo = ExtResource("2_osn1s")

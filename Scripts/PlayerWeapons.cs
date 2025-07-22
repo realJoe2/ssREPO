@@ -9,7 +9,7 @@ public partial class PlayerWeapons : Node
     {
         currentWeapon = null;
         previousWeapon = null;
-        //Equip("Shotgun");
+        Equip("Shotgun");
     }
 
     public void EquipPrevious()
@@ -85,7 +85,7 @@ public abstract partial class Weapon : Node3D
 		Idle,
 		Fire
 	}
-	public Timer attackTimer;
+	
 	[Export] public float secondsPerShot;
 	[Export] public int damage;
 	public WeaponState state;
@@ -123,13 +123,4 @@ public abstract partial class Weapon : Node3D
                 break;
         }
     }
-
-	public void DefineTimers()
-	{
-        attackTimer = (Timer) GetNode("attackTimer");
-        if(attackTimer == null)
-            GD.PushError("Attack timer not defined.");
-        attackTimer.WaitTime = secondsPerShot;
-        attackTimer.OneShot = true;
-	}
 }

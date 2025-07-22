@@ -10,4 +10,11 @@ public partial class PlayerSpawner : Node3D
         player = playerResource.Instantiate();
         AddChild(player);
     }
+    public void Reset()
+    {
+        player.QueueFree();
+        player = playerResource.Instantiate();
+        //check for checkpoint logic???
+        AddChild(player);
+    }
 }

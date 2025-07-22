@@ -22,7 +22,9 @@ public partial class EnemySpawner : Node3D
 	}
 	public void Defeated()
 	{
-		enemyInstance.QueueFree();
+		if(GetChildCount() < 1)
+			return;
 		GetParent().Call("Decrement");
+		enemyInstance.QueueFree();
 	}
 }

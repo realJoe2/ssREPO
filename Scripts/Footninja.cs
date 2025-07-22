@@ -37,6 +37,8 @@ public partial class Footninja : EnemyBase
     }
     public override void Dead()
     {
+        //play death effects
+        
         GetParent().GetParent().Call("Defeated");
     }
 

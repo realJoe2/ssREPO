@@ -12,6 +12,3 @@ damage = 2
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2)
 mesh = SubResource("BoxMesh_xw65w")
-
-[node name="attackTimer" type="Timer" parent="."]
-one_shot = true

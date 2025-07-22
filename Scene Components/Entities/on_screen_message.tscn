@@ -7,7 +7,7 @@
 font = ExtResource("2_pj4w7")
 font_size = 30
 
-[node name="OnScreenMessage" type="Control"]
+[node name="OnScreenMessage" type="Control" groups=["Resets"]]
 visible = false
 layout_mode = 3
 anchors_preset = 0

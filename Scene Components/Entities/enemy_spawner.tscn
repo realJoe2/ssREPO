@@ -1,14 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds4kbuf88om55"]
+[gd_scene load_steps=2 format=3 uid="uid://ds4kbuf88om55"]
 
 [ext_resource type="Script" uid="uid://760dlwcb0u6k" path="res://Scripts/EnemySpawner.cs" id="1_ijxih"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_jwrgh"]
-
 [node name="enemy_spawner" type="Node3D"]
 script = ExtResource("1_ijxih")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-visible = false
-layers = 2
-mesh = SubResource("SphereMesh_jwrgh")

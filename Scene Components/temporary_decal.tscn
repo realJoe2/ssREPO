@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfbbi0rhvfm2r"]
+
+[ext_resource type="Script" uid="uid://bnf1n8s4wgxff" path="res://Scripts/TimedFree.cs" id="1_4p0iw"]
+
+[node name="TemporaryDecal" type="Decal" groups=["Resets"]]
+script = ExtResource("1_4p0iw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="Timeout"]

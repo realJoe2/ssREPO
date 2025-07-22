@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://s26fptcpltra"
-path="res://.godot/imported/shotgun.gltf-cc17d67df441713d3cdf683dc58b172b.scn"
+path="res://.godot/imported/shotgun.gltf-b57bee960315b357ddd93c25befd47f4.scn"
 
 [deps]
 
-source_file="res://Assets/Shotgun/shotgun.gltf"
-dest_files=["res://.godot/imported/shotgun.gltf-cc17d67df441713d3cdf683dc58b172b.scn"]
+source_file="res://Assets/Weapons/Shotgun/shotgun.gltf"
+dest_files=["res://.godot/imported/shotgun.gltf-b57bee960315b357ddd93c25befd47f4.scn"]
 
 [params]
 

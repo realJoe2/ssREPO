@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bygi1j0w3k2fe"]
 
-[ext_resource type="PackedScene" uid="uid://tb8oq57m57c4" path="res://Assets/Footninja/ninja.gltf" id="1_n36g8"]
+[ext_resource type="PackedScene" path="res://Assets/Footninja/ninja.gltf" id="1_n36g8"]
+
 
 [node name="ninja" instance=ExtResource("1_n36g8")]
 
