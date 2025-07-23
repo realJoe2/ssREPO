@@ -4,7 +4,7 @@ using System;
 public partial class CharacterPhysics : CharacterBody3D
 {
 	[Export] float gravityScale = 1.0F;
-	[Export] byte dragDivisor = 2;
+	[Export] public float dragDivisor = 2;
 	const float GRAVITY = .8F;
 	
 	Vector3 momentum = Vector3.Zero;
@@ -58,6 +58,10 @@ public partial class CharacterPhysics : CharacterBody3D
 	{
 		momentum.Y = 0;
 		Velocity = momentum;
+	}
+	public void SetDrag(float n)
+	{
+		dragDivisor = n;
 	}
 	
 }

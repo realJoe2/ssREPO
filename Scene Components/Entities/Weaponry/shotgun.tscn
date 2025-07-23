@@ -6,10 +6,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_7pfy2"]
 size = Vector3(0.4, 0.1, 0.1)
 
-[node name="Shotgun" type="Node3D"]
+[node name="Shotgun" type="Node3D" groups=["Resets"]]
 physics_interpolation_mode = 2
 script = ExtResource("1_le4fu")
 bulletHoleResource = ExtResource("2_qftx8")
+shotgunJumpForce = 18.0
 secondsPerShot = 0.6
 damage = 1
 
@@ -24,6 +25,7 @@ mesh = SubResource("BoxMesh_7pfy2")
 skeleton = NodePath("../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+physics_interpolation_mode = 2
 target_position = Vector3(0, 0, -100)
 collision_mask = 17
 collide_with_areas = true

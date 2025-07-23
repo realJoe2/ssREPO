@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nfhomlvbwjhe" path="res://Scene Components/health_component.tscn" id="9_v285s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gb1tc"]
-height = 1.72
+height = 1.8
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xw65w"]
 height = 0.15
@@ -38,7 +38,7 @@ shape = SubResource("CapsuleShape3D_gb1tc")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 physics_interpolation_mode = 2
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.6, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.4, 0)
 
 [node name="FirstPersonCamera" type="Camera3D" parent="CameraPivot" node_paths=PackedStringArray("playerNode")]
 fov = 90.0
@@ -53,6 +53,7 @@ script = ExtResource("3_bf140")
 
 [node name="Shotgun" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("4_isa0i")]
 visible = false
+shotgunJumpForce = 25.0
 
 [node name="model" parent="CameraPivot/FirstPersonCamera/Player Weapons/Shotgun" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.725, -0.617, -0.962)

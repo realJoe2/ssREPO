@@ -20,11 +20,15 @@ public partial class EnemySpawner : Node3D
 		enemyInstance = (Node3D) enemyScene.Instantiate();
 		AddChild(enemyInstance);
 	}
+	Node e;
 	public void Defeated()
 	{
 		if(GetChildCount() < 1)
 			return;
 		GetParent().Call("Decrement");
+		if(GetChildCount() <= 0)
+			return;
+		
 		enemyInstance.QueueFree();
 	}
 }

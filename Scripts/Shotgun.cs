@@ -5,12 +5,15 @@ public partial class Shotgun : Weapon
 {
     RayCast3D raycast;
     [Export] Resource bulletHoleResource;
+    CharacterBody3D playerBody;
+    [Export] float shotgunJumpForce;
 
     public override void _Ready()
     {
         state = WeaponState.SwitchTo;
         raycast = (RayCast3D) GetNode("RayCast3D");
         bulletDecal = QuickFetch.Fetch(bulletHoleResource);
+        playerBody = (CharacterBody3D) GetTree().GetNodesInGroup("Player")[0];
     }
 
     public override void SwitchTo()
@@ -19,28 +22,33 @@ public partial class Shotgun : Weapon
         GD.Print("Switched to shotgun");
         //switch to Idle state on animation finish. either do this via a signal or some other way.
         ChangeState(WeaponState.Idle);
-        
     }
 
     PackedScene bulletDecal;
     Node3D collider;
     Node3D effects;
+    Vector3 shotgunJump;
     public override void Fire()
     {
         //play fire animation
 
         raycast.Enabled = true;
         raycast.ForceRaycastUpdate();
-        
+
         if(raycast.IsColliding())
-        {
+        {   
+            if(!playerBody.IsOnFloor())
+            {
+                shotgunJump = (raycast.GlobalPosition - raycast.GetCollisionPoint()).Normalized();
+                playerBody.Call("AddForce", shotgunJump * shotgunJumpForce);
+            }
+
             collider = (Node3D) raycast.GetCollider();
             if(collider is Hitbox)
             {
                 collider.Call("Hit", damage);
                 //instance blood effects(?)
                 //effects = (Node3D) bloodEffect.Instantiate();
-                
             }
             else
             {

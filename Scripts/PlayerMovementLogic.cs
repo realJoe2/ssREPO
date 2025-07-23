@@ -20,6 +20,7 @@ public partial class PlayerMovementLogic : Node
 		parent = (CharacterBody3D)GetParent();
 		cameraPivot = GetNode<Node3D>("../CameraPivot");
 		camera3D = GetNode<Camera3D>("../CameraPivot/FirstPersonCamera");
+		state = AIRBORNE;
 	}
 	
 	float sensitivity = 3/1000F;
@@ -31,14 +32,8 @@ public partial class PlayerMovementLogic : Node
 			cameraPivot.RotateY(-mouseMotion.Relative.X * sensitivity);
 			camera3D.RotateX(-mouseMotion.Relative.Y * sensitivity);
 			Vector3 cameraClamp = camera3D.Rotation;
-			cameraClamp.X = Mathf.Clamp(cameraClamp.X, Mathf.DegToRad(-90.0F), Mathf.DegToRad(90.0F));
+			cameraClamp.X = Mathf.Clamp(cameraClamp.X, Mathf.DegToRad(-92.0F), Mathf.DegToRad(90.0F));
 			camera3D.Rotation = cameraClamp;
-		}
-		else if(@event is InputEventMouseButton)
-		{
-			//REMOVE THIS WHEN THE PAUSE MENU LOGIC IS IMPLEMENTED!!!
-			Input.SetMouseMode(Input.MouseModeEnum.Captured);
-			state = AIRBORNE;
 		}
 	}
 	
@@ -50,10 +45,6 @@ public partial class PlayerMovementLogic : Node
 			bufferFrames--;
 		if(coyoteFrames > 0)
 			coyoteFrames--;
-		
-		//REMOVE THIS WHEN THE PAUSE MENU LOGIC IS IMPLEMENTED!!!
-		if(Input.IsActionJustPressed("ui_cancel"))
-			Input.SetMouseMode(Input.MouseModeEnum.Visible);
 			
 		wishDirection.X = Input.GetAxis("MoveLeft", "MoveRight");
 		wishDirection.Z = Input.GetAxis("MoveForward", "MoveBack");
@@ -61,6 +52,7 @@ public partial class PlayerMovementLogic : Node
 		switch(state)
 		{
 			case GROUNDED:
+				parent.Call("SetDrag", 2F);
 				parent.Call("AddForce", wishDirection * moveSpeed * .4F);
 				
 				if(Input.IsActionJustPressed("Jump") || bufferFrames > 0)
@@ -72,7 +64,8 @@ public partial class PlayerMovementLogic : Node
 					ChangeState(AIRBORNE);
 				break;
 			case AIRBORNE:
-				parent.Call("AddForce", wishDirection * moveSpeed * .1F);
+				parent.Call("SetDrag", 6F);
+				parent.Call("AddForce", wishDirection * moveSpeed * .06F);
 				if(Input.IsActionJustPressed("Jump"))
 				{
 					bufferFrames = 8;

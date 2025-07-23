@@ -4,11 +4,17 @@ using System;
 public partial class GameManager : Node
 {
 	[Export] Resource defaultLevel;
+	Control deathScreen;
+	Control loadingScreen;
+	Control optionsMenu;
 	
 	public override void _Ready()
 	{
 		GD.Randomize();
 		Engine.MaxFps = 180;
+		deathScreen = (Control) GetNode("Top Layer/Death Screen");
+		loadingScreen = (Control) GetNode("Top Layer/Loading Screen");
+		optionsMenu = (Control) GetNode("Top Layer/Options Menu");
 		ChangeLevel(defaultLevel);
 	}
 
@@ -30,7 +36,7 @@ public partial class GameManager : Node
 		AddChild(nextLevel);
 		currentLevel = nextLevel;
 	}
-	public void ChangeLevel(Resource level)
+	public async void ChangeLevel(Resource level)
 	{
 		if(level == null)
 		{
@@ -44,7 +50,8 @@ public partial class GameManager : Node
 			GD.PushWarning("Level " + level + " not found.");
 			return;
 		}
-		
+		loadingScreen.Show();
+		await ToSignal(GetTree().CreateTimer(1/Engine.GetFramesPerSecond() + .001), SceneTreeTimer.SignalName.Timeout);
 		if(currentLevel != null)
 			currentLevel.QueueFree();
 		
@@ -52,19 +59,24 @@ public partial class GameManager : Node
 		currentLevel = nextLevel;
 		AddChild(nextLevel);
 		GD.Print("Changed level to '" + nextLevel.Name + "'.");
+		loadingScreen.Hide();
 	}
 
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("Interact"))
-			ResetLevel();
+		if(Input.IsActionJustPressed("ui_cancel"))
+		{
+			optionsMenu.Show();
+			Input.SetMouseMode(Input.MouseModeEnum.Visible);
+			GetTree().Paused = true;
+		}
 	}
 
 	public void PlayerDeath()
 	{
-		ResetLevel();
-		//pause and put up death screen
-		//unpause and remove death screen after player presses "Interact"
+		deathScreen.Show();
+		GetTree().Paused = true;
+		Input.SetMouseMode(Input.MouseModeEnum.Visible);
 	}
 
 	public void SetMaxFPS(int fps)
