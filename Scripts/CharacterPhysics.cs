@@ -10,16 +10,16 @@ public partial class CharacterPhysics : CharacterBody3D
 	Vector3 momentum = Vector3.Zero;
 	Vector3 addedForce = Vector3.Zero;
 	float airMultiplier = .5F;
-	public override void _PhysicsProcess(double delta)
+	public override void _Process(double delta)
 	{
 		momentum = Velocity;
 
 		if(Math.Abs(momentum.X) > 1F)
-			momentum.X -= momentum.X * 1/dragDivisor * airMultiplier;
+			momentum.X -= momentum.X * 1/dragDivisor * airMultiplier * (float) delta * 120;
 		else
 			momentum.X = 0.0F;
 		if(Math.Abs(momentum.Z) > 1F)
-			momentum.Z -= momentum.Z * 1/dragDivisor * airMultiplier;
+			momentum.Z -= momentum.Z * 1/dragDivisor * airMultiplier * (float) delta * 120;
 		else
 			momentum.Z = 0.0F;
 		
@@ -30,7 +30,7 @@ public partial class CharacterPhysics : CharacterBody3D
 		}
 		else
 		{
-			momentum.Y -= GRAVITY * gravityScale;
+			momentum.Y -= GRAVITY * gravityScale * (float) delta * 120;
 			airMultiplier = .25F;
 		}
 

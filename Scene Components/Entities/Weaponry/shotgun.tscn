@@ -10,7 +10,7 @@ size = Vector3(0.4, 0.1, 0.1)
 physics_interpolation_mode = 2
 script = ExtResource("1_le4fu")
 bulletHoleResource = ExtResource("2_qftx8")
-shotgunJumpForce = 18.0
+shotgunJumpForce = 13.0
 secondsPerShot = 0.6
 damage = 1
 
@@ -29,3 +29,7 @@ physics_interpolation_mode = 2
 target_position = Vector3(0, 0, -100)
 collision_mask = 17
 collide_with_areas = true
+
+[node name="Drag Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true

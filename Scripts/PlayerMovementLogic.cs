@@ -52,7 +52,6 @@ public partial class PlayerMovementLogic : Node
 		switch(state)
 		{
 			case GROUNDED:
-				parent.Call("SetDrag", 2F);
 				parent.Call("AddForce", wishDirection * moveSpeed * .4F);
 				
 				if(Input.IsActionJustPressed("Jump") || bufferFrames > 0)
@@ -64,8 +63,7 @@ public partial class PlayerMovementLogic : Node
 					ChangeState(AIRBORNE);
 				break;
 			case AIRBORNE:
-				parent.Call("SetDrag", 6F);
-				parent.Call("AddForce", wishDirection * moveSpeed * .06F);
+				parent.Call("AddForce", wishDirection * moveSpeed * .1F);
 				if(Input.IsActionJustPressed("Jump"))
 				{
 					bufferFrames = 8;
@@ -94,7 +92,7 @@ public partial class PlayerMovementLogic : Node
 				break;
 
 			case AIRBORNE:
-				Vector3 pMomentum = (Vector3)parent.Call("GetMomentum");
+				Vector3 pMomentum = (Vector3) parent.Call("GetMomentum");
 				if (pMomentum.Y < 0)
 					coyoteFrames = 8;
 				//play a land sound maybe?
@@ -109,5 +107,12 @@ public partial class PlayerMovementLogic : Node
 			default:
 				break;
 		}
+	}
+
+	public void Reset()
+	{
+		cameraPivot.Rotation = Vector3.Zero;
+		camera3D.GlobalRotation = Vector3.Zero;
+		ChangeState(GROUNDED);
 	}
 }

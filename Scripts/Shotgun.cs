@@ -7,12 +7,14 @@ public partial class Shotgun : Weapon
     [Export] Resource bulletHoleResource;
     CharacterBody3D playerBody;
     [Export] float shotgunJumpForce;
+    Timer dragTimer;
 
     public override void _Ready()
     {
         state = WeaponState.SwitchTo;
         raycast = (RayCast3D) GetNode("RayCast3D");
         bulletDecal = QuickFetch.Fetch(bulletHoleResource);
+        dragTimer = (Timer) GetNode("Drag Timer");
         playerBody = (CharacterBody3D) GetTree().GetNodesInGroup("Player")[0];
     }
 
@@ -31,14 +33,14 @@ public partial class Shotgun : Weapon
     public override void Fire()
     {
         //play fire animation
-
         raycast.Enabled = true;
         raycast.ForceRaycastUpdate();
-
+        
         if(raycast.IsColliding())
         {   
             if(!playerBody.IsOnFloor())
             {
+                dragTimer.Start();
                 shotgunJump = (raycast.GlobalPosition - raycast.GetCollisionPoint()).Normalized();
                 playerBody.Call("AddForce", shotgunJump * shotgunJumpForce);
             }
@@ -76,11 +78,26 @@ public partial class Shotgun : Weapon
         //play idle animation
     }
 
+    bool grounded;
     public override void _Process(double delta)
     {
         if(Input.IsActionJustPressed("Shoot"))
         {
             ChangeState(WeaponState.Fire);
+        }
+        
+        grounded = playerBody.IsOnFloor();
+        if(grounded)
+            playerBody.Call("SetDrag", 2);
+        else
+            playerBody.Call("SetDrag", (dragTimer.TimeLeft * 10) + 2);
+    }
+
+    public void Reset()
+    {
+        if(IsEquipped())
+        {
+            SwitchTo();
         }
     }
 }

@@ -28,17 +28,17 @@ floor_constant_speed = true
 floor_snap_length = 0.3
 script = ExtResource("1_tcnsb")
 
-[node name="PlayerMovement" type="Node" parent="."]
+[node name="PlayerMovement" type="Node" parent="." groups=["Resets"]]
 script = ExtResource("2_gb1tc")
-moveSpeed = 15
-jumpHeight = 12
+moveSpeed = 11
+jumpHeight = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gb1tc")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 physics_interpolation_mode = 2
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="FirstPersonCamera" type="Camera3D" parent="CameraPivot" node_paths=PackedStringArray("playerNode")]
 fov = 90.0
@@ -53,7 +53,6 @@ script = ExtResource("3_bf140")
 
 [node name="Shotgun" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("4_isa0i")]
 visible = false
-shotgunJumpForce = 25.0
 
 [node name="model" parent="CameraPivot/FirstPersonCamera/Player Weapons/Shotgun" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.725, -0.617, -0.962)
@@ -99,7 +98,7 @@ healthComponent = NodePath("../HealthComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98023e-08, 0)
 shape = SubResource("BoxShape3D_1odxq")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("logicScript") instance=ExtResource("9_v285s")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("logicScript") groups=["Resets"] instance=ExtResource("9_v285s")]
 maxHealth = 5
 logicScript = NodePath("../PlayerMovement")
 

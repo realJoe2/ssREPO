@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d15o1dp31hxia"]
+[gd_scene load_steps=9 format=3 uid="uid://d15o1dp31hxia"]
 
 [ext_resource type="Script" uid="uid://e1p7eq84tc2l" path="res://Scripts/GameManager.cs" id="1_bxsma"]
 [ext_resource type="PackedScene" uid="uid://b1axl7gmtitjb" path="res://Levels/level_sandbox.tscn" id="3_bxsma"]
@@ -9,6 +9,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_wd1uf"]
 font = ExtResource("3_lkrbl")
 font_size = 391
+
+[sub_resource type="LabelSettings" id="LabelSettings_0o8ui"]
+font = ExtResource("3_lkrbl")
+font_size = 51
 
 [sub_resource type="LabelSettings" id="LabelSettings_bxsma"]
 font = ExtResource("3_lkrbl")
@@ -21,11 +25,10 @@ defaultLevel = ExtResource("3_bxsma")
 [node name="Top Layer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Death Screen" type="Control" parent="Top Layer"]
+[node name="Death Screen" type="MarginContainer" parent="Top Layer"]
 process_mode = 2
 visible = false
 z_index = 2
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,12 +37,7 @@ grow_vertical = 2
 script = ExtResource("3_wd1uf")
 
 [node name="ColorRect" type="ColorRect" parent="Top Layer/Death Screen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 color = Color(1, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Top Layer/Death Screen/ColorRect"]
@@ -49,19 +47,21 @@ offset_bottom = 23.0
 text = "DEAD"
 label_settings = SubResource("LabelSettings_wd1uf")
 
-[node name="Retry Button" type="Button" parent="Top Layer/Death Screen"]
+[node name="Label2" type="Label" parent="Top Layer/Death Screen/ColorRect"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -286.0
-offset_top = -161.0
-offset_right = 226.0
+offset_left = -0.5
+offset_top = -195.0
+offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "Retry"
+text = "Press \"Interact\" to Restart"
+label_settings = SubResource("LabelSettings_0o8ui")
+horizontal_alignment = 1
 
 [node name="Loading Screen" type="Control" parent="Top Layer"]
 visible = false
@@ -152,5 +152,4 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "RESUME"
 
-[connection signal="button_down" from="Top Layer/Death Screen/Retry Button" to="Top Layer/Death Screen" method="OnRetryPressed"]
 [connection signal="button_down" from="Top Layer/Options Menu/Resume Button" to="Top Layer/Options Menu" method="OnResumeButtonDown"]

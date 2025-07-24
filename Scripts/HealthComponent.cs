@@ -17,4 +17,9 @@ public partial class HealthComponent : Node
 		if(currentHealth <= 0)
 			logicScript.Call("ChangeState", 3);
 	}
+
+	public void Reset()
+	{
+		currentHealth = maxHealth;
+	}
 }
