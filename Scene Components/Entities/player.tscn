@@ -25,6 +25,7 @@ dragDivisor = 4.0
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("2_gb1tc")
+jumpHeight = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gb1tc")

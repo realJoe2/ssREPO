@@ -149,4 +149,20 @@ label_settings = SubResource("LabelSettings_0o8ui")
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="Kill Button" type="Button" parent="Top Layer/Options Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -15.5
+offset_right = 16.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Kill"
+
 [connection signal="visibility_changed" from="Top Layer/Death Screen" to="Top Layer/Death Screen" method="PlayDeathAudio"]
+[connection signal="button_down" from="Top Layer/Options Menu/Kill Button" to="Top Layer/Options Menu" method="OnKillButton"]

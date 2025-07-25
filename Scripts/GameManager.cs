@@ -29,7 +29,7 @@ public partial class GameManager : Node
 	{
 		if(next == null)
 		{
-			GD.Print("No level to reset to.");
+			GD.Print("No level to reset to");
 			return;
 		}
 		currentLevel.Free();
@@ -41,14 +41,14 @@ public partial class GameManager : Node
 	{
 		if(level == null)
 		{
-			GD.PushError("Level field is null.");
+			GD.PushError("Level field is null");
 			return;
 		}
 
 		next = QuickFetch.Fetch(level);
 		if(next == null)
 		{
-			GD.PushWarning("Level " + level + " not found.");
+			GD.PushWarning("Level " + level + " not found");
 			return;
 		}
 		loadingScreen.Show();
@@ -59,7 +59,7 @@ public partial class GameManager : Node
 		Node nextLevel = next.Instantiate();
 		currentLevel = nextLevel;
 		AddChild(nextLevel);
-		GD.Print("Changed level to '" + nextLevel.Name + "'.");
+		GD.Print("Changed level to '" + nextLevel.Name);
 		loadingScreen.Hide();
 	}
 

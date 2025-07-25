@@ -46,16 +46,18 @@ public partial class PlayerMovementLogic : Node
 		switch(state)
 		{
 			case GROUNDED:
+				wishDirection *= moveSpeed;
 				if(Input.IsActionPressed("Jump"))
 					wishDirection.Y = jumpHeight;
-				parent.Call("AddForce", wishDirection * moveSpeed);
+				parent.Call("AddForce", wishDirection);
 
 				if((bool)parent.IsOnFloor() == false)
 					ChangeState(AIRBORNE);
 				break;
 			case AIRBORNE:
+				wishDirection *= moveSpeed;
 				wishDirection.Y = 0F;
-				parent.Call("AddForce", wishDirection * moveSpeed);
+				parent.Call("AddForce", wishDirection);
 
 				if((bool)parent.IsOnFloor() == true)
 					ChangeState(GROUNDED);

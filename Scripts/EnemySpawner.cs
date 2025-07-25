@@ -20,6 +20,7 @@ public partial class EnemySpawner : Node3D
 			await ToSignal(GetTree().CreateTimer(delay), SceneTreeTimer.SignalName.Timeout);
 		enemyInstance = (Node3D) enemyScene.Instantiate();
 		AddChild(enemyInstance);
+		GD.Print("Spawned enemy of type " + enemyInstance.Name);
 	}
 	Node e;
 	public void Defeated()
@@ -31,5 +32,18 @@ public partial class EnemySpawner : Node3D
 			return;
 		
 		enemyInstance.QueueFree();
+	}
+	public void Reset()
+	{
+		if(GetChildCount() < 1)
+			return;
+		if(GetChildCount() > 1) //exception handling
+		{
+			GD.PushWarning("Enemy spawner has more than one child. Exception handled..");
+			for(int i = 0; i < GetChildCount(); i++)
+				GetChild(i).QueueFree();
+			return;
+		}
+		GetChild(0).QueueFree();
 	}
 }

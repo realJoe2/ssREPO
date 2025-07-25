@@ -25,7 +25,6 @@ public partial class Shotgun : Weapon
     public override void SwitchTo()
     {
         animation.Play("ShotgunSwitch");
-        GD.Print("Switched to shotgun");
         //switch to Idle state on animation finish. either do this via a signal or some other way.
     }
 

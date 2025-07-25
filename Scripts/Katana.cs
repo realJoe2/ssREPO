@@ -11,7 +11,6 @@ public partial class Katana : Weapon
     {
         //play animations
         //switch to Idle state on animation finish. either do this via a signal or some other way.
-        GD.Print("Switched to katana");
 
     }
     public override void Fire()

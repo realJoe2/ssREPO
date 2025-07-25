@@ -42,8 +42,7 @@ public partial class WaveLogic : Node
 	public void Reset()
 	{
 		state = INACTIVE;
-		for(int i = 0; i < children.Count; i++)
-			children[i].Call("Defeated");
+		
 		enemiesLeft = (byte) children.Count;
 	}
 	private void ChangeState(byte b)

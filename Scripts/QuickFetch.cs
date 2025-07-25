@@ -13,10 +13,7 @@ public partial class QuickFetch : Node
 				return null;
 		}
 		
-		if(ResourceLoader.HasCached(path))
-		{
-			return (PackedScene) ResourceLoader.GetCachedRef(path);
-		}
-		return (PackedScene) ResourceLoader.Load(path);
+		GD.Print("Loaded resource at path: " + path);
+		return (PackedScene) ResourceLoader.Load(path, "", ResourceLoader.CacheMode.Reuse);
 	}
 }

@@ -35,7 +35,7 @@ import_script/path=""
 _subresources={
 "animations": {
 "Attack": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://Assets/footninja/custom_animations/customAttack.res",
 "settings/loop_mode": 0,
@@ -1834,7 +1834,7 @@ _subresources={
 "slices/amount": 0
 },
 "AttackSide": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://Assets/footninja/custom_animations/customAttackSide.res",
 "settings/loop_mode": 0,
