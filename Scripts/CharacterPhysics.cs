@@ -4,43 +4,38 @@ using System;
 public partial class CharacterPhysics : CharacterBody3D
 {
 	[Export] float gravityScale = 1.0F;
-	[Export] public float dragDivisor = 2;
+	[Export] public float dragDivisor = 2F;
+	[Export] float maxSpeed = 200F;
+
 	const float GRAVITY = .8F;
-	
+	const int deltaMultiplier = 120; //using delta time slows everything down, so this constant follows it.
+
 	Vector3 momentum = Vector3.Zero;
 	Vector3 addedForce = Vector3.Zero;
-	float airMultiplier = .5F;
+
 	public override void _Process(double delta)
 	{
 		momentum = Velocity;
 
 		if(Math.Abs(momentum.X) > 1F)
-			momentum.X -= momentum.X * 1/dragDivisor * airMultiplier * (float) delta * 120;
+			momentum.X -= (momentum.X * 1/dragDivisor * deltaMultiplier) * (float) delta;
 		else
 			momentum.X = 0.0F;
 		if(Math.Abs(momentum.Z) > 1F)
-			momentum.Z -= momentum.Z * 1/dragDivisor * airMultiplier * (float) delta * 120;
+			momentum.Z -= (momentum.Z * 1/dragDivisor * deltaMultiplier) * (float) delta;
 		else
 			momentum.Z = 0.0F;
 		
 		if(IsOnFloor())
-		{
 			momentum.Y = 0;
-			airMultiplier = 1F;
-		}
 		else
-		{
-			momentum.Y -= GRAVITY * gravityScale * (float) delta * 120;
-			airMultiplier = .25F;
-		}
+			momentum.Y -= (GRAVITY * gravityScale * deltaMultiplier) * (float) delta;
 
 		if(IsOnCeiling() && momentum.Y > 0)
 			momentum.Y = 0.0F;
 		
-		momentum += addedForce;
-		momentum.X = Math.Clamp(momentum.X, -200.0F, 200.0F);
-		momentum.Z = Math.Clamp(momentum.Z, -200.0F, 200.0F);
-		momentum.Y = Math.Clamp(momentum.Y, -400.0F, 400.0F);
+		momentum += addedForce * (float) delta * deltaMultiplier;
+		momentum = momentum.LimitLength(maxSpeed); //this stops any crazy tech from letting the player go TOO fast
 
 		Velocity = momentum;
 		MoveAndSlide();
@@ -62,6 +57,10 @@ public partial class CharacterPhysics : CharacterBody3D
 	public void SetDrag(float n)
 	{
 		dragDivisor = n;
+	}
+	public float GetDrag()
+	{
+		return dragDivisor;
 	}
 	
 }

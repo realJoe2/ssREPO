@@ -122,6 +122,10 @@ points = PackedVector3Array(1, 1, 0.05, 1, 1, -0.05, -1, 1, 0.05, 1, -1, 0.05, 1
 
 [node name="level_sandbox" type="Node3D"]
 
+[node name="Level Music" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0d72h")
 

@@ -8,6 +8,9 @@ public partial class Shotgun : Weapon
     CharacterBody3D playerBody;
     [Export] float shotgunJumpForce;
     Timer dragTimer;
+    float originalDrag;
+    [Export] AnimationPlayer animation;
+    [Export] float bulletSpreadAmount = 3F;
 
     public override void _Ready()
     {
@@ -16,35 +19,42 @@ public partial class Shotgun : Weapon
         bulletDecal = QuickFetch.Fetch(bulletHoleResource);
         dragTimer = (Timer) GetNode("Drag Timer");
         playerBody = (CharacterBody3D) GetTree().GetNodesInGroup("Player")[0];
+        originalDrag = (float) playerBody.Call("GetDrag");
     }
 
     public override void SwitchTo()
     {
-        //play switchto animation
+        animation.Play("ShotgunSwitch");
         GD.Print("Switched to shotgun");
         //switch to Idle state on animation finish. either do this via a signal or some other way.
-        ChangeState(WeaponState.Idle);
     }
 
     PackedScene bulletDecal;
     Node3D collider;
     Node3D effects;
     Vector3 shotgunJump;
+    Vector3 bulletOffset;
     public override void Fire()
     {
-        //play fire animation
         raycast.Enabled = true;
+        bulletOffset = Vector3.Forward * 100;
+        bulletOffset.X += (float) GD.Randfn(0.0, bulletSpreadAmount);
+        bulletOffset.Y += (float) GD.Randfn(0.0, bulletSpreadAmount);
+        raycast.TargetPosition = bulletOffset;
+
         raycast.ForceRaycastUpdate();
         
+        if(!playerBody.IsOnFloor()) //shotgun jumping! fuck yeah!!!
+        {
+            dragTimer.Start();
+            shotgunJump = (raycast.GlobalPosition - (raycast.GlobalPosition + raycast.GlobalTransform.Basis.Z * -1)).Normalized();
+            shotgunJump *= shotgunJumpForce;
+            shotgunJump.Y = Mathf.Clamp(shotgunJump.Y, -30F, 30F);
+            playerBody.Velocity += shotgunJump;
+        }
+
         if(raycast.IsColliding())
         {   
-            if(!playerBody.IsOnFloor())
-            {
-                dragTimer.Start();
-                shotgunJump = (raycast.GlobalPosition - raycast.GetCollisionPoint()).Normalized();
-                playerBody.Call("AddForce", shotgunJump * shotgunJumpForce);
-            }
-
             collider = (Node3D) raycast.GetCollider();
             if(collider is Hitbox)
             {
@@ -68,36 +78,31 @@ public partial class Shotgun : Weapon
                 }
             }
         }
+        
+        animation.Play("ShootShotgun");
         raycast.Enabled = false;
-
-        //sync to animation player
-        ChangeState(WeaponState.Idle);
     }
     public override void Idle()
     {
+        animation.Play("ShotgunSway");
         //play idle animation
     }
 
-    bool grounded;
     public override void _Process(double delta)
     {
-        if(Input.IsActionJustPressed("Shoot"))
+        if(Input.IsActionPressed("Shoot") && state == WeaponState.Idle)
         {
             ChangeState(WeaponState.Fire);
         }
-        
-        grounded = playerBody.IsOnFloor();
-        if(grounded)
-            playerBody.Call("SetDrag", 2);
+        if(playerBody.IsOnFloor())
+            playerBody.Call("SetDrag", originalDrag);
         else
-            playerBody.Call("SetDrag", (dragTimer.TimeLeft * 10) + 2);
+            playerBody.Call("SetDrag", originalDrag + dragTimer.TimeLeft * 10);
     }
 
-    public void Reset()
+    void OnAnimationFinished(string name)
     {
-        if(IsEquipped())
-        {
-            SwitchTo();
-        }
+        if(name != "ShotgunSway")
+            ChangeState(WeaponState.Idle);
     }
 }

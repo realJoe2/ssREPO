@@ -3,8 +3,8 @@ using System;
 
 public partial class PlayerMovementLogic : Node
 {
-	[Export] byte moveSpeed = 0;
-	[Export] byte jumpHeight = 0;
+	[Export] byte moveSpeed = 4;
+	[Export] byte jumpHeight = 1;
 	
 	byte state = 0;
 	const byte GROUNDED = 0;
@@ -23,7 +23,7 @@ public partial class PlayerMovementLogic : Node
 		state = AIRBORNE;
 	}
 	
-	float sensitivity = 3/1000F;
+	float sensitivity = 3/1000F; //make this editable in settings
 	public override void _Input(InputEvent @event)
 	{
 		if(@event is InputEventMouseMotion)
@@ -38,42 +38,25 @@ public partial class PlayerMovementLogic : Node
 	}
 	
 	Vector3 wishDirection = Vector3.Zero;
-	byte bufferFrames, coyoteFrames = 0;
 	public override void _PhysicsProcess(double delta)
 	{
-		if(bufferFrames > 0)
-			bufferFrames--;
-		if(coyoteFrames > 0)
-			coyoteFrames--;
-			
 		wishDirection.X = Input.GetAxis("MoveLeft", "MoveRight");
 		wishDirection.Z = Input.GetAxis("MoveForward", "MoveBack");
 		wishDirection = (cameraPivot.Transform.Basis * wishDirection).Normalized();
 		switch(state)
 		{
 			case GROUNDED:
-				parent.Call("AddForce", wishDirection * moveSpeed * .4F);
-				
-				if(Input.IsActionJustPressed("Jump") || bufferFrames > 0)
-				{
-					parent.Call("AddForce", jumpHeight * Vector3.Up);
-					bufferFrames = 0;
-				}
+				if(Input.IsActionPressed("Jump"))
+					wishDirection.Y = jumpHeight;
+				parent.Call("AddForce", wishDirection * moveSpeed);
+
 				if((bool)parent.IsOnFloor() == false)
 					ChangeState(AIRBORNE);
 				break;
 			case AIRBORNE:
-				parent.Call("AddForce", wishDirection * moveSpeed * .1F);
-				if(Input.IsActionJustPressed("Jump"))
-				{
-					bufferFrames = 8;
-					if(coyoteFrames > 0)
-					{
-						Vector3 pMomentum = (Vector3)parent.Call("GetMomentum");
-						parent.Call("ResetY");
-						parent.Call("AddForce", Vector3.Up * jumpHeight);
-					}
-				}
+				wishDirection.Y = 0F;
+				parent.Call("AddForce", wishDirection * moveSpeed);
+
 				if((bool)parent.IsOnFloor() == true)
 					ChangeState(GROUNDED);
 				break;
@@ -92,9 +75,6 @@ public partial class PlayerMovementLogic : Node
 				break;
 
 			case AIRBORNE:
-				Vector3 pMomentum = (Vector3) parent.Call("GetMomentum");
-				if (pMomentum.Y < 0)
-					coyoteFrames = 8;
 				//play a land sound maybe?
 				break;
 
@@ -107,12 +87,5 @@ public partial class PlayerMovementLogic : Node
 			default:
 				break;
 		}
-	}
-
-	public void Reset()
-	{
-		cameraPivot.Rotation = Vector3.Zero;
-		camera3D.GlobalRotation = Vector3.Zero;
-		ChangeState(GROUNDED);
 	}
 }

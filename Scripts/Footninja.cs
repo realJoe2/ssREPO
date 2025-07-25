@@ -68,10 +68,7 @@ public partial class Footninja : EnemyBase
                 else
                     LookAtSmooth(playerNode.GlobalPosition, model, .5F);
                 
-                if (characterBody.IsOnFloor())
-                    GetParent().Call("AddForce", movementVector * moveSpeed * .4F);
-                else
-                    GetParent().Call("AddForce", movementVector * moveSpeed * .1F);
+                GetParent().Call("AddForce", movementVector * moveSpeed * .4F);
                 
                 if(distanceToPlayer < 1.5F && characterBody.IsOnFloor())
                     ChangeState(EnemyState.Attack);

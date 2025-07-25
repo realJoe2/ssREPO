@@ -22,12 +22,4 @@ public partial class Katana : Weapon
     {
 
     }
-
-    public void Reset()
-    {
-        if(IsEquipped())
-        {
-            SwitchTo();
-        }
-    }
 }

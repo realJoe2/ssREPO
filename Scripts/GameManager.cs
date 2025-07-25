@@ -7,11 +7,12 @@ public partial class GameManager : Node
 	Control deathScreen;
 	Control loadingScreen;
 	Control optionsMenu;
+	[Export(PropertyHint.Range, "30,300,")] int maxFramesPerSecond = 180;
 	
 	public override void _Ready()
 	{
 		GD.Randomize();
-		Engine.MaxFps = 180;
+		Engine.MaxFps = maxFramesPerSecond;
 		deathScreen = (Control) GetNode("Top Layer/Death Screen");
 		loadingScreen = (Control) GetNode("Top Layer/Loading Screen");
 		optionsMenu = (Control) GetNode("Top Layer/Options Menu");
@@ -31,7 +32,7 @@ public partial class GameManager : Node
 			GD.Print("No level to reset to.");
 			return;
 		}
-		currentLevel.QueueFree();
+		currentLevel.Free();
 		Node nextLevel = next.Instantiate();
 		AddChild(nextLevel);
 		currentLevel = nextLevel;
@@ -51,7 +52,7 @@ public partial class GameManager : Node
 			return;
 		}
 		loadingScreen.Show();
-		await ToSignal(GetTree().CreateTimer(1/Engine.GetFramesPerSecond() + .001), SceneTreeTimer.SignalName.Timeout);
+		await ToSignal(GetTree().CreateTimer(1/Engine.GetFramesPerSecond() + .001), SceneTreeTimer.SignalName.Timeout); //wait a frame so that the loading screen renders
 		if(currentLevel != null)
 			currentLevel.QueueFree();
 		

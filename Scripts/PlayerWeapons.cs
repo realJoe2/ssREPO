@@ -34,7 +34,7 @@ public partial class PlayerWeapons : Node
         Weapon nextWeapon = (Weapon)GetNodeOrNull(weaponName);
         if (nextWeapon == null && weaponName != "nil")
         {
-            GD.Print("Couldn't find '" + weaponName + "'.");
+            GD.PushWarning("Couldn't find '" + weaponName + "'.");
             return;
         }
         if (currentWeapon == nextWeapon)
@@ -86,7 +86,6 @@ public abstract partial class Weapon : Node3D
 		Fire
 	}
 	
-	[Export] public float secondsPerShot;
 	[Export] public int damage;
 	public WeaponState state;
 	
@@ -105,6 +104,7 @@ public abstract partial class Weapon : Node3D
             return;
         if (state == s)
             return;
+        //GD.Print(s);
         state = s;
 
         switch (state)

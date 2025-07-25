@@ -12,9 +12,10 @@ public partial class EnemySpawner : Node3D
 	}
 
 	Node3D enemyInstance;
+	float delay;
 	public async void Spawn()
 	{
-		float delay = GetIndex() * .067F;
+		delay = (float) (GetIndex() * 1/Engine.GetFramesPerSecond()); //doing this makes it so each enemy spawns with a frame of delay between the last
 		if(delay > 0)
 			await ToSignal(GetTree().CreateTimer(delay), SceneTreeTimer.SignalName.Timeout);
 		enemyInstance = (Node3D) enemyScene.Instantiate();

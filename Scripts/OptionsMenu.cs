@@ -3,10 +3,13 @@ using System;
 
 public partial class OptionsMenu : Control
 {
-    void OnResumeButtonDown()
+    public override void _Process(double delta)
     {
-        Hide();
-        GetTree().Paused = false;
-        Input.SetMouseMode(Input.MouseModeEnum.Captured);
+        if(IsVisible() && Input.IsActionJustPressed("Interact"))
+        {
+            Hide();
+            GetTree().Paused = false;
+            Input.SetMouseMode(Input.MouseModeEnum.Captured);
+        }
     }
 }

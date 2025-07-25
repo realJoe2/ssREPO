@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d15o1dp31hxia"]
+[gd_scene load_steps=8 format=3 uid="uid://d15o1dp31hxia"]
 
 [ext_resource type="Script" uid="uid://e1p7eq84tc2l" path="res://Scripts/GameManager.cs" id="1_bxsma"]
 [ext_resource type="PackedScene" uid="uid://b1axl7gmtitjb" path="res://Levels/level_sandbox.tscn" id="3_bxsma"]
@@ -6,17 +6,13 @@
 [ext_resource type="Script" uid="uid://coy5cjpfkyuxr" path="res://Scripts/DeathScreen.cs" id="3_wd1uf"]
 [ext_resource type="Script" uid="uid://twmq1l5mmjmf" path="res://Scripts/OptionsMenu.cs" id="5_wd1uf"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_wd1uf"]
-font = ExtResource("3_lkrbl")
-font_size = 391
-
-[sub_resource type="LabelSettings" id="LabelSettings_0o8ui"]
-font = ExtResource("3_lkrbl")
-font_size = 51
-
 [sub_resource type="LabelSettings" id="LabelSettings_bxsma"]
 font = ExtResource("3_lkrbl")
 font_size = 201
+
+[sub_resource type="LabelSettings" id="LabelSettings_0o8ui"]
+font = ExtResource("3_lkrbl")
+font_size = 30
 
 [node name="Game Root" type="Node" groups=["Game Manager"]]
 script = ExtResource("1_bxsma")
@@ -38,14 +34,14 @@ script = ExtResource("3_wd1uf")
 
 [node name="ColorRect" type="ColorRect" parent="Top Layer/Death Screen"]
 layout_mode = 2
-color = Color(1, 0, 0, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Top Layer/Death Screen/ColorRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "DEAD"
-label_settings = SubResource("LabelSettings_wd1uf")
+label_settings = SubResource("LabelSettings_bxsma")
 
 [node name="Label2" type="Label" parent="Top Layer/Death Screen/ColorRect"]
 layout_mode = 1
@@ -54,14 +50,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -195.0
-offset_right = 0.5
+offset_left = -338.0
+offset_top = -54.0
+offset_right = 339.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Press \"Interact\" to Restart"
+text = "Press Interact to Restart."
 label_settings = SubResource("LabelSettings_0o8ui")
 horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Death Music" type="AudioStreamPlayer" parent="Top Layer/Death Screen"]
+bus = &"Music"
+
+[node name="Death Sound" type="AudioStreamPlayer" parent="Top Layer/Death Screen"]
+bus = &"SFX"
 
 [node name="Loading Screen" type="Control" parent="Top Layer"]
 visible = false
@@ -122,34 +125,28 @@ color = Color(0, 0, 0, 0.227451)
 
 [node name="Label" type="Label" parent="Top Layer/Options Menu/ColorRect"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -612.0
-offset_top = -278.0
-offset_right = 612.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 1224.0
+offset_bottom = 278.0
 text = "Options"
 label_settings = SubResource("LabelSettings_bxsma")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Resume Button" type="Button" parent="Top Layer/Options Menu"]
+[node name="Label2" type="Label" parent="Top Layer/Options Menu/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+anchor_bottom = 1.0
+offset_left = -325.0
+offset_top = -61.0
+offset_right = 326.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "RESUME"
+grow_vertical = 0
+text = "Press Interact to Resume."
+label_settings = SubResource("LabelSettings_0o8ui")
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[connection signal="button_down" from="Top Layer/Options Menu/Resume Button" to="Top Layer/Options Menu" method="OnResumeButtonDown"]
+[connection signal="visibility_changed" from="Top Layer/Death Screen" to="Top Layer/Death Screen" method="PlayDeathAudio"]
