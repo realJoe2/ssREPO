@@ -3,12 +3,12 @@ using System;
 
 public partial class EnemySpawner : Node3D
 {
-	[Export] Resource enemyResource;
+	[Export] string enemyResourcePath;
 	PackedScene enemyScene;
 	
 	public override void _Ready()
 	{
-		enemyScene = QuickFetch.Fetch(enemyResource);
+		enemyScene = QuickFetch.Fetch(enemyResourcePath);
 	}
 
 	Node3D enemyInstance;

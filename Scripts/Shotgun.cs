@@ -4,7 +4,7 @@ using System;
 public partial class Shotgun : Weapon
 {
     RayCast3D raycast;
-    [Export] Resource bulletHoleResource;
+    [Export] string bulletHoleResourcePath;
     CharacterBody3D playerBody;
     [Export] float shotgunJumpForce;
     Timer dragTimer;
@@ -16,7 +16,7 @@ public partial class Shotgun : Weapon
     {
         state = WeaponState.SwitchTo;
         raycast = (RayCast3D) GetNode("RayCast3D");
-        bulletDecal = QuickFetch.Fetch(bulletHoleResource);
+        bulletDecal = QuickFetch.Fetch(bulletHoleResourcePath);
         dragTimer = (Timer) GetNode("Drag Timer");
         playerBody = (CharacterBody3D) GetTree().GetNodesInGroup("Player")[0];
         originalDrag = (float) playerBody.Call("GetDrag");

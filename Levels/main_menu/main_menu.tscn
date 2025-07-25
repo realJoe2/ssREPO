@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://jplk8w8ggkr3"]
+
+[ext_resource type="Script" uid="uid://b2jcx6xm1w546" path="res://Scripts/MainMenu.cs" id="1_acpfq"]
+[ext_resource type="Texture2D" uid="uid://c8d65tuf0yhsk" path="res://Assets/Misc Images/ss_cover.png" id="1_evoi4"]
+[ext_resource type="PackedScene" uid="uid://b3rosfon2am1b" path="res://Scene Components/level_changer.tscn" id="2_35ycr"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_acpfq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SsCover" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(413, 340)
+scale = Vector2(3, 3)
+texture = ExtResource("1_evoi4")
+
+[node name="Play Button" type="Button" parent="."]
+layout_mode = 2
+anchor_left = 0.726563
+anchor_top = 0.477778
+anchor_right = 0.758594
+anchor_bottom = 0.520833
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Play"
+
+[node name="Level Changer" parent="." instance=ExtResource("2_35ycr")]
+levelPath = "res://Levels/level_sandbox/level_sandbox.tscn"
+
+[connection signal="button_down" from="Play Button" to="Level Changer" method="Activate"]

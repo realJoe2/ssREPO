@@ -3,7 +3,7 @@ using System;
 
 public partial class GameManager : Node
 {
-	[Export] Resource defaultLevel;
+	[Export] string defaultLevel;
 	Control deathScreen;
 	Control loadingScreen;
 	Control optionsMenu;
@@ -24,6 +24,7 @@ public partial class GameManager : Node
 	public void ResetLevel()
 	{
 		GetTree().CallGroup("Resets", "Reset");
+		GD.Print("Soft reset level " + currentLevel.Name);
 	}
 	public void ResetLevelFull()
 	{
@@ -36,36 +37,37 @@ public partial class GameManager : Node
 		Node nextLevel = next.Instantiate();
 		AddChild(nextLevel);
 		currentLevel = nextLevel;
+		GD.Print("Hard reset level: " + currentLevel.Name);
 	}
-	public async void ChangeLevel(Resource level)
+	public async void ChangeLevel(string levelPath)
 	{
-		if(level == null)
+		if(levelPath == null)
 		{
 			GD.PushError("Level field is null");
 			return;
 		}
 
-		next = QuickFetch.Fetch(level);
+		next = QuickFetch.Fetch(levelPath);
 		if(next == null)
 		{
-			GD.PushWarning("Level " + level + " not found");
+			GD.PushWarning("Level " + next + " not found");
 			return;
 		}
 		loadingScreen.Show();
 		await ToSignal(GetTree().CreateTimer(1/Engine.GetFramesPerSecond() + .001), SceneTreeTimer.SignalName.Timeout); //wait a frame so that the loading screen renders
 		if(currentLevel != null)
 			currentLevel.QueueFree();
-		
+		Input.SetMouseMode(Input.MouseModeEnum.Captured);
 		Node nextLevel = next.Instantiate();
 		currentLevel = nextLevel;
 		AddChild(nextLevel);
-		GD.Print("Changed level to '" + nextLevel.Name);
+		GD.Print("Changed level to '" + nextLevel.Name + "'");
 		loadingScreen.Hide();
 	}
 
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("ui_cancel"))
+		if(Input.IsActionJustPressed("ui_cancel") && currentLevel.Name != "Main Menu")
 		{
 			optionsMenu.Show();
 			Input.SetMouseMode(Input.MouseModeEnum.Visible);

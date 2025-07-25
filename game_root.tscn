@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d15o1dp31hxia"]
+[gd_scene load_steps=7 format=3 uid="uid://d15o1dp31hxia"]
 
 [ext_resource type="Script" uid="uid://e1p7eq84tc2l" path="res://Scripts/GameManager.cs" id="1_bxsma"]
-[ext_resource type="PackedScene" uid="uid://b1axl7gmtitjb" path="res://Levels/level_sandbox.tscn" id="3_bxsma"]
 [ext_resource type="FontFile" uid="uid://bkpuvl81gwuq4" path="res://Assets/Fonts/5Computers-In-Love.ttf" id="3_lkrbl"]
 [ext_resource type="Script" uid="uid://coy5cjpfkyuxr" path="res://Scripts/DeathScreen.cs" id="3_wd1uf"]
 [ext_resource type="Script" uid="uid://twmq1l5mmjmf" path="res://Scripts/OptionsMenu.cs" id="5_wd1uf"]
@@ -16,7 +15,7 @@ font_size = 30
 
 [node name="Game Root" type="Node" groups=["Game Manager"]]
 script = ExtResource("1_bxsma")
-defaultLevel = ExtResource("3_bxsma")
+defaultLevel = "res://Levels/main_menu/main_menu.tscn"
 
 [node name="Top Layer" type="CanvasLayer" parent="."]
 layer = 2
@@ -162,7 +161,7 @@ offset_right = 16.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Kill"
+text = "Retry"
 
 [connection signal="visibility_changed" from="Top Layer/Death Screen" to="Top Layer/Death Screen" method="PlayDeathAudio"]
 [connection signal="button_down" from="Top Layer/Options Menu/Kill Button" to="Top Layer/Options Menu" method="OnKillButton"]

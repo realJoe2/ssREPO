@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://x7rbbt2guqwb"]
+[gd_scene load_steps=6 format=3 uid="uid://x7rbbt2guqwb"]
 
 [ext_resource type="Script" uid="uid://d1qbqldgo5lg5" path="res://Scripts/Shotgun.cs" id="1_le4fu"]
-[ext_resource type="PackedScene" uid="uid://be458v08p2xhs" path="res://Assets/Decals/bulletHole/bullet_hole.tscn" id="2_qftx8"]
 [ext_resource type="PackedScene" uid="uid://s26fptcpltra" path="res://Assets/Weapons/Shotgun/shotgun.gltf" id="3_8yrp6"]
 [ext_resource type="Texture2D" uid="uid://b0y7tvjip5q08" path="res://Assets/Weapons/Shotgun/weaponAlbedo.png" id="4_bxrrh"]
 [ext_resource type="Texture2D" uid="uid://dcvch8n5sg1no" path="res://Assets/Weapons/Shotgun/weaponEmission.png" id="5_y1g25"]
@@ -22,7 +21,7 @@ texture_filter = 0
 physics_interpolation_mode = 2
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_le4fu")
-bulletHoleResource = ExtResource("2_qftx8")
+bulletHoleResourcePath = "res://Assets/Decals/bulletHole/bullet_hole.tscn"
 shotgunJumpForce = 90.0
 animation = NodePath("shotgun/AnimationPlayer")
 bulletSpreadAmount = 2.0

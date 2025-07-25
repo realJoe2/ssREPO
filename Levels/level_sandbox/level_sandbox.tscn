@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://b1axl7gmtitjb"]
+[gd_scene load_steps=28 format=4 uid="uid://b1axl7gmtitjb"]
 
 [ext_resource type="Script" uid="uid://cditfotidgmhj" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_nuku4"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_78xd7"]
@@ -6,13 +6,10 @@
 [ext_resource type="Material" uid="uid://llo5ee1y5xor" path="res://Assets/Textures/gray_brick.tres" id="5_2jsdp"]
 [ext_resource type="Material" uid="uid://cnei4keisvd5c" path="res://Assets/Textures/brick.tres" id="6_7uexe"]
 [ext_resource type="Material" uid="uid://tl1nrs1kbfre" path="res://Assets/Textures/light_concrete.tres" id="6_sl45b"]
-[ext_resource type="LightmapGIData" uid="uid://mnxf7jlvego5" path="res://Levels/level_sandbox.lmbake" id="7_2jsdp"]
+[ext_resource type="LightmapGIData" uid="uid://mnxf7jlvego5" path="res://Levels/level_sandbox/level_sandbox.lmbake" id="7_2jsdp"]
 [ext_resource type="PackedScene" uid="uid://bw63p801fmfv5" path="res://Scene Components/Entities/door.tscn" id="8_7uexe"]
 [ext_resource type="PackedScene" uid="uid://capoc3d5hricf" path="res://Scene Components/Entities/trigger.tscn" id="9_sl45b"]
 [ext_resource type="PackedScene" uid="uid://btx2lt7o82hwm" path="res://Scene Components/Entities/player_spawner.tscn" id="10_vmhxe"]
-[ext_resource type="PackedScene" uid="uid://dsr82h2g7wsg3" path="res://Scene Components/Entities/wave.tscn" id="11_w7wet"]
-[ext_resource type="PackedScene" uid="uid://ds4kbuf88om55" path="res://Scene Components/Entities/enemy_spawner.tscn" id="12_rdmh2"]
-[ext_resource type="PackedScene" uid="uid://b8y5d54kdw3w1" path="res://Scene Components/Entities/Enemies/footninja.tscn" id="13_3e7bc"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0d72h"]
 vertices = PackedVector3Array(-40.75, 14.75, 1, -40.25, 14.75, 1.5, 1.5, 14.75, 1.5, 1.5, 14.75, -47.25, -40.75, 14.75, -47, -10.75, 1.25, -19, -0.75, 1.25, -19, -0.75, 0.25, -21, -11, 0.25, -21.5, 1, 0.25, -21.25, -40, 0.25, -19.25, -13.5, 0.25, -19.25, -13.25, 0.25, -21.5, 1, 0.25, -46.5, -40, 0.25, -46.5, 0.75, 5.5, -20.25, 0.25, 5.5, -20.25, 0.25, 5.5, -11.5, -11.75, 5.5, -11.5, -11.75, 5.5, -20.5, -12.5, 5.5, -20.5, -0.75, 4.25, -13.5, -10.75, 4.25, -13.5, -10.75, 5.25, -11.5, -0.75, 5.25, -11.5, -12.5, 5.5, 0.5, 0.75, 5.5, 0.75, -40, 0.25, 1, -13.5, 0.25, 1, -10.75, 0.25, -16, -10.75, 0.25, -11.25, -0.75, 0.25, -11.25, -0.75, 0.25, -16, -10.75, 0.25, -10, -10.75, 0.25, 0.5, -0.75, 0.25, 0.5, -0.75, 0.25, -10)
@@ -297,20 +294,6 @@ shape = SubResource("ConvexPolygonShape3D_7uexe")
 
 [node name="PlayerSpawner" parent="." instance=ExtResource("10_vmhxe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2, -17)
-
-[node name="Wave" parent="." instance=ExtResource("11_w7wet")]
-
-[node name="enemy_spawner" parent="Wave" instance=ExtResource("12_rdmh2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 4, -36)
-enemyResource = ExtResource("13_3e7bc")
-
-[node name="enemy_spawner2" parent="Wave" instance=ExtResource("12_rdmh2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4, -36)
-enemyResource = ExtResource("13_3e7bc")
-
-[connection signal="body_entered" from="Trigger" to="Door" method="Toggle" unbinds=1]
-[connection signal="body_exited" from="Trigger" to="Door" method="Toggle" unbinds=1]
-[connection signal="body_exited" from="Trigger" to="Wave" method="Start" unbinds=1]
 
 [editable path="Trigger"]
 [editable path="Door"]
