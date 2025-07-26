@@ -22,7 +22,7 @@ public partial class PlayerSpawner : Node3D
         AddChild(p);
         player = p;
         player.GlobalPosition = startPosition;
-        GD.Print("Respawned player at the position " + startPosition + ".");
+        //GD.Print("Respawned player at the position " + startPosition + ".");
     }
 
     public void SetStartPosition(Vector3 sP)

@@ -18,10 +18,11 @@ config/icon="uid://ctrubc0akuntc"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=4
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -47,6 +48,7 @@ folder_colors={
 Player="This group contains only the player."
 Resets="These nodes get reset when \"ResetLevel\" is called on the GameManager singleton."
 "Game Manager"=""
+"Enemy Logic Node"="This group is used for calling functions on enemy logic nodes."
 
 [input]
 
@@ -81,7 +83,7 @@ Jump={
 }
 Shoot={
 "deadzone": 0.2,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(97, 8),"global_position":Vector2(106, 56),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(121, 15),"global_position":Vector2(130, 63),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 Interact={

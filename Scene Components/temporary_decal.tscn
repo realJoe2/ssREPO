@@ -4,6 +4,9 @@
 
 [node name="TemporaryDecal" type="Decal" groups=["Resets"]]
 physics_interpolation_mode = 2
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 30.0
 script = ExtResource("1_4p0iw")
 
 [node name="Timer" type="Timer" parent="."]

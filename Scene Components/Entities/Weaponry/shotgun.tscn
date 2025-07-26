@@ -22,10 +22,11 @@ physics_interpolation_mode = 2
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_le4fu")
 bulletHoleResourcePath = "res://Assets/Decals/bulletHole/bullet_hole.tscn"
+bulletsPerShot = 9
 shotgunJumpForce = 90.0
 animation = NodePath("shotgun/AnimationPlayer")
 bulletSpreadAmount = 2.0
-damage = 2
+damage = 1
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 physics_interpolation_mode = 2

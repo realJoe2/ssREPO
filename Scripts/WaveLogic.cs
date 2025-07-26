@@ -19,10 +19,19 @@ public partial class WaveLogic : Node
 		children = GetChildren();
 		enemiesLeft = (byte) children.Count;
 	}
+
+	bool threeMode = false;
 	public void Decrement()
 	{
 		if(enemiesLeft > 0)
 			enemiesLeft--;
+
+		if(enemiesLeft == 3 && threeMode != true) //threeMode only activates if a wave started with more than three members
+		{
+			threeMode = true;
+			GetTree().CallGroup("Enemy Logic Node", "ActivateThreeMode");
+			GD.Print("Activated three mode");
+		}
 	}
 	public void Start()
 	{

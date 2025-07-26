@@ -40,13 +40,20 @@ public abstract partial class EnemyBase : Node
             GD.PushError("'NavigationAgent3D' node not found. Ensure spelling.");
     }
 
-    public void LookAtSmooth(Vector3 n, Node3D obj, float easing)
+
+    Vector2 xyPosition;
+	Vector2 playerXY;
+	Vector2 direction;
+	Vector3 newRotation;
+    public void LookAtSmooth(Vector3 target, Node3D obj, float easing)
 	{
-		n.Y = obj.GlobalPosition.Y;
-		Vector2 xyPosition = new Vector2(obj.GlobalPosition.X, obj.GlobalPosition.Z);
-		Vector2 playerXY = new Vector2(n.X, n.Z);
-		Vector2 direction = -(xyPosition - playerXY);
-		Vector3 newRotation = obj.Rotation;
+		target.Y = obj.GlobalPosition.Y;
+		xyPosition.X = obj.GlobalPosition.X;
+        xyPosition.Y = obj.GlobalPosition.Z;
+		playerXY.X = target.X;
+        playerXY.Y = target.Z;
+		direction = -(xyPosition - playerXY);
+		newRotation = obj.Rotation;
 		newRotation.Y = Mathf.LerpAngle(obj.Rotation.Y, Mathf.Atan2(direction.X, direction.Y), easing);
 		obj.Rotation = newRotation;
 	}
@@ -76,28 +83,28 @@ public abstract partial class EnemyBase : Node
     {
         return characterBody.GlobalPosition.DistanceTo(playerNode.GlobalPosition);
     }
-    public float GetHorizontalDistanceToPlayer()
+    
+    public bool CanSeeNode(Node3D node)
     {
-        Vector2 horizontal;
-        horizontal.X = playerNode.GlobalPosition.X - characterBody.GlobalPosition.X;
-        horizontal.Y = playerNode.GlobalPosition.Z - characterBody.GlobalPosition.Z;
-        return horizontal.Length();
-    }
-    public float GetVerticalDistanceToPlayer()
-    {
-        return playerNode.GlobalPosition.Y - characterBody.GlobalPosition.Y;
-    }
-    public bool CanSeePlayer()
-    {
-        eyeSight.TargetPosition = eyeSight.ToLocal(playerNode.GlobalPosition);
+        eyeSight.TargetPosition = eyeSight.ToLocal(node.GlobalPosition);
         eyeSight.ForceRaycastUpdate();
         if(eyeSight.IsColliding())
-            return eyeSight.GetCollider() == playerNode;
+            return eyeSight.GetCollider() == node;
         return false;
     }
-    public Vector3 GetNextPathPoint()
+
+    public Vector3 GetForwardDirection(Node3D thing)
     {
-        navAgent.TargetPosition = playerNode.GlobalPosition;
+        return (thing.GlobalPosition - (thing.GlobalPosition + thing.GlobalTransform.Basis.Z * -1).Normalized());
+    }
+    public bool ObjectIsFacing(Node3D thing, Node3D target)
+    {
+        return GetForwardDirection(thing).Dot((target.GlobalPosition - thing.GlobalPosition).Normalized()) > .7F;
+    }
+
+    public Vector3 GetNextPathPoint(Vector3 target)
+    {
+        navAgent.TargetPosition = target;
         return navAgent.GetNextPathPosition();
     }
 }

@@ -53,6 +53,7 @@ public partial class GameManager : Node
 			GD.PushWarning("Level " + next + " not found");
 			return;
 		}
+		Input.SetMouseMode(Input.MouseModeEnum.Captured);
 		loadingScreen.Show();
 		await ToSignal(GetTree().CreateTimer(1/Engine.GetFramesPerSecond() + .001), SceneTreeTimer.SignalName.Timeout); //wait a frame so that the loading screen renders
 		if(currentLevel != null)
@@ -74,7 +75,6 @@ public partial class GameManager : Node
 			GetTree().Paused = true;
 		}
 	}
-
 	public void PlayerDeath()
 	{
 		deathScreen.Show();

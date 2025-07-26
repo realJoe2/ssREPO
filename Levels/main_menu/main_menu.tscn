@@ -11,6 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_acpfq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -25,9 +27,16 @@ grow_vertical = 2
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="SsCover" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(413, 340)
-scale = Vector2(3, 3)
+[node name="Control" type="Control" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="SsCover" type="Sprite2D" parent="MarginContainer/ColorRect/Control"]
+position = Vector2(531, -504)
+scale = Vector2(4, 4)
 texture = ExtResource("1_evoi4")
 
 [node name="Play Button" type="Button" parent="."]

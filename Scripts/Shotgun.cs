@@ -5,6 +5,7 @@ public partial class Shotgun : Weapon
 {
     RayCast3D raycast;
     [Export] string bulletHoleResourcePath;
+    [Export] byte bulletsPerShot = 1;
     CharacterBody3D playerBody;
     [Export] float shotgunJumpForce;
     Timer dragTimer;
@@ -33,16 +34,15 @@ public partial class Shotgun : Weapon
     Node3D effects;
     Vector3 shotgunJump;
     Vector3 bulletOffset;
+    Vector3 rot;
+
     public override void Fire()
     {
         raycast.Enabled = true;
-        bulletOffset = Vector3.Forward * 100;
-        bulletOffset.X += (float) GD.Randfn(0.0, bulletSpreadAmount);
-        bulletOffset.Y += (float) GD.Randfn(0.0, bulletSpreadAmount);
-        raycast.TargetPosition = bulletOffset;
+        for(int i = 0; i < bulletsPerShot; i++)
+            FireShotgunShell();
 
-        raycast.ForceRaycastUpdate();
-        
+
         if(!playerBody.IsOnFloor()) //shotgun jumping! fuck yeah!!!
         {
             dragTimer.Start();
@@ -51,33 +51,6 @@ public partial class Shotgun : Weapon
             shotgunJump.Y = Mathf.Clamp(shotgunJump.Y, -30F, 30F);
             playerBody.Velocity += shotgunJump;
         }
-
-        if(raycast.IsColliding())
-        {   
-            collider = (Node3D) raycast.GetCollider();
-            if(collider is Hitbox)
-            {
-                collider.Call("Hit", damage);
-                //instance blood effects(?)
-                //effects = (Node3D) bloodEffect.Instantiate();
-            }
-            else
-            {
-                effects = (Node3D) bulletDecal.Instantiate();
-                collider.AddChild(effects);
-                effects.GlobalPosition = raycast.GetCollisionPoint();
-                if(raycast.GetCollisionNormal() != Vector3.Up || raycast.GetCollisionNormal() != Vector3.Down)
-                {
-                    Vector3 rot = raycast.GetCollisionNormal() * 90F * (Mathf.Pi / 180F);
-                    rot.Y = rot.Z;
-                    rot.Z = rot.X;
-                    rot.X = rot.Y;
-                    rot.Y = 0F;
-                    effects.Rotation = rot;
-                }
-            }
-        }
-        
         animation.Play("ShootShotgun");
         raycast.Enabled = false;
     }
@@ -89,10 +62,8 @@ public partial class Shotgun : Weapon
 
     public override void _Process(double delta)
     {
-        if(Input.IsActionPressed("Shoot") && state == WeaponState.Idle)
-        {
+        if(Input.IsActionJustPressed("Shoot") && state == WeaponState.Idle)
             ChangeState(WeaponState.Fire);
-        }
         if(playerBody.IsOnFloor())
             playerBody.Call("SetDrag", originalDrag);
         else
@@ -103,5 +74,40 @@ public partial class Shotgun : Weapon
     {
         if(name != "ShotgunSway")
             ChangeState(WeaponState.Idle);
+    }
+
+    void FireShotgunShell()
+    {
+        bulletOffset = Vector3.Forward * 100;
+        bulletOffset.X += (float) GD.Randfn(0.0, bulletSpreadAmount);
+        bulletOffset.Y += (float) GD.Randfn(0.0, bulletSpreadAmount);
+        raycast.TargetPosition = bulletOffset;
+        raycast.ForceRaycastUpdate();
+
+        if(!raycast.IsColliding()) 
+            return;
+
+        collider = (Node3D) raycast.GetCollider();
+        if(collider is Hitbox)
+        {
+            collider.Call("Hit", damage);
+            //instance blood effects(?)
+            //effects = (Node3D) bloodEffect.Instantiate();
+        }
+        else
+        {
+            effects = (Node3D) bulletDecal.Instantiate();
+            collider.AddChild(effects);
+            effects.GlobalPosition = raycast.GetCollisionPoint();
+            if(raycast.GetCollisionNormal() != Vector3.Up || raycast.GetCollisionNormal() != Vector3.Down)
+            {
+                rot = raycast.GetCollisionNormal() * 90F * (Mathf.Pi / 180F);
+                rot.Y = rot.Z;
+                rot.Z = rot.X;
+                rot.X = rot.Y;
+                rot.Y = 0F;
+                effects.Rotation = rot;
+            }
+        }
     }
 }
