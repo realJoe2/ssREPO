@@ -5,6 +5,7 @@ public partial class Footninja : EnemyBase
 {
     [Export] int moveSpeed = 4;
     [Export] float attackDistance = 2F;
+    [Export] byte damage;
     Node3D model;
     AnimationPlayer modelAnimator;
 
@@ -22,11 +23,11 @@ public partial class Footninja : EnemyBase
 
     public override void PursuePlayer()
     {
-        
+        modelAnimator.Play("Run");
     }
     public override void Attack()
     {
-
+        modelAnimator.Play("AttackSide");
     }
     public override void Dead()
     {
@@ -61,7 +62,34 @@ public partial class Footninja : EnemyBase
                 if(distanceToPlayer <= attackDistance)
                     ChangeState(EnemyState.Attack);
                 break;
+            case EnemyState.Attack:
+                movementVector = (playerNode.GlobalPosition - characterBody.GlobalPosition).Normalized();
+                movementVector.Y = 0;
+                characterBody.Call("AddForce", movementVector * moveSpeed * 0.80F);
+                LookAtSmooth(playerNode.GlobalPosition, model, .1F);
+                break;
         }
         
+    }
+    public void Hit()
+    {
+        GD.Print(ObjectIsFacing(model, playerNode));
+        var playerGroup = GetTree().GetNodesInGroup("Player");
+        if(GetDistanceToPlayer() < attackDistance && ObjectIsFacing(model, playerNode))
+        {
+            for(int i = 0; i < playerGroup.Count; i++)
+            {
+                if(playerGroup[i] is Hitbox)
+                {
+                    playerGroup[i].Call("Hit", damage);
+                    return;
+                }
+            }
+        }
+    }
+    void OnAnimationFinished(string animation)
+    {
+        if(animation == "AttackSide")
+            ChangeState(EnemyState.PursuePlayer);
     }
 }

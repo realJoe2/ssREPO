@@ -7,7 +7,7 @@
 script = ExtResource("1_ptpdh")
 export_file = false
 target_map_editor = 1
-fgd_name = "shotgun_shinobu"
+fgd_name = "shotgun_shinobi"
 base_fgd_files = Array[Resource]([ExtResource("1_t3dar")])
 entity_definitions = Array[Resource]([])
 metadata/_custom_type_script = "uid://bw1mt6y4ko0od"

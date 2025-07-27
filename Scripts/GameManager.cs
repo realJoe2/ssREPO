@@ -46,16 +46,24 @@ public partial class GameManager : Node
 			GD.PushError("Level field is null");
 			return;
 		}
-
-		next = QuickFetch.Fetch(levelPath);
-		if(next == null)
+		if(!ResourceLoader.Exists(levelPath))
 		{
 			GD.PushWarning("Level " + next + " not found");
 			return;
 		}
+		if(currentLevel != null)
+		{
+			loadingScreen.Show();
+			await ToSignal(GetTree().CreateTimer(.1F), SceneTreeTimer.SignalName.Timeout); //wait a frame so that the loading screen renders
+		}
+		next = QuickFetch.Fetch(levelPath);
+		if(next == null)
+		{
+			GD.PushWarning("Map load failed");
+			ChangeLevel(defaultLevel);
+			return;
+		}
 		Input.SetMouseMode(Input.MouseModeEnum.Captured);
-		loadingScreen.Show();
-		await ToSignal(GetTree().CreateTimer(1/Engine.GetFramesPerSecond() + .001), SceneTreeTimer.SignalName.Timeout); //wait a frame so that the loading screen renders
 		if(currentLevel != null)
 			currentLevel.QueueFree();
 		Input.SetMouseMode(Input.MouseModeEnum.Captured);

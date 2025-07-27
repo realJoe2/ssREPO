@@ -44,12 +44,11 @@ far = 1000.0
 physics_interpolation_mode = 2
 script = ExtResource("3_bf140")
 
-[node name="Katana" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("5_gqvlv")]
-physics_interpolation_mode = 2
-visible = false
-damage = 4
-
 [node name="Shotgun" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("4_isa0i")]
+visible = false
+
+[node name="Katana" parent="CameraPivot/FirstPersonCamera/Player Weapons" instance=ExtResource("5_gqvlv")]
+visible = false
 
 [node name="Crosshair" type="Label" parent="."]
 anchors_preset = 8
@@ -79,6 +78,3 @@ shape = SubResource("BoxShape3D_1odxq")
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("logicScript") groups=["Resets"] instance=ExtResource("9_v285s")]
 maxHealth = 5
 logicScript = NodePath("../PlayerMovement")
-
-[editable path="CameraPivot/FirstPersonCamera/Player Weapons/Shotgun"]
-[editable path="CameraPivot/FirstPersonCamera/Player Weapons/Shotgun/shotgun"]

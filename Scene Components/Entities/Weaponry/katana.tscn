@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://2v7wesrn1bdw"]
+[gd_scene load_steps=4 format=3 uid="uid://2v7wesrn1bdw"]
 
 [ext_resource type="Script" uid="uid://d1cdm0bnedl4q" path="res://Scripts/Katana.cs" id="1_s05su"]
+[ext_resource type="AudioStream" uid="uid://cbspcq0v6u8pc" path="res://Assets/Sound/Sound Effects/equip_katana.wav" id="2_fwmln"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xw65w"]
 
 [node name="Katana" type="Node3D"]
 script = ExtResource("1_s05su")
-secondsPerShot = 0.6
 damage = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2)
 mesh = SubResource("BoxMesh_xw65w")
+
+[node name="Equip Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fwmln")

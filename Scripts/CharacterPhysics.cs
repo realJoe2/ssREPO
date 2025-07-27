@@ -31,8 +31,11 @@ public partial class CharacterPhysics : CharacterBody3D
 		else
 			momentum.Y -= (GRAVITY * gravityScale * deltaMultiplier) * (float) delta;
 
-		if(IsOnCeiling() && momentum.Y > 0)
-			momentum.Y = 0.0F;
+		if(IsOnCeiling())
+		{
+			if(momentum.Y > 0)
+				momentum.Y = 0.0F;
+		}
 		
 		momentum += addedForce * (float) delta * deltaMultiplier;
 		momentum = momentum.LimitLength(maxSpeed); //this stops any crazy tech from letting the player go TOO fast

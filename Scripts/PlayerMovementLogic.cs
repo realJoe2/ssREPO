@@ -64,6 +64,7 @@ public partial class PlayerMovementLogic : Node
 				break;
 		}
 	}
+
 	public void ChangeState(byte b)
 	{
 		if (b == state)

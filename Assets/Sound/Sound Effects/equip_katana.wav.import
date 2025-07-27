@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cbspcq0v6u8pc"
+path="res://.godot/imported/equip_katana.wav-55ce952a4db3eee2243279ffc4b7da6b.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Sound Effects/equip_katana.wav"
+dest_files=["res://.godot/imported/equip_katana.wav-55ce952a4db3eee2243279ffc4b7da6b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

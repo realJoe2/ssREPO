@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dwf6ti5la63o0"
+path="res://.godot/imported/level_0-1.1.map-3d3b1f61a10c6972a12b1643b63c8329.tres"
+
+[deps]
+
+source_file="res://TrenchBroomSaves/autosave/level_0-1.1.map"
+dest_files=["res://.godot/imported/level_0-1.1.map-3d3b1f61a10c6972a12b1643b63c8329.tres"]
+
+[params]
+

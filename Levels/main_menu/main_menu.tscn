@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b3rosfon2am1b" path="res://Scene Components/level_changer.tscn" id="2_35ycr"]
 
 [node name="Main Menu" type="Control"]
+z_as_relative = false
+y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,4 +56,4 @@ text = "Play"
 [node name="Level Changer" parent="." instance=ExtResource("2_35ycr")]
 levelPath = "res://Levels/level_sandbox/level_sandbox.tscn"
 
-[connection signal="button_down" from="Play Button" to="Level Changer" method="Activate"]
+[connection signal="button_up" from="Play Button" to="Level Changer" method="Activate"]

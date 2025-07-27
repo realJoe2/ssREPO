@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("6_o66e7")
 export_file = false
-game_name = "shotgun_shinobu"
+game_name = "shotgun_shinobi"
 icon = ExtResource("5_1uve8")
 map_formats = Array[Dictionary]([{
 "format": "Valve",

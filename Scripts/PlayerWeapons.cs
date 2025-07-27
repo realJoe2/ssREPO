@@ -1,10 +1,11 @@
 using Godot;
 using System;
 
-public partial class PlayerWeapons : Node
+public partial class PlayerWeapons : Node3D
 {
     Weapon currentWeapon;
     Weapon previousWeapon;
+
     public override void _Ready()
     {
         currentWeapon = null;
@@ -34,7 +35,7 @@ public partial class PlayerWeapons : Node
         Weapon nextWeapon = (Weapon)GetNodeOrNull(weaponName);
         if (nextWeapon == null && weaponName != "nil")
         {
-            GD.PushWarning("Couldn't find '" + weaponName + "'.");
+            //GD.PushWarning("Couldn't find '" + weaponName + "'.");
             return;
         }
         if (currentWeapon == nextWeapon)

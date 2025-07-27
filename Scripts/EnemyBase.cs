@@ -99,7 +99,7 @@ public abstract partial class EnemyBase : Node
     }
     public bool ObjectIsFacing(Node3D thing, Node3D target)
     {
-        return GetForwardDirection(thing).Dot((target.GlobalPosition - thing.GlobalPosition).Normalized()) > .7F;
+        return GetForwardDirection(thing).Dot((target.GlobalPosition - thing.GlobalPosition).Normalized()) > 0.7F;
     }
 
     public Vector3 GetNextPathPoint(Vector3 target)

@@ -13,6 +13,10 @@ public partial class Shotgun : Weapon
     [Export] AnimationPlayer animation;
     [Export] float bulletSpreadAmount = 3F;
 
+    [Export] AudioStreamPlayer shootSound;
+    [Export] AudioStreamPlayer reloadSound;
+    [Export] AudioStreamPlayer equipSound;
+
     public override void _Ready()
     {
         state = WeaponState.SwitchTo;
@@ -26,6 +30,8 @@ public partial class Shotgun : Weapon
     public override void SwitchTo()
     {
         animation.Play("ShotgunSwitch");
+        equipSound.PitchScale = (float) GD.Randfn(1.0, .05);
+        equipSound.Play();
         //switch to Idle state on animation finish. either do this via a signal or some other way.
     }
 
@@ -42,6 +48,10 @@ public partial class Shotgun : Weapon
         for(int i = 0; i < bulletsPerShot; i++)
             FireShotgunShell();
 
+        shootSound.PitchScale = (float) GD.Randfn(1.0, .02);
+        reloadSound.PitchScale = (float) GD.Randfn(1.0, .02);
+        shootSound.Play();
+        reloadSound.Play();
 
         if(!playerBody.IsOnFloor()) //shotgun jumping! fuck yeah!!!
         {
@@ -62,7 +72,7 @@ public partial class Shotgun : Weapon
 
     public override void _Process(double delta)
     {
-        if(Input.IsActionJustPressed("Shoot") && state == WeaponState.Idle)
+        if(Input.IsActionPressed("Shoot") && state == WeaponState.Idle)
             ChangeState(WeaponState.Fire);
         if(playerBody.IsOnFloor())
             playerBody.Call("SetDrag", originalDrag);
