@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0y7tvjip5q08"
-path.s3tc="res://.godot/imported/weaponAlbedo.png-a4af52a7d1db5df8c287d214c42394ab.s3tc.ctex"
+uid="uid://cgvodv4floswe"
+path.s3tc="res://.godot/imported/dark_concrete.webp-43ba3255378e51625e02453f9d4437e8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Weapons/Shotgun/weaponAlbedo.png"
-dest_files=["res://.godot/imported/weaponAlbedo.png-a4af52a7d1db5df8c287d214c42394ab.s3tc.ctex"]
+source_file="res://Assets/Textures/dark_concrete.webp"
+dest_files=["res://.godot/imported/dark_concrete.webp-43ba3255378e51625e02453f9d4437e8.s3tc.ctex"]
 
 [params]
 

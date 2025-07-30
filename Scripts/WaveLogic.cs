@@ -66,10 +66,10 @@ public partial class WaveLogic : Node
 			case ACTIVE:
 				//th.Run(onStarted);
 				EmitSignal(SignalName.WaveStarted);
-				GD.Print("Wave started.");
+				GD.Print("Wave started");
 				break;
 			case COMPLETE:
-				GD.Print("Wave completed.");
+				GD.Print("Wave completed");
 				EmitSignal(SignalName.WaveCompleted);
 				break;
 			default:

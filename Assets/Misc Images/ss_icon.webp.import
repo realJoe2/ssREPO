@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctrubc0akuntc"
-path.s3tc="res://.godot/imported/ss_icon.png-8ee753339e082285c785f429e1454f49.s3tc.ctex"
+uid="uid://dbfajaq4l0d3t"
+path="res://.godot/imported/ss_icon.webp-fd6b3bcba761657c0747966fb173bfb4.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Misc Images/ss_icon.png"
-dest_files=["res://.godot/imported/ss_icon.png-8ee753339e082285c785f429e1454f49.s3tc.ctex"]
+source_file="res://Assets/Misc Images/ss_icon.webp"
+dest_files=["res://.godot/imported/ss_icon.webp-fd6b3bcba761657c0747966fb173bfb4.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq2aua1vrss"
-path.s3tc="res://.godot/imported/light_concrete.png-4d055c6f971e4e37c343207419db2659.s3tc.ctex"
+uid="uid://dhdfta0c68w7r"
+path.s3tc="res://.godot/imported/brick.webp-a04e664790fae3d36d5c588f021b12da.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Textures/light_concrete.png"
-dest_files=["res://.godot/imported/light_concrete.png-4d055c6f971e4e37c343207419db2659.s3tc.ctex"]
+source_file="res://Assets/Textures/brick.webp"
+dest_files=["res://.godot/imported/brick.webp-a04e664790fae3d36d5c588f021b12da.s3tc.ctex"]
 
 [params]
 

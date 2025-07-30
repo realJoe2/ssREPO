@@ -2,22 +2,22 @@
 
 [ext_resource type="Script" uid="uid://d1qbqldgo5lg5" path="res://Scripts/Shotgun.cs" id="1_le4fu"]
 [ext_resource type="PackedScene" uid="uid://s26fptcpltra" path="res://Assets/Weapons/Shotgun/shotgun.gltf" id="3_8yrp6"]
-[ext_resource type="Texture2D" uid="uid://b0y7tvjip5q08" path="res://Assets/Weapons/Shotgun/weaponAlbedo.png" id="4_bxrrh"]
+[ext_resource type="Texture2D" uid="uid://b8yuywnais6h" path="res://Assets/Weapons/Shotgun/weaponAlbedo.webp" id="3_k8xh5"]
 [ext_resource type="AudioStream" uid="uid://7c5tme0goypp" path="res://Assets/Sound/Sound Effects/shotgun_shot.wav" id="5_bxrrh"]
-[ext_resource type="Texture2D" uid="uid://dcvch8n5sg1no" path="res://Assets/Weapons/Shotgun/weaponEmission.png" id="5_y1g25"]
 [ext_resource type="AudioStream" uid="uid://10vwl3g7mt1n" path="res://Assets/Sound/Sound Effects/equip_shotgun.wav" id="6_k8xh5"]
 [ext_resource type="AudioStream" uid="uid://56drn34px175" path="res://Assets/Sound/Sound Effects/shotgun_reload.wav" id="6_y1g25"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y1g25"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yrp6"]
 transparency = 2
 alpha_scissor_threshold = 0.1
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("4_bxrrh")
-emission_enabled = true
+albedo_texture = ExtResource("3_k8xh5")
 emission = Color(0.943533, 0.779153, 0.220814, 1)
 emission_energy_multiplier = 5.0
 emission_operator = 1
-emission_texture = ExtResource("5_y1g25")
+emission_texture = SubResource("CompressedTexture2D_y1g25")
 texture_filter = 0
 
 [node name="Shotgun" type="Node3D" node_paths=PackedStringArray("animation", "shootSound", "reloadSound", "equipSound")]
@@ -57,7 +57,7 @@ bones/3/rotation = Quaternion(-0.0095208, 4.3801e-08, 4.32773e-08, 0.999955)
 bones/4/position = Vector3(-3.11037e-08, 0.221254, 0.08825)
 bones/4/rotation = Quaternion(0.527835, -1.0125e-07, 6.46006e-07, 0.849347)
 bones/4/scale = Vector3(1.24671, 1.24671, 1.24671)
-bones/5/position = Vector3(0.64015, -0.149299, -1.82262)
+bones/5/position = Vector3(0.64015, -0.0853306, -1.82847)
 bones/5/rotation = Quaternion(0, 1, 0, -1.94707e-07)
 bones/5/scale = Vector3(0, 0, 0)
 

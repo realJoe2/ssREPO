@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8d65tuf0yhsk"
-path="res://.godot/imported/ss_cover.png-91dec6efbc482e1ed3e5f77a74d03fa3.ctex"
+uid="uid://b8yuywnais6h"
+path.s3tc="res://.godot/imported/weaponAlbedo.webp-0d7aab4d0b2793e88130fa9000e8c831.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Assets/Misc Images/ss_cover.png"
-dest_files=["res://.godot/imported/ss_cover.png-91dec6efbc482e1ed3e5f77a74d03fa3.ctex"]
+source_file="res://Assets/Weapons/Shotgun/weaponAlbedo.webp"
+dest_files=["res://.godot/imported/weaponAlbedo.webp-0d7aab4d0b2793e88130fa9000e8c831.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

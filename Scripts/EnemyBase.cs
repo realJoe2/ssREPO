@@ -93,15 +93,6 @@ public abstract partial class EnemyBase : Node
         return false;
     }
 
-    public Vector3 GetForwardDirection(Node3D thing)
-    {
-        return (thing.GlobalPosition - (thing.GlobalPosition + thing.GlobalTransform.Basis.Z * -1).Normalized());
-    }
-    public bool ObjectIsFacing(Node3D thing, Node3D target)
-    {
-        return GetForwardDirection(thing).Dot((target.GlobalPosition - thing.GlobalPosition).Normalized()) > 0.7F;
-    }
-
     public Vector3 GetNextPathPoint(Vector3 target)
     {
         navAgent.TargetPosition = target;

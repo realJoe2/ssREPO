@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cydv1qynodxim"
-path.s3tc="res://.godot/imported/brick.png-ab82af2adf3ae9851ab097646cc336b8.s3tc.ctex"
+uid="uid://bgcda00eb6c7q"
+path.s3tc="res://.godot/imported/gray_brick.webp-730c60f8f726d15e981c7bd7465ba9b6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Textures/brick.png"
-dest_files=["res://.godot/imported/brick.png-ab82af2adf3ae9851ab097646cc336b8.s3tc.ctex"]
+source_file="res://Assets/Textures/gray_brick.webp"
+dest_files=["res://.godot/imported/gray_brick.webp-730c60f8f726d15e981c7bd7465ba9b6.s3tc.ctex"]
 
 [params]
 
@@ -20,13 +20,13 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=2
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

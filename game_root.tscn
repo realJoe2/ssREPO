@@ -7,7 +7,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_bxsma"]
 font = ExtResource("3_lkrbl")
-font_size = 301
+font_size = 156
 
 [sub_resource type="LabelSettings" id="LabelSettings_0o8ui"]
 font = ExtResource("3_lkrbl")
@@ -93,9 +93,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -612.0
-offset_top = -278.0
-offset_right = 612.0
+offset_left = -916.5
+offset_top = -415.0
+offset_right = 916.5
 grow_horizontal = 2
 grow_vertical = 0
 text = "Loading"

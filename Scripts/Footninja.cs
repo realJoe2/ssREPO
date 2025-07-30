@@ -6,6 +6,7 @@ public partial class Footninja : EnemyBase
     [Export] int moveSpeed = 4;
     [Export] float attackDistance = 2F;
     [Export] byte damage;
+    [Export] Area3D hurter;
     Node3D model;
     AnimationPlayer modelAnimator;
 
@@ -73,19 +74,11 @@ public partial class Footninja : EnemyBase
     }
     public void Hit()
     {
-        GD.Print(ObjectIsFacing(model, playerNode));
-        var playerGroup = GetTree().GetNodesInGroup("Player");
-        if(GetDistanceToPlayer() < attackDistance && ObjectIsFacing(model, playerNode))
-        {
-            for(int i = 0; i < playerGroup.Count; i++)
-            {
-                if(playerGroup[i] is Hitbox)
-                {
-                    playerGroup[i].Call("Hit", damage);
-                    return;
-                }
-            }
-        }
+        hurter.SetDeferred("monitoring", true);
+    }
+    public void StopHit()
+    {
+        hurter.SetDeferred("monitoring", false);
     }
     void OnAnimationFinished(string animation)
     {

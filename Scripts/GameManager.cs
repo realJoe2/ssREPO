@@ -54,7 +54,7 @@ public partial class GameManager : Node
 		if(currentLevel != null)
 		{
 			loadingScreen.Show();
-			await ToSignal(GetTree().CreateTimer(.1F), SceneTreeTimer.SignalName.Timeout); //wait a frame so that the loading screen renders
+			await ToSignal(GetTree().CreateTimer(.1F), SceneTreeTimer.SignalName.Timeout); //wait a bit so that the loading screen renders
 		}
 		next = QuickFetch.Fetch(levelPath);
 		if(next == null)
@@ -71,6 +71,7 @@ public partial class GameManager : Node
 		currentLevel = nextLevel;
 		AddChild(nextLevel);
 		GD.Print("Changed level to '" + nextLevel.Name + "'");
+		await ToSignal(GetTree().CreateTimer(.1F), SceneTreeTimer.SignalName.Timeout); //wait a bit so that the loading screen renders
 		loadingScreen.Hide();
 	}
 

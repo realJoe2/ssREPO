@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://jplk8w8ggkr3"]
 
 [ext_resource type="Script" uid="uid://b2jcx6xm1w546" path="res://Scripts/MainMenu.cs" id="1_acpfq"]
-[ext_resource type="Texture2D" uid="uid://c8d65tuf0yhsk" path="res://Assets/Misc Images/ss_cover.png" id="1_evoi4"]
+[ext_resource type="Texture2D" uid="uid://4wi851xlhtbq" path="res://Assets/Misc Images/ss_cover.webp" id="1_evoi4"]
 [ext_resource type="PackedScene" uid="uid://b3rosfon2am1b" path="res://Scene Components/level_changer.tscn" id="2_35ycr"]
 
 [node name="Main Menu" type="Control"]
@@ -54,6 +54,6 @@ size_flags_vertical = 4
 text = "Play"
 
 [node name="Level Changer" parent="." instance=ExtResource("2_35ycr")]
-levelPath = "res://Levels/level_sandbox/level_sandbox.tscn"
+levelPath = "res://Levels/level_0-1/level_0_1.tscn"
 
 [connection signal="button_up" from="Play Button" to="Level Changer" method="Activate"]

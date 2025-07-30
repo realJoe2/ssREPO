@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bot5qcufgq70u"]
+
+[ext_resource type="Script" uid="uid://bnssyhh0nte74" path="res://Scripts/Hurtbox.cs" id="1_rtj6n"]
+
+[node name="Hurtbox" type="Area3D"]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+script = ExtResource("1_rtj6n")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
